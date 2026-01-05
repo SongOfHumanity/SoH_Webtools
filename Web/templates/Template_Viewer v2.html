@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMC - Template Workbench v3</title>
+    <style>
+        body { 
+            font-family: 'Consolas', monospace; 
+            background-color: #1a1a1a; color: #00ff41; 
+            margin: 0; display: flex; height: 100vh; overflow: hidden; 
+        }
+
+        /* Sidebar & Accordion Styling */
+        #sidebar { 
+            width: 280px; background: #222; border-right: 2px solid #4ecdc4; 
+            display: flex; flex-direction: column; padding: 15px; 
+            overflow-y: auto;
+        }
+        h2 { color: #4ecdc4; font-size: 1rem; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        .category-block { margin-bottom: 10px; }
+        
+        .category-header { 
+            background: #2a2a2a; color: #f9d423; padding: 8px 12px; 
+            font-size: 0.75em; font-weight: bold; cursor: pointer; 
+            display: flex; justify-content: space-between; align-items: center;
+            border-left: 3px solid #f9d423; transition: 0.2s;
+        }
+        .category-header:hover { background: #333; }
+        .category-header::after { content: '▼'; font-size: 0.8em; opacity: 0.5; }
+        .category-header.collapsed::after { content: '▶'; }
+
+        .item-list { padding: 5px 0 5px 10px; }
+        .item-list.hidden { display: none; }
+
+        .nav-item { 
+            padding: 6px 10px; cursor: pointer; color: #ccc; border-radius: 4px; 
+            margin-bottom: 2px; font-size: 0.8em; transition: 0.1s; 
+        }
+        .nav-item:hover { background: #333; color: #4ecdc4; }
+        .nav-item.active { background: #4ecdc4; color: #000; font-weight: bold; }
+
+        /* Main Workspace */
+        #main { flex-grow: 1; display: flex; flex-direction: column; padding: 20px; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .title-area { color: #f9d423; font-weight: bold; font-size: 0.9em; }
+
+        textarea { 
+            flex-grow: 1; background: #080808; color: #00ff41; 
+            border: 1px solid #333; border-radius: 8px; padding: 20px; 
+            font-family: inherit; font-size: 0.95em; line-height: 1.5; 
+            outline: none; box-sizing: border-box; white-space: pre; overflow: auto;
+        }
+
+        .btn-group { display: flex; gap: 8px; }
+        .btn { padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 0.8em; }
+        .btn-pop { background: #4ecdc4; color: #000; }
+        .btn-copy { background: #f9d423; color: #000; }
+        .btn-reset { background: #ff6b6b; color: #fff; }
+        .btn:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>TEMPLATE LIBRARY</h2>
+    <div id="accordion-container">
+        </div>
+</div>
+
+<div id="main">
+    <div class="toolbar">
+        <div class="title-area" id="active-title">READY</div>
+        <div class="btn-group">
+            <button class="btn btn-pop" onclick="popOut()">🗔 Pop-out</button>
+            <button class="btn btn-reset" onclick="resetCurrent()">🔄 Reset</button>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyTemplate()">📋 Copy</button>
+        </div>
+    </div>
+    <textarea id="workbench" wrap="off" placeholder="Select a template..."></textarea>
+</div>
+
+<script>
+    /* --- CONFIGURATION: REGISTRY & CATEGORIES --- 
+       Add new items here. Categories will render in order.
+    */
+    const registry = [
+        {
+            category: "CORE",
+            items: [
+                { id: 'core_change', name: 'Changelog Entry', url: 'changelog_entry.txt' }
+            ]
+        },
+        {
+            category: "CONTINUITY",
+            items: [
+                { id: 'core_guide', name: 'Guided Activity', url: 'guided_activity.txt' },
+                { id: 'reflection', name: 'Reflection Entry', url: 'reflection_entry.txt' },
+                { id: 'session', name: 'Session Entry (-Dex-)', url: 'session_entry.txt' }
+            ]
+        },
+        {
+            category: "ECOLOGICAL",
+            items: [
+                { id: 'biome', name: 'Biome Entry', url: 'biome_entry.txt' },
+                { id: 'flora', name: 'Flora Entry (-Sylva-)', url: 'flora_entry.txt' },
+                { id: 'fauna', name: 'Fauna Entry (-Alder-)', url: 'fauna_entry.txt' },
+                { id: 'mineral', name: 'Mineral Entry (-Riff-)', url: 'mineral_entry.txt' }
+            ]
+        },
+        {
+            category: "SOCIETAL",
+            items: [
+                { id: 'locale', name: 'Locale Entry', url: 'locale_entry.txt' },
+                { id: 'char', name: 'Character Entry (-Nerris-)', url: 'character_entry.txt' }
+            ]
+        },
+        {
+            category: "MVD (MIN VIABLE DETAIL)",
+            items: [
+                { id: 'mvd_primer', name: 'MVD: Primer', url: 'mvd_primer.txt' },
+                { id: 'mvd_locale', name: 'MVD: Locale', url: 'mvd_locale.txt' },
+                { id: 'mvd_arcana', name: 'MVD: Arcana', url: 'mvd_arcana.txt' },
+                { id: 'mvd_character', name: 'MVD: Character', url: 'mvd_character.txt' },
+                { id: 'mvd_inventory', name: 'MVD: Inventory', url: 'mvd_inventory.txt' }
+            ]
+        }
+        /* --- ADD NEW CATEGORIES BELOW --- */
+    ];
+
+    let currentItem = null;
+
+    function init() {
+        const container = document.getElementById('accordion-container');
+        
+        registry.forEach(group => {
+            const block = document.createElement('div');
+            block.className = 'category-block';
+
+            const header = document.createElement('div');
+            header.className = 'category-header';
+            header.textContent = group.category;
+            
+            const itemList = document.createElement('div');
+            itemList.className = 'item-list';
+
+            header.onclick = () => {
+                header.classList.toggle('collapsed');
+                itemList.classList.toggle('hidden');
+            };
+
+            group.items.forEach(item => {
+                const navItem = document.createElement('div');
+                navItem.className = 'nav-item';
+                navItem.textContent = item.name;
+                navItem.onclick = (e) => {
+                    e.stopPropagation(); // Prevent accordion toggle when clicking item
+                    loadTemplate(item, navItem);
+                };
+                itemList.appendChild(navItem);
+            });
+
+            block.appendChild(header);
+            block.appendChild(itemList);
+            container.appendChild(block);
+        });
+    }
+
+    async function loadTemplate(item, element) {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('active-title').textContent = item.name.toUpperCase();
+        currentItem = item;
+        
+        try {
+            const response = await fetch(item.url);
+            const text = await response.text();
+            document.getElementById('workbench').value = text;
+        } catch (err) {
+            document.getElementById('workbench').value = "Stream Error: File not found.";
+        }
+    }
+
+    function popOut() {
+        if (!currentItem) return;
+        window.open(`Template_Popout.html?file=${currentItem.url}&name=${encodeURIComponent(currentItem.name)}`, 
+                    '_blank', 'width=750,height=850');
+    }
+
+    function resetCurrent() {
+        if (!currentItem) return;
+        const activeNav = Array.from(document.querySelectorAll('.nav-item'))
+                               .find(n => n.textContent === currentItem.name);
+        loadTemplate(currentItem, activeNav);
+    }
+
+    async function copyTemplate() {
+        const area = document.getElementById('workbench');
+        const btn = document.getElementById('copyBtn');
+        if (!area.value) return;
+        try {
+            await navigator.clipboard.writeText(area.value);
+            btn.innerHTML = "✨ COPIED";
+            setTimeout(() => { btn.innerHTML = "📋 COPY"; }, 1200);
+        } catch (err) {}
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>

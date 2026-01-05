@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMC's Prompt Indexer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            background-color: #1a1a1a;
+            color: #00ff41;
+        }
+
+        .container {
+            background: #262626;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            margin-top: 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #f9d423;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            background-color: #000;
+            color: #00ff41;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: inherit;
+            box-sizing: border-box; /* The Right-Edge Fix */
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        #resultArea {
+            height: 180px;
+            background: #080808;
+            border-color: #ff6b6b; /* Highlighted result area */
+        }
+
+        /* The Stoplight Button Pattern */
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.8; }
+
+        .btn-format { background-color: #00ff41; color: #000; } /* Green */
+        .btn-copy   { background-color: #f9d423; color: #000; } /* Amber */
+        .btn-clear  { background-color: #ff6b6b; color: #fff; } /* Red */
+
+        .lava-info {
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Prompt/Response Indexer</h1>
+
+    <div class="flex-row">
+        <div class="input-group">
+            <label>Node Label (##-##):</label>
+            <input type="text" id="nodeLabel" value="C4-00" />
+        </div>
+        <div class="input-group">
+            <label>Current Index:</label>
+            <input type="number" id="indexCount" value="1" />
+        </div>
+        <div class="input-group">
+            <label>Alias:</label>
+            <input type="text" id="aliasInput" value="JMC" />
+        </div>
+    </div>
+
+    <label>Note (Optional):</label>
+    <textarea id="noteInput" placeholder="Enter note contents..."></textarea>
+
+    <label>Prompt Text:</label>
+    <textarea id="promptInput" placeholder="Paste prompt here..."></textarea>
+
+    <label>Response Text:</label>
+    <textarea id="responseInput" placeholder="Paste response here..."></textarea>
+
+    <label>Formatted Result:</label>
+    <textarea id="resultArea" readonly></textarea>
+
+    <div class="btn-row">
+        <button class="btn btn-format" onclick="formatAndNext()">Format & Next [Index++]</button>
+        <button class="btn btn-copy" id="copyBtn" onclick="copyResult()">Copy Result</button>
+        <button class="btn btn-clear" onclick="clearInputs()">Clear Fields</button>
+    </div>
+
+    <div class="lava-info">
+        Entropy Status: Flowing 🌋 | Note format: Block-Inline
+    </div>
+</div>
+
+<script>
+    const nodeLabelEl = document.getElementById('nodeLabel');
+    const indexCountEl = document.getElementById('indexCount');
+    const aliasInputEl = document.getElementById('aliasInput');
+    const promptInputEl = document.getElementById('promptInput');
+    const responseInputEl = document.getElementById('responseInput');
+    const noteInputEl = document.getElementById('noteInput');
+    const resultAreaEl = document.getElementById('resultArea');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function formatAndNext() {
+        const node = nodeLabelEl.value.trim();
+        let idx = parseInt(indexCountEl.value.trim(), 10);
+        const alias = aliasInputEl.value.trim();
+        if (isNaN(idx)) return;
+
+        const promptText = promptInputEl.value;
+        const responseText = responseInputEl.value;
+        const noteText = noteInputEl.value.trim();
+
+        const idSuffix = `${node}-${String(idx).padStart(4, '0')}`;
+        const promptTag = `<prompt${idSuffix}>`;
+        const responseTag = `<response${idSuffix}>`;
+
+        // Note format: Block-Inline (inside the prompt boundary)
+        const noteBlock = noteText ? `<Note ;${alias}>\n${noteText}\n</Note>\n` : '';
+
+        const snippet = 
+`${promptTag}
+${noteBlock}${promptText}
+${responseTag}
+${responseText}
+</response${idSuffix}>
+</prompt${idSuffix}>
+`;
+        resultAreaEl.value = snippet;
+        idx += 1;
+        indexCountEl.value = idx.toString();
+    }
+
+    async function copyResult() {
+        if (!resultAreaEl.value) return;
+        
+        try {
+            await navigator.clipboard.writeText(resultAreaEl.value);
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = "✨ Copied to Clipboard ✨";
+            copyBtn.style.backgroundColor = "#fff";
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.backgroundColor = "#f9d423";
+            }, 1200);
+        } catch (err) {
+            console.error('Copy failed', err);
+        }
+    }
+
+    function clearInputs() {
+        promptInputEl.value = '';
+        responseInputEl.value = '';
+        noteInputEl.value = '';
+        resultAreaEl.value = '';
+    }
+</script>
+
+</body>
+</html>

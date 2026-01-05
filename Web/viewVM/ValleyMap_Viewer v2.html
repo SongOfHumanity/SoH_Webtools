@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valley Map Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Consolas, monospace;
+      background-color: black;
+      color: white;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* Main Map Container - Left Side */
+    #mapContainer {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+    
+    #imageContainer {
+      width: 1280px;
+      height: 1280px;
+      position: relative;
+      border: 2px solid #555;
+    }
+    
+    #baseImage, #overlayImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Viewport Panel - Right Side */
+    #viewportPanel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid #555;
+      overflow: hidden;
+    }
+    
+    /* Control Section at Top of Viewport */
+    #controlSection {
+      padding: 1rem;
+      border-bottom: 2px solid #555;
+      background-color: #111;
+    }
+    
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .control-column {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    h1 {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      color: #4ecdc4;
+    }
+    
+    h2 {
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.2rem;
+      color: #f9d423;
+    }
+    
+    .control-group {
+      margin: 1rem 0;
+    }
+    
+    .control-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    select {
+      padding: 0.5rem;
+      background-color: #222;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .nav-buttons {
+      margin-top: 0.5rem;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      background-color: #222;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: Consolas, monospace;
+    }
+    
+    .btn:hover {
+      background-color: #444;
+      border-color: #4ecdc4;
+    }
+    
+    /* Content Viewport - Now an iframe */
+    #contentViewport {
+      flex: 1;
+      border: none;
+      background: #1a1a1a;
+      width: 100%;
+    }
+    
+    /* Styling for content loaded into viewport - no longer needed, keeping scrollbar styles just in case */
+    #biomeKey {
+      margin-bottom: 1rem;
+    }
+    
+    #biomeKey div {
+      margin: 0.3rem 0;
+    }
+    
+    ul {
+      padding-left: 1.5rem;
+      list-style-type: none;
+    }
+    
+    li {
+      margin: 0.5rem 0;
+    }
+    
+    li::before {
+      content: "▸ ";
+      color: #4ecdc4;
+      margin-right: 0.5rem;
+    }
+    
+    a {
+      color: #4ecdc4;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #f9d423;
+      text-decoration: underline;
+    }
+    
+    /* Scrollbar Styling */
+    #contentViewport::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    #contentViewport::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    
+    #contentViewport::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+    
+    #contentViewport::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+    
+    /* Floating Color Key Panel */
+    #floatingColorKey {
+      position: fixed;
+      top: 100px;
+      left: 50px;
+      background: rgba(34, 34, 34, 0.95);
+      border: 2px solid #4ecdc4;
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 250px;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      display: none;
+    }
+    
+    #floatingColorKey.visible {
+      display: block;
+    }
+    
+    /* Floating Ecological Key Panel */
+    #floatingEcoKey {
+      position: fixed;
+      top: 150px;
+      left: 100px;
+      background: rgba(34, 34, 34, 0.95);
+      border: 2px solid #99FF33;
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 300px;
+      max-width: 450px;
+      max-height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      display: none;
+    }
+    
+    #floatingEcoKey.visible {
+      display: block;
+    }
+    
+    /* Floating Societal Key Panel */
+    #floatingSocKey {
+      position: fixed;
+      top: 200px;
+      left: 150px;
+      background: rgba(34, 34, 34, 0.95);
+      border: 2px solid #f9d423;
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 300px;
+      max-width: 450px;
+      max-height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      display: none;
+    }
+    
+    #floatingSocKey.visible {
+      display: block;
+    }
+    
+    .float-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #555;
+      cursor: move;
+    }
+    
+    .float-header h3 {
+      margin: 0;
+      color: #4ecdc4;
+      font-size: 1.1rem;
+    }
+    
+    .float-header.eco-header h3 {
+      color: #99FF33;
+    }
+    
+    .float-header.soc-header h3 {
+      color: #f9d423;
+    }
+    
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      width: 24px;
+      height: 24px;
+    }
+    
+    .close-btn:hover {
+      color: #ff4444;
+    }
+    
+    #floatingColorKeyContent {
+      font-size: 0.9rem;
+    }
+    
+    #floatingColorKeyContent div {
+      margin: 0.3rem 0;
+    }
+    
+    #floatingEcoKeyContent, #floatingSocKeyContent {
+      font-size: 0.9rem;
+    }
+    
+    #floatingEcoKeyContent h4, #floatingSocKeyContent h4 {
+      margin: 0.8rem 0 0.3rem 0;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    
+    #floatingEcoKeyContent ul, #floatingSocKeyContent ul {
+      margin: 0.3rem 0;
+      padding-left: 1.2rem;
+    }
+    
+    #floatingEcoKeyContent li, #floatingSocKeyContent li {
+      margin: 0.25rem 0;
+    }
+    
+    /* Scrollbar for floating panels */
+    #floatingEcoKey::-webkit-scrollbar,
+    #floatingSocKey::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #floatingEcoKey::-webkit-scrollbar-track,
+    #floatingSocKey::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    
+    #floatingEcoKey::-webkit-scrollbar-thumb,
+    #floatingSocKey::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 3px;
+    }
+    
+    #floatingEcoKey::-webkit-scrollbar-thumb:hover,
+    #floatingSocKey::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+    
+    /* Toggle Button */
+    .toggle-key-btn {
+      padding: 0.5rem 1rem;
+      background-color: #222;
+      color: #4ecdc4;
+      border: 1px solid #4ecdc4;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: Consolas, monospace;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    
+    .toggle-key-btn:hover {
+      background-color: #333;
+      box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Map Container - Left Side -->
+<div id="mapContainer">
+  <div id="imageContainer">
+    <img id="baseImage" src="Images/ValleyMap_Eco_Forests.png" alt="Valley Map" />
+    <img id="overlayImage" src="" alt="Overlay" style="display: none;" />
+  </div>
+</div>
+
+<!-- Viewport Panel - Right Side -->
+<div id="viewportPanel">
+  
+  <!-- Control Section -->
+  <div id="controlSection">
+    <h1>ValleyMap Viewer</h1>
+    
+    <div class="controls-grid">
+      <!-- Column 1: Base Map Layer -->
+      <div class="control-column">
+        <div class="control-group">
+          <label>Base Map Layer:</label>
+          <select id="imageSelector" onchange="updateImage()">
+            <option value="ValleyMap_Eco_Forests.png">Forests</option>
+            <option value="ValleyMap_Eco_Waterways.png">Waterways</option>
+            <option value="ValleyMap_Eco_Wetlands.png">Wetlands</option>
+            <option value="ValleyMap_Eco_Plains.png">Plains</option>
+            <option value="ValleyMap_Eco_Hills.png">Hills</option>
+            <option value="ValleyMap_Eco_Mountains.png">Mountains</option>
+          </select>
+          <div class="nav-buttons">
+            <button class="btn" onclick="prevImage()">◄ Prev</button>
+            <button class="btn" onclick="nextImage()">Next ►</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Column 2: Overlay Layer -->
+      <div class="control-column">
+        <div class="control-group">
+          <label>Overlay Layer:</label>
+          <select id="overlaySelector" onchange="updateOverlay()">
+            <option value="">None</option>
+            <option value="ValleyMap_Overlay_MajorCenters.png">Major Centers</option>
+            <option value="ValleyMap_Overlay_Freeland.png">Freeland</option>
+            <option value="ValleyMap_Overlay_HeartlandNorth.png">Northern Heartlands</option>
+            <option value="ValleyMap_Overlay_HeartlandSouth.png">Southern Heartlands</option>
+            <option value="ValleyMap_Overlay_HeartlandEast.png">Eastern Heartlands</option>
+            <option value="ValleyMap_Overlay_Cogsway.png">Cogsway</option>
+            <option value="ValleyMap_Overlay_MudRow.png">Mudder's Row</option>
+            <option value="ValleyMap_Overlay_Shielding.png">Shielding</option>
+          </select>
+          <div class="nav-buttons">
+            <button class="btn" onclick="prevOverlay()">◄ Prev</button>
+            <button class="btn" onclick="nextOverlay()">Next ►</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Column 3: Other Controls -->
+      <div class="control-column">
+        <div class="control-group">
+          <label>Tools:</label>
+          <button class="toggle-key-btn" onclick="toggleColorKey()">🎨 Color Key</button>
+          <button class="toggle-key-btn" onclick="toggleEcoKey()">🌲 Ecological Key</button>
+          <button class="toggle-key-btn" onclick="toggleSocKey()">🏘️ Societal Key</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating Color Key Panel -->
+  <div id="floatingColorKey">
+    <div class="float-header">
+      <h3>Biome Color Key</h3>
+      <button class="close-btn" onclick="toggleColorKey()">×</button>
+    </div>
+    <div id="floatingColorKeyContent"></div>
+  </div>
+  
+  <!-- Floating Ecological Key Panel -->
+  <div id="floatingEcoKey">
+    <div class="float-header eco-header">
+      <h3>Ecological Markers</h3>
+      <button class="close-btn" onclick="toggleEcoKey()">×</button>
+    </div>
+    <div id="floatingEcoKeyContent"></div>
+  </div>
+  
+  <!-- Floating Societal Key Panel -->
+  <div id="floatingSocKey">
+    <div class="float-header soc-header">
+      <h3>Societal Markers</h3>
+      <button class="close-btn" onclick="toggleSocKey()">×</button>
+    </div>
+    <div id="floatingSocKeyContent"></div>
+  </div>
+  
+  <!-- Content Viewport - Now an iframe -->
+  <iframe name="detailFrame" id="contentViewport" src="VMView_changelog.html"></iframe>
+  
+</div>
+
+<script>
+  const images = [
+    "ValleyMap_Eco_Forests.png",
+    "ValleyMap_Eco_Waterways.png",
+    "ValleyMap_Eco_Wetlands.png",
+    "ValleyMap_Eco_Plains.png",
+    "ValleyMap_Eco_Hills.png",
+    "ValleyMap_Eco_Mountains.png"
+  ];
+
+  const overlays = [
+    "ValleyMap_Overlay_MajorCenters.png",
+    "ValleyMap_Overlay_Freeland.png",
+    "ValleyMap_Overlay_HeartlandNorth.png",
+    "ValleyMap_Overlay_HeartlandSouth.png",
+    "ValleyMap_Overlay_HeartlandEast.png",
+    "ValleyMap_Overlay_Cogsway.png",
+    "ValleyMap_Overlay_MudRow.png",
+    "ValleyMap_Overlay_Shielding.png"
+  ];
+
+  const markerData = {
+    "ValleyMap_Eco_Forests.png": {
+      major: [
+        { name: "①; Northwood Forest", file: "markers/Forest_D.html" },
+        { name: "②; Archwood Forest", file: "markers/Forest_E.html" },
+        { name: "③; Marshwood Forest", file: "markers/Forest_F.html" },
+        { name: "④; Aldermere Wood", file: "markers/Forest_G.html" },
+        { name: "⑤; Oakwood Forest", file: "markers/Forest_H.html" },
+        { name: "⑧; Oak Line", file: "markers/Forest_K.html" }
+      ],
+      minor: [
+        { name: "ⓜ; Elderglen Wood", file: "markers/Forest_m.html" },
+        { name: "ⓝ; Evermelt Glade", file: "markers/Forest_n.html" },
+        { name: "ⓟ; Owl's Glen", file: "markers/Forest_p.html" },
+        { name: "ⓠ; Quillback Hill", file: "markers/Forest_q.html" },
+        { name: "ⓡ; Aurora Island", file: "markers/Forest_r.html" },
+        { name: "ⓢ; Lusterwood", file: "markers/Forest_s.html" }
+      ]
+    },
+    "ValleyMap_Eco_Waterways.png": {
+      major: [
+        { name: "①; White River", file: "markers/Waterway_D.html" },
+        { name: "②; Blue River", file: "markers/Waterway_E.html" },
+        { name: "③; Lustre Lake", file: "markers/Waterway_F.html" },
+        { name: "④; Veilstream", file: "markers/Waterway_G.html" }
+      ],
+      minor: [
+        { name: "ⓗ; Mirror Lake", file: "markers/Waterway_h.html" },
+        { name: "ⓚ; Glenmere", file: "markers/Waterway_k.html" },
+        { name: "ⓜ; Harmony Lake", file: "markers/Waterway_m.html" },
+        { name: "ⓝ; Southfall", file: "markers/Waterway_n.html" },
+        { name: "ⓟ; Willow Stream", file: "markers/Waterway_p.html" },
+        { name: "ⓠ; Felltide", file: "markers/Waterway_q.html" },
+        { name: "ⓡ; Thistlebrook", file: "markers/Waterway_r.html" },
+        { name: "ⓢ; Featherflow", file: "markers/Waterway_s.html" },
+        { name: "ⓣ; The Timberponds", file: "markers/Waterway_t.html" },
+        { name: "ⓤ; Sundrift", file: "markers/Waterway_u.html" },
+        { name: "ⓦ; Steadyrush", file: "markers/Waterway_w.html" }
+      ]
+    },
+    "ValleyMap_Eco_Wetlands.png": {
+      major: [
+        { name: "①; Silver Marshes", file: "markers/Wetlands_D.html" },
+        { name: "②; Murkwater Marsh", file: "markers/Wetlands_E.html" },
+        { name: "③; Goldwater Flats", file: "markers/Wetlands_F.html" },
+        { name: "④; Mudder's Row", file: "markers/Wetlands_G.html" },
+        { name: "⑤; Stillwater", file: "markers/Wetlands_H.html" }
+      ],
+      minor: [
+        { name: "ⓚ; Tidebough Hollow", file: "markers/Wetlands_k.html" },
+        { name: "ⓜ; Floodcrest Hollow", file: "markers/Wetlands_m.html" },
+        { name: "ⓝ; Veilstone Spring", file: "markers/Wetlands_n.html" },
+        { name: "ⓟ; Shattered Oasis", file: "markers/Wetlands_p.html" }
+      ]
+    },
+    "ValleyMap_Eco_Plains.png": {
+      major: [
+        { name: "①; Northern Heartlands (Plains)", file: "markers/Plains_D.html" },
+        { name: "②; Southern Heartlands (Plains)", file: "markers/Plains_E.html" },
+        { name: "③; Eastern Heartlands (Plains)", file: "markers/Plains_F.html" },
+        { name: "⑧; Freeland Sway (Grasslands)", file: "markers/Grasslands_K.html" }
+      ],
+      minor: [
+        { name: "ⓖ; Sunward Strand (Plains)", file: "markers/Plains_g.html" },
+        { name: "ⓗ; Skyreach Meadows (Plains)", file: "markers/Plains_h.html" },
+        { name: "ⓜ; Windmane Run (Grasslands)", file: "markers/Grasslands_m.html" },
+        { name: "ⓝ; Felltide Reach (Grasslands)", file: "markers/Grasslands_n.html" },
+        { name: "ⓟ; Heartland Rise (Grasslands)", file: "markers/Grasslands_p.html" },
+        { name: "ⓠ; Straywind Pass (Grasslands)", file: "markers/Grasslands_q.html" },
+        { name: "ⓡ; Lyric Greene (Grasslands)", file: "markers/Grasslands_r.html" },
+        { name: "ⓢ; Eastern Sway (Grasslands)", file: "markers/Grasslands_s.html" },
+        { name: "ⓣ; The Greenrun (Grasslands)", file: "markers/Grasslands_t.html" }
+      ]
+    },
+    "ValleyMap_Eco_Hills.png": {
+      major: [
+        { name: "①; Shattered Hills", file: "markers/Hills_D.html" },
+        { name: "②; Southern Hills", file: "markers/Hills_E.html" }
+      ],
+      minor: [
+        { name: "ⓕ; Timberstone Crag", file: "markers/Hills_f.html" },
+        { name: "ⓖ; Brightstone Hills", file: "markers/Hills_g.html" }
+      ]
+    },
+    "ValleyMap_Eco_Mountains.png": {
+      major: [
+        { name: "①; Northwest Peaks", file: "markers/Mountains_D.html" },
+        { name: "②; Northern Ridges", file: "markers/Mountains_E.html" },
+        { name: "③; Northeastern Cliffs", file: "markers/Mountains_F.html" },
+        { name: "④; Eastern Slopes", file: "markers/Mountains_G.html" },
+        { name: "⑤; Western Cliffs", file: "markers/Mountains_H.html" },
+        { name: "⑧; Southwestern Highlands", file: "markers/Mountains_K.html" },
+        { name: "⑬; Southern Cliffs", file: "markers/Mountains_M.html" },
+        { name: "⑭; Southeastern Slopes", file: "markers/Mountains_N.html" }
+      ],
+      minor: []
+    }
+  };
+  
+  const overlayData = {
+    "ValleyMap_Overlay_MajorCenters.png": {
+      zone: "Major Centers",
+      locales: [
+        { name: "⓵: Homestead", link: "markers/Locale_Homestead.html", features: [
+          { name: "□₁: Homestead Mill", link: "markers/Feature_HomesteadMill.html" }
+        ]},
+        { name: "⓶: Northwood", link: "markers/Locale_Northwood.html", features: [
+          { name: "▣₁: North Tower", link: "markers/Feature_NorthTower.html" }
+        ]},
+        { name: "⓷: Easthill", link: "markers/Locale_Easthill.html", features: [
+          { name: "◆₁: Easthill Mine", link: "markers/Feature_EasthillMine.html" },
+          { name: "◆₂: Agate Mine", link: "markers/Feature_AgateMine.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_Freeland.png": {
+      zone: "Freeland",
+      locales: [
+        { name: "①: Archwood", link: "markers/Locale_Archwood.html", features: [
+          { name: "◨₁: Archwood Mill", link: "markers/Feature_ArchwoodMill.html" },
+          { name: "◒₁: Wolf Sett", link: "markers/Feature_WolfSett.html" }
+        ]},
+        { name: "②: Marshwood", link: "markers/Locale_Marshwood.html", features: [
+          { name: "◒₂: Heron Sett", link: "markers/Feature_HeronSett.html" }
+        ]},
+        { name: "③: Willowglade", link: "markers/Locale_Willowglade.html", features: [] }
+      ]
+    },
+    "ValleyMap_Overlay_HeartlandNorth.png": {
+      zone: "Northern Heartlands",
+      locales: [
+        { name: "④: Elderglen", link: "markers/Locale_Elderglen.html", features: [
+          { name: "◮₁: Shady Vale", link: "markers/Feature_ShadyVale.html" }
+        ]},
+        { name: "⑤: Millwright", link: "markers/Locale_Millwright.html", features: [
+          { name: "◮₂: Heartside Field", link: "markers/Feature_HeartsideField.html" },
+          { name: "□₂: Millwright Mill", link: "markers/Feature_MillwrightMill.html" }
+        ]},
+        { name: "⑥: Cooper's Landing", link: "markers/Locale_CoopersLanding.html", features: [
+          { name: "◮₃: Heritage Ranch", link: "markers/Feature_HeritageRanch.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_HeartlandSouth.png": {
+      zone: "Southern Heartlands",
+      locales: [
+        { name: "⑦: Homestead Keep (Future)", link: "markers/Locale_HomesteadKeep.html", features: [] },
+        { name: "⑧: Steading", link: "markers/Locale_Steading.html", features: [
+          { name: "□₃: Steadymill", link: "markers/Feature_Steadymill.html" },
+          { name: "◮₄: Nutberry Farm", link: "markers/Feature_NutberryFarm.html" },
+          { name: "◮₅: Fall Orchard", link: "markers/Feature_FallOrchard.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_HeartlandEast.png": {
+      zone: "Eastern Heartlands",
+      locales: [
+        { name: "⑨: Cherrymill", link: "markers/Locale_Cherrymill.html", features: [
+          { name: "□₄: The Cherry Mill", link: "markers/Feature_CherryMill.html" },
+          { name: "◮₆: Cherry Fields", link: "markers/Feature_CherryFields.html" }
+        ]},
+        { name: "⑩: Boulderside", link: "markers/Locale_Boulderside.html", features: [
+          { name: "◆₃: Boulderside Mine", link: "markers/Feature_BouldersideMine.html" },
+          { name: "◮₇: Shodhoof Hill", link: "markers/Feature_ShodhoofHill.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_Cogsway.png": {
+      zone: "Cogsway",
+      locales: [
+        { name: "⑪: Westridge", link: "markers/Locale_Westridge.html", features: [
+          { name: "■₁: Westridge Quarry (Future)", link: "markers/Feature_WestridgeQuarry.html" }
+        ]},
+        { name: "⑫: Bronze Hill", link: "markers/Locale_BronzeHill.html", features: [
+          { name: "◆₄: Bronze Hill Mine", link: "markers/Feature_BronzeHillMine.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_MudRow.png": {
+      zone: "Mudder's Row",
+      locales: [
+        { name: "⑬: Potter's Roost", link: "markers/Locale_PottersRoost.html", features: [
+          { name: "◒₃: Coyote Sett", link: "markers/Feature_CoyoteSett.html" }
+        ]},
+        { name: "⑭: Southwatch", link: "markers/Locale_Southwatch.html", features: [
+          { name: "▣₂: Southwatch Tower", link: "markers/Feature_SouthwatchTower.html" }
+        ]}
+      ]
+    },
+    "ValleyMap_Overlay_Shielding.png": {
+      zone: "Shielding",
+      locales: [
+        { name: "⑮: Aldermere", link: "markers/Locale_Aldermere.html", features: [
+          { name: "◒₄: Eastmere Hunter Sett", link: "markers/Feature_EastmereHunterSett.html" },
+          { name: "◨₂: Easthill Lumber", link: "markers/Feature_EasthillLumber.html" }
+        ]},
+        { name: "⑯: Goodshield", link: "markers/Locale_Goodshield.html", features: [
+          { name: "◆₅: Goodshield Mine", link: "markers/Feature_GoodshieldMine.html" },
+          { name: "■₂: Easthill Quarry", link: "markers/Feature_EasthillQuarry.html" }
+        ]},
+        { name: "⑰: Eastern Rise", link: "markers/Locale_EasternRise.html", features: [
+          { name: "◆₆: Fluorspar Mine", link: "markers/Feature_FluorsparMine.html" }
+        ]}
+      ]
+    }
+  };
+
+  const biomeKey = [
+    { hex: "#FCE100", color: "Turbo", biome: "Mountains" },
+    { hex: "#FFFF66", color: "Laser Lemon", biome: "Cliffs" },
+    { hex: "#75BFFF", color: "Allports", biome: "Waterway" },
+    { hex: "#008C3A", color: "Fun Green", biome: "Forest" },
+    { hex: "#00CC00", color: "Green", biome: "Forest Transition" },
+    { hex: "#99FF33", color: "Green Yellow", biome: "Plains" },
+    { hex: "#66ff99", color: "Screamin' Green", biome: "Grasslands" },
+    { hex: "#007399", color: "Malibu", biome: "Wetlands" },
+    { hex: "#E71225", color: "Crimson", biome: "Hills" },
+    { hex: "#9A0089", color: "Flirt", biome: "Featured/Overlay" }
+  ];
+
+  let currentIndex = 0;
+  let currentOverlayIndex = 0;
+
+  function updateImage() {
+    const selectedImage = document.getElementById('imageSelector').value;
+    currentIndex = images.indexOf(selectedImage);
+    document.getElementById('baseImage').src = `images/${selectedImage}`;
+    loadEcologicalKey(selectedImage);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('baseImage').src = `images/${images[currentIndex]}`;
+    document.getElementById('imageSelector').value = images[currentIndex];
+    loadEcologicalKey(images[currentIndex]);
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('baseImage').src = `images/${images[currentIndex]}`;
+    document.getElementById('imageSelector').value = images[currentIndex];
+    loadEcologicalKey(images[currentIndex]);
+  }
+
+  function updateOverlay() {
+    const selectedOverlay = document.getElementById('overlaySelector').value;
+    currentOverlayIndex = overlays.indexOf(selectedOverlay);
+    if (currentOverlayIndex === -1) currentOverlayIndex = 0; // Handle "None" option
+    
+    const overlayImageEl = document.getElementById('overlayImage');
+    
+    if (selectedOverlay) {
+      overlayImageEl.src = `images/${selectedOverlay}`;
+      overlayImageEl.style.display = 'block';
+      loadSocietalKey(selectedOverlay);
+    } else {
+      overlayImageEl.style.display = 'none';
+      loadSocietalKey(null);
+    }
+  }
+
+  function prevOverlay() {
+    // If currently at "None", wrap to last overlay
+    if (currentOverlayIndex <= 0) {
+      currentOverlayIndex = overlays.length - 1;
+    } else {
+      currentOverlayIndex--;
+    }
+    document.getElementById('overlaySelector').value = overlays[currentOverlayIndex];
+    updateOverlay();
+  }
+
+  function nextOverlay() {
+    // Cycle through overlays, then back to first
+    currentOverlayIndex = (currentOverlayIndex + 1) % overlays.length;
+    document.getElementById('overlaySelector').value = overlays[currentOverlayIndex];
+    updateOverlay();
+  }
+
+  // Toggle floating color key visibility
+  function toggleColorKey() {
+    const panel = document.getElementById('floatingColorKey');
+    panel.classList.toggle('visible');
+  }
+
+  // Toggle floating ecological key visibility
+  function toggleEcoKey() {
+    const panel = document.getElementById('floatingEcoKey');
+    panel.classList.toggle('visible');
+  }
+
+  // Toggle floating societal key visibility
+  function toggleSocKey() {
+    const panel = document.getElementById('floatingSocKey');
+    panel.classList.toggle('visible');
+  }
+
+  // Populate Ecological Key with current map's biome markers
+  function loadEcologicalKey(image) {
+    const ecoContent = document.getElementById('floatingEcoKeyContent');
+    ecoContent.innerHTML = '';
+    
+    const markers = markerData[image];
+    if (markers) {
+      // Major Biomes
+      if (markers.major && markers.major.length > 0) {
+        const majorHeader = document.createElement('h4');
+        majorHeader.textContent = 'Major Biomes';
+        majorHeader.style.color = '#99FF33';
+        ecoContent.appendChild(majorHeader);
+        
+        const majorList = document.createElement('ul');
+        markers.major.forEach(marker => {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = marker.file;
+          link.textContent = marker.name;
+          link.target = 'detailFrame';
+          li.appendChild(link);
+          majorList.appendChild(li);
+        });
+        ecoContent.appendChild(majorList);
+      }
+      
+      // Minor Biomes
+      if (markers.minor && markers.minor.length > 0) {
+        const minorHeader = document.createElement('h4');
+        minorHeader.textContent = 'Minor Biomes';
+        minorHeader.style.color = '#99FF33';
+        ecoContent.appendChild(minorHeader);
+        
+        const minorList = document.createElement('ul');
+        markers.minor.forEach(marker => {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = marker.file;
+          link.textContent = marker.name;
+          link.target = 'detailFrame';
+          li.appendChild(link);
+          minorList.appendChild(li);
+        });
+        ecoContent.appendChild(minorList);
+      }
+    } else {
+      ecoContent.innerHTML = '<p style="color: #888; font-style: italic;">No markers for this map layer.</p>';
+    }
+  }
+
+  // Populate Societal Key with current overlay's data
+  function loadSocietalKey(overlayName) {
+    const socContent = document.getElementById('floatingSocKeyContent');
+    socContent.innerHTML = '';
+    
+    if (!overlayName) {
+      socContent.innerHTML = '<p style="color: #888; font-style: italic;">Select an overlay to view societal markers.</p>';
+      return;
+    }
+    
+    const overlay = overlayData[overlayName];
+    if (overlay) {
+      // Zone Header
+      const zoneHeader = document.createElement('h4');
+      zoneHeader.textContent = overlay.zone;
+      zoneHeader.style.color = '#f9d423';
+      zoneHeader.style.fontSize = '1.1rem';
+      zoneHeader.style.marginBottom = '0.8rem';
+      socContent.appendChild(zoneHeader);
+      
+      // Locales
+      overlay.locales.forEach(locale => {
+        const localeHeader = document.createElement('h4');
+        localeHeader.textContent = locale.name;
+        localeHeader.style.color = '#aaa';
+        socContent.appendChild(localeHeader);
+        
+        const localeLink = document.createElement('ul');
+        const localeLi = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = locale.link;
+        link.textContent = 'View Locale Details';
+        link.target = 'detailFrame';
+        localeLi.appendChild(link);
+        localeLink.appendChild(localeLi);
+        socContent.appendChild(localeLink);
+        
+        // Features
+        if (locale.features && locale.features.length > 0) {
+          const featuresList = document.createElement('ul');
+          featuresList.style.marginLeft = '1rem';
+          locale.features.forEach(feature => {
+            const li = document.createElement('li');
+            const featureLink = document.createElement('a');
+            featureLink.href = feature.link;
+            featureLink.textContent = feature.name;
+            featureLink.target = 'detailFrame';
+            li.appendChild(featureLink);
+            featuresList.appendChild(li);
+          });
+          socContent.appendChild(featuresList);
+        }
+      });
+    } else {
+      socContent.innerHTML = '<p style="color: #888; font-style: italic;">No data for this overlay.</p>';
+    }
+  }
+
+  // Make the floating panel draggable
+  function makeDraggable(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    const header = element.querySelector('.float-header');
+    const iframe = document.getElementById('contentViewport');
+    const mapContainer = document.getElementById('mapContainer');
+    
+    if (header) {
+      header.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // Disable pointer events on iframe and map during drag
+      if (iframe) iframe.style.pointerEvents = 'none';
+      if (mapContainer) mapContainer.style.pointerEvents = 'none';
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      element.style.top = (element.offsetTop - pos2) + "px";
+      element.style.left = (element.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+      // Re-enable pointer events when drag ends
+      if (iframe) iframe.style.pointerEvents = 'auto';
+      if (mapContainer) mapContainer.style.pointerEvents = 'auto';
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+
+  function loadBiomeKey() {
+    const keyContainer = document.getElementById('floatingColorKeyContent');
+    biomeKey.forEach(entry => {
+      keyContainer.innerHTML += `<div><b style="color: ${entry.hex}">${entry.color}</b>: ${entry.biome}</div>`;
+    });
+  }
+
+  // Initialize all keys and make panels draggable on load
+  loadBiomeKey();
+  loadEcologicalKey(images[0]);
+  loadSocietalKey(null);
+  makeDraggable(document.getElementById('floatingColorKey'));
+  makeDraggable(document.getElementById('floatingEcoKey'));
+  makeDraggable(document.getElementById('floatingSocKey'));
+</script>
+
+</body>
+</html>

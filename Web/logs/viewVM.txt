@@ -1,0 +1,20 @@
+### **ValleyMap_Viewer Feature Update: "iframes Mess With Everything"**
+
+#### **01/03/2026**: Completed "ValleyMap_Viewer v2 Development" with -Claude- and -JMC-.
+- [Changed] [Structural] Reorganized control section into 3-column grid layout (Base Map | Overlay | Tools) for improved space utilization and cleaner interface.
+- [Added] [UI/UX] Three draggable floating key panels: Color Key (biome colors), Ecological Key (biome markers), and Societal Key (zone/locale/feature hierarchy).
+- [Added] [Interactivity] Toggle buttons for all three floating panels with show/hide functionality and draggable positioning.
+- [Migrated] [Functionality] Converted static content viewport from scrollable div to iframe-based system for in-panel detail page loading.
+- [Changed] [Data Structure] Updated biomeKey array to include new "Screamin' Green" grasslands biome entry and corrected Waterway/Wetlands color hex codes.
+- [Changed] [Data Structure] Split combined "Plains & Hills" map into separate "Plains" (with Grasslands) and "Hills" base map layers.
+- [Integrated] [Data Structure] Expanded overlayData from 2 to 8 complete societal zones: Major Centers, Freeland, Northern/Southern/Eastern Heartlands, Cogsway, Mudder's Row, and Shielding.
+- [Added] [Data Structure] Implemented full locale and feature hierarchy for all societal overlays with proper marker links (17 locales, 30+ features across 8 zones).
+- [Added] [Functionality] Prev/Next navigation buttons for both Base Map and Overlay selectors with cycling behavior.
+- [Changed] [Interactivity] Retargeted all marker links (ecological and societal) from `target="_blank"` to `target="detailFrame"` for iframe viewport loading.
+- [Fixed] [Interactivity] Resolved draggable panel functionality by implementing pointer-events disabling on iframe and mapContainer during drag operations to prevent event capture issues.
+- [Fixed] [Functionality] Corrected `majorList` reference error in `loadEcologicalKey()` function (line 818: minorList items were incorrectly appending to majorList).
+- [Optimized] [Styling] Removed redundant `cursor: move` declarations from panel containers; retained only on `.float-header` for proper drag indication.
+- [Added] [Content] Set iframe default source to `VMView_changelog.html` for initial viewport content.
+- [Removed] [UI/UX] Eliminated static biome and societal marker sections from fixed viewport to free space for dynamic iframe content.
+- *File(s):* `ValleyMap_Viewer.html` → `ValleyMap_Viewer v2.html`
+- *Notes:* Complete overhaul from static reference panel layout to dynamic floating key system with iframe-based detail viewing. All 6 base map layers (Forests, Waterways, Wetlands, Plains, Hills, Mountains) and 8 societal overlays fully integrated with marker data. Viewport now serves as detail frame while floating panels provide movable reference keys.

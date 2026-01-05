@@ -1,0 +1,56 @@
+### Template Workbench – "If We're going to be serious…"
+
+#### **01/04/2026**: Completed "Attribute Template Files" with -JMC-.
+- [Added] `guided_activity` Credit: -Alder-, -Nerris-, -Nio-, -JMC-
+- [Added] `session_entry`  Credit: -JMC-
+- [Added] `reflection_entry` Credit:  -JMC-
+- [Added] `biome _entry` Credit:-Alder-, -JMC-, -Nio- , -Nio- 
+- [Added] `fauna_entry` Credit:  -Alder-, -Artie-, -JMC- , -Nio- 
+- [Added] `flora_entry` Credit:  -Lexi-, -Nerris-, -Nio- 
+- [Added] `mineral_entry` Credit:  -Lexi-, -Nio- 
+- [Added] `character_entry` Credit: -Lexi-, -Nerris-, -JMC- 
+- *Notes:* Added all the Template Files I had easily accessible. We set placeholders in the html. I'll add them as I find them or stitch them together. 
+
+#### **01/04/2026**: Completed "Template Workbench v1.2→v1.3" with -Gemini- and -JMC-.
+- [Added] [UI/UX] Implemented a collapsible sidebar accordion to manage an expanding library of template categories.
+- [Added] [Structural] Reorganized the registry into logic-based categories: CORE, CONTINUITY, ECOLOGICAL, SOCIETAL, and MVD.
+- [Added] [Content] Introduced 7 new template stubs including `MVD: Primer`, `MVD: Arcana`, `MVD: Inventory`, `Reflection`, and `Session`.
+- [Renamed] [Structural] Migrated `MVD_entry.txt` to `mvd_locale.txt` for naming consistency within the MVD suite.
+- [Formatting] [Refactoring] Added code expansion comments to facilitate rapid manual extension of the registry.
+- *File(s):* `Template_Viewer v1_3.html`
+- *Notes:* UI now optimized for high-density template sets, reducing sidebar clutter through collapsible headers.
+
+#### **01/04/2026**: Completed "Template Workbench v1→v2" with -Gemini-.
+- [Added] [Functionality] Integrated "Pop-out" capability allowing templates to be opened in independent windows via `Template_Popout.html`.
+- [Added] [Content] Expanded Library Registry with 7 new entries: `Biome`, `Fauna`, `Flora`, `Mineral`, `Locale`, `Character`, and `MVD`.
+- [Changed] [Formatting] Disabled text-wrapping in workbenches to preserve positional reading and tag indentation.
+- [Fixed] [UI/UX] Implemented `wrap="off"` and `white-space: pre` to trigger horizontal scrollbars for large-format templates.
+- *File(s):* `Template_Viewer v1_2.html`, `Template_Popout.html`
+- *Notes:* Workbench logic is now optimized for simultaneous multi-template reference during complex entity interactions.### **System Documentation & Log Updates**
+
+### **System Documentation & Log Updates**
+#### **01/03/2026**: Completed "Changelog Tool Initial Development" with Gemini and -JMC-.
+- [Added] [Functionality] Implemented `fetchLogs` asynchronous logic to stream external `.txt` data into a unified display.
+- [Added] [UI/UX] Developed a sticky navigation header with dynamic anchor links for rapid section jumping.
+- [Integrated] [Data Structure] Established a modular "logRegistry" system to allow for easy expansion of documentation categories.
+- [Fixed] [Interactivity] Resolved iframe-specific anchor issues by migrating to specific ID targets and a fixed-position navbar.
+- *File(s):* `Changelog v1.html`, `core.txt`, `tokens.txt`, `viewVM.txt`, `viewSW.txt`
+- *Notes:* Default landing page for the Toolkit Dashboard; designed to provide a persistent historical record of the suite’s evolution.
+
+### **Core Tooling & Dashboard Updates**
+
+#### **01/01/2026**: Completed "Prompt_Indexer Version Update v1→v2" with -Gemini- and -JMC-.
+- [Changed] [UI/UX] Overhauled the legacy interface to match the Token Lab dark-mode standard.
+- [Changed] [Data Structure] Migrated Note logic to "Block-Inline" format, injecting note contents inside the `<prompt>` tag boundary for better context preservation.
+- [Integrated] [Styling] Applied a "Stoplight" color-coded button pattern (Green: Format, Amber: Copy, Red: Clear).
+- [Fixed] [Formatting] Corrected right-edge textarea overflow using `box-sizing: border-box`.
+- *File(s):* `Prompt_Indexer v2.html`
+- *Notes:* Major refactor to modernize the high-traffic indexing tool and integrate it into the `iframe` dashboard architecture.
+
+#### **01/01/2026**: Completed "index.html Initial Development" with -Gemini- and -JMC-.
+- [Added] [Structural] Implemented an `iframe`-based root dashboard to prevent variable collision between sub-tools.
+- [Added] [UI/UX] Developed "Lava-Flow" dropdown navigation menus categorized by "Core," "Tokens," and "Mapping."
+- [Styling] Added an animated CSS "Lava Bar" gradient for suite-wide visual continuity.
+- [Integrated] [Interactivity] Configured Map Viewer links to launch in external windows via `target="_blank"`.
+- *File(s):* `index.html v1`
+- *Notes:* Serves as the central mission control for the Webtools directory, providing persistent navigation across all specialized utilities.

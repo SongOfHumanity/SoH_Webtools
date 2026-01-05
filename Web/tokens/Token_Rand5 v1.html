@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMC's Token Lab - Rand5</title>
+    <style>
+        body {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #00ff41;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar Styling */
+        #navbar {
+            background: #333;
+            padding: 1rem;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid #444;
+        }
+        #navbar a { color: white; text-decoration: none; margin: 0 10px; }
+        #navbar a:hover { color: #4ecdc4; }
+        .nav-sep { color: #666; }
+        .nav-category { color: #ff6b6b; font-weight: bold; margin-right: 10px; }
+
+        .container {
+            background: #262626;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        h1 { color: #ff6b6b; margin-top: 0; }
+        .holiday-msg { color: #f9d423; font-style: italic; margin-bottom: 20px; }
+        
+        .controls { margin-bottom: 20px; }
+        input {
+            padding: 10px;
+            width: 80px;
+            border: none;
+            border-radius: 5px;
+            background: #000;
+            color: #00ff41;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4ecdc4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            margin: 5px;
+        }
+        button:hover { background-color: #45b7af; }
+        button.export-btn { background-color: #f9d423; color: #1a1a1a; }
+        button.export-btn:hover { background-color: #e0be1f; }
+
+        textarea {
+            margin-top: 20px;
+            width: 100%;
+            height: 250px;
+            background: #000;
+            color: #00ff41;
+            border: 1px solid #444;
+            padding: 15px;
+            font-size: 1.1em;
+            resize: vertical;
+	    box-sizing: border-box;
+        }
+
+        .lava-info {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>-JMC- Token Lab</h1>
+    <div class="holiday-msg">🎇 Happy New Year! 🎇</div>
+    
+    <div class="controls">
+        <label for="count">Quantity:</label>
+        <input type="number" id="count" value="500" min="1" max="5000">
+        <br><br>
+        <button onclick="generate()">Generate Tokens</button>
+        <button id="exportBtn" class="export-btn" onclick="exportToCSV()" style="display:none;">Export to CSV</button>
+    </div>
+
+    <textarea id="output" readonly placeholder="Tokens will appear here..."></textarea>
+
+    <div class="lava-info">
+        Using Web Crypto API Entropy.<br>
+        <em>"Lava Lamps are the most random thing Humans have ever invented."</em> 😉
+    </div>
+</div>
+
+<script>
+    let currentTokens = [];
+
+    function generate() {
+        const alphabet = "23456789ABCDEFGHJKMNPQRSTVWXYZ";
+        const count = document.getElementById('count').value;
+        const output = document.getElementById('output');
+        const exportBtn = document.getElementById('exportBtn');
+        
+        currentTokens = [];
+
+        for (let i = 0; i < count; i++) {
+            let token = "";
+            let randomValues = new Uint32Array(5);
+            window.crypto.getRandomValues(randomValues);
+            
+            for (let j = 0; j < 5; j++) {
+                token += alphabet[randomValues[j] % alphabet.length];
+            }
+            currentTokens.push(token);
+        }
+
+        output.value = currentTokens.join(', ');
+        exportBtn.style.display = 'inline-block';
+    }
+
+    function exportToCSV() {
+        if (currentTokens.length === 0) return;
+
+        // Creating CSV content - one token per row
+        let csvContent = "Token\n" + currentTokens.join("\n");
+        
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "JMC_Tokens_Export.csv");
+        link.style.visibility = 'hidden';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

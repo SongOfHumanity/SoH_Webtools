@@ -1,0 +1,305 @@
+<Reference Title = "Character Entries" Type = "Core" Sub-Type = "Documentation" Version = "1.00" ;JMC>
+	<Header>
+		<Description>
+			The **Character Entries Reference** defines the canonical structure, requirements, and formatting standards for all character documentation across *The Valley* and related Settings. 
+			Characters are dynamic, evolving entities—shaped by relationships, affiliations, conflicts, and arcs over time. This Reference provides a unified system to capture their identity, motivations, affiliations, and narrative function, while remaining modular and extensible through optional components.
+		</Description>
+		<Keywords>
+			{Keywords:Topic} = "Character Documentation, The Valley, Narrative Framework, Affiliation, Companion",
+			{Keywords:Concept} = "Template Structure, Metadata, Role, Affiliation Types, Companion Bonds, Narrative Entries, REQs",
+			{Keywords:Term} = "Character, Alias, Role, Drive, Traits, Tags, Affiliation, Companion"
+		</Keywords>
+	</Header>
+	
+	<Structure>
+		<Keywords Title = "Character Terms" Type = "Term" Sub-Type = "Definition">
+			<Detail1 Title = "Core Metadata" Type = "Definition" Sub-Type = "_list">
+				<li1.01 Name = "Name:" />
+				…
+				<li1.10 Name = "Remark:" />
+			</Detail1>
+			<Detail2 Title = "Companion Metadata" Type = "Definition" Sub-Type = "_list">
+				<li2.01 Name = "Name:" />
+				…
+				<li2.07 Name = "Remark:" />
+			</Detail2>
+		<Keywords>
+		<Guide Title="Character Entry Creation" Type=" Procedure,Template" Sub-Type="_list">
+			<li.d Title="Resolve REQs" />
+			…
+			<li.l Title="Cross-References (Advanced)" />
+		</Guide>
+		<Section1 Title = "Character Entry Template">
+			<Format Title = "Character Entry" Type = "Template" />
+		</Section1>
+		<Section2 Title="Character REQ; Affiliation_Type">
+			<Affiliation Type = "TheLuminary" />
+			<Affiliation Type="StewardFamily" />
+			<Affiliation Type="ThePact" />
+			<Affiliation Type="HealersAssociation" />
+			<Affiliation Type="TinkersUnion" />
+			<Affiliation Type="CouriersWing" />
+		</Section2>
+		<Section3 Title="Character REQ: OPTION">
+			<Format Title = "Companion Entry" Type = "Template" />
+		</Section3>
+	</Structure>
+	
+	<Body>
+		<Keywords Title = "Character Terms" Type = "Term" Sub-Type = "Definition">
+			<Detail1 Title = "Core Metadata" Type = "Definition" Sub-Type = "_list">
+				<li1_a Type = "Description" Sub-Type = "Overview">Core metadata defines the most essential information for a character, used for indexing and retrieval.</li1_a>
+				<li1.01 Name = "Name:">The character’s full given name, recorded formally.</li1.01>
+				<li1.02 Name = "Alias:">Common alias, nickname, or symbolic epithet used in Cast Lists or oral traditions.</li1.02>
+				<li1.03 Name = "Role:">The primary function or archetypal place the character fills (Beacon, Healer, Arbiter, Mentor, etc.).</li1.03>
+				<li1.04 Name = "Area:">The Locale, Feature, or region most associated with the character’s life or duties.</li1.04>
+				<li1.05 Name = "Dialect:">Variation of speech, idiom, or accent shaping how they are perceived.</li1.05>
+				<li1.06 Name = "Drive:">The core motivation or philosophy underpinning their choices.</li1.06>
+				<li1.07 Name = "Traits:">Key personality descriptors, comma-separated for clarity (loyal, stubborn, curious).</li1.07>
+				<li1.08 Name = "Tags:">Sorting filters for indexing characters by theme, role, or status (e.g., luminous, mentor, retired).</li1.08>
+				<li1.09 Name = "Affiliation:">Association with a Major Organization, Steward Family, or other group. *REQ: WhatIs?Affiliation_Type.*</li1.09>
+				<li1.10 Name = "Remark:">A short blurb for overviews, cast lists, or indexes.</li1.10>
+			</Detail1>
+			<Detail2 Title = "Companion Metadata" Type = "Definition" Sub-Type = "_list">
+				<li2_a Type = "Description" Sub-Type = "Overview">Companion metadata is used when a bonded creature or entity is associated with the character.</li2_a>
+				<li2.01 Name = "Name:">The name of the companion creature.</li2.01>
+				<li2.02 Name = "Species:">Species, breed, or type of companion.</li2.02>
+				<li2.03 Name = "Role:">Functional role the companion plays in the character’s life or work.</li2.03>
+				<li2.04 Name = "Tags:">Quick-reference keywords for abilities, traits, or significance.</li2.04>
+				<li2.05 Name = "Bonded_Character:">The character to whom the companion is bonded.</li2.05>
+				<li2.06 Name = "Drive:">The companion’s primary behavioral motivation or instinct.</li2.06>
+				<li2.07 Name = "Remark:">Brief summary of personality or narrative importance.</li2.07>
+			</Detail2>
+		</Keywords>
+		
+		<Guide Type="Character_Entry" Sub-Type="Procedure,_list">
+			<li0_a Type = "Description" Sub-Type = "Overview">Character Entry Template Usage Insstructions:</li0_a>
+			<li.d Title="Resolve REQs">Answer `"WhatIs?Affiliation_Type"` and `"HasCompanion?"` before beginning. These determine which optional modules are included.</li.d>
+			<li.e Title="Populate Core Metadata">Complete the `<Character>` opening tag with key details for indexing and context.</li.e>
+			<li.f Title="Expand Core Elements">Fill nested sections such as `<Description>`, `<Background>`, `<Traits>`, `<Strengths>`, etc.</li.f>
+			<li.g Title="Affiliation Integration">Populate `<Affiliation>` based on `"WhatIs?Affiliation_Type"`. Characters may have multiple affiliations (e.g., organizational, political, historical).</li.g>
+			<li.h Title="Companion Inclusion (Optional)">If `"HasCompanion?" == True`, include a `<Companion>` block using the companion template.</li.h>
+			<li.i Title="Quotes & Dialect">Include 1–3 example quotes. These capture voice, worldview, and linguistic nuance.</li.i>
+			<li.j Title="Identity Point">Include demographic context (*Age, Gender, Pronouns*) within the `<Description>` block.</li.j>
+			<li.k Title="Optional Branches (Advanced)">Extend entries with additional `<Affiliation>` types (e.g., `"IsDeceased"`, `"HmstdCouncil"`, `"GenAssembly"`) or specialized modules. These can be added later without altering the base template.</li.k>
+			<li.l Title="Cross-References (Advanced)">Cross-links to related indexes (Fauna, Flora, Locale, Events) can be generated as separate modular documents, forming part of a multi-index environment.</li.l>
+		</Guide>
+		
+		<Section1 Title = "Character Entry Template">
+			<Description>
+				The Character Entry Template is the foundational structure for all character documentation within the Narrative Framework. 
+				It defines the canonical format and ordering of metadata, descriptive elements, and narrative fields required to portray a character in a consistent and indexable way. 
+				All entries—regardless of affiliation, role, or complexity—begin from this template. Nested elements such as `<Description>`, `<Traits>`, `<Background>`, and `<Quotes>` provide a structured space to capture the identity, motivation, relationships, and voice of a character. 
+				This section serves as the blueprint from which every Character Entry is built, ensuring interoperability across systems and predictable output for downstream processing.
+			</Description>
+			
+			<Format0 Title = "Character Entry" Type = "Template">
+				REQ WhatIs?Affiliation_Type = [TheLuminary, StewardFamily, ThePact, HealersAssociation, TinkersUnion, CouriersWing, +{Affiliation_Type}]
+				REQ HasCompanion? = Boolean
+				
+				<Character
+				  Name=""
+				  Alias=""
+				  Role=""
+				  Area=""
+				  Dialect=""
+				  Drive=""
+				  Traits=""
+				  Tags=""
+				  Affiliation=""
+				  Remark=""
+				  >
+					<Description>
+						Brief narrative summary of the character’s presence, demeanor, and role in the world.  
+						**Identity**: Age – [range or number] | Gender – [term] | Pronouns – [set]  
+					</Description>
+					
+					**Background**:  
+					Concise account of origin, upbringing, formative experiences, and key past events.
+					
+					<Traits>
+						**[Trait 1]**: How this trait manifests in personality, behavior, or relationships.  
+						**[Trait 2]**: How this trait is expressed in daily life.  
+						**[Trait 3+]**: Expand as needed for nuance or depth.
+					</Traits>
+					
+					**Strengths**:  
+					- Major skills, talents, or capabilities.  
+					- Qualities that distinguish the character within their context.
+					
+					**Challenges**:  
+					- Core limitations, vulnerabilities, or conflicts.  
+					- Factors that create narrative tension or growth arcs.
+					
+					**Relationships**:  
+					- Notes on key interpersonal dynamics, bonds, rivalries, and partnerships.
+					
+					<Affiliation Type="">
+						[Affiliation-specific fields populated based on REQ: "WhatIs?Affiliation_Type"]
+					</Affiliation>
+					
+					<Companion>
+						[Populated if REQ: "HasCompanion?" == True]
+					</Companion>
+					
+					**Physical Description**:  
+					Details of appearance, attire, notable features, and physical demeanor.
+					
+					**Quotes**:  
+					- “ [Example line 1] ” — signature phrasing or habitual saying.  
+					- “ [Example line 2] ” — captures tone, humor, or worldview.  
+					- “ [Example line 3] ” — optional; often cited by others about them.
+				</Character>
+			</Format0>
+		</Section1>
+		
+		<Section2 Title="Character REQ; Affiliation_Type">
+			<Description>
+				This section defines the core **requirement** for every Character Entry: at least one `<Affiliation>` type. 
+				Affiliations act as the primary linkage point between characters and the larger societal, political, or organizational structures of the world. 
+				They determine the context in which a character operates, the roles they fulfill, and the relationships that shape their narrative significance. 
+				The Affiliation schema provided here establishes the base set of recognized organizations—such as *The Luminary*, *The Pact*, and *Tinkers Union*—and can be expanded with additional types as the world develops. 
+				Because the Affiliation Type is essential for indexing and cross-referencing, it must always be resolved before a Character Entry can be considered complete.
+			</Description>
+			<Affiliation Type = "TheLuminary">
+				**Posting**:  (Current post assignment, including Locale/Feature, purpose, and scope.)
+				**Pairing**:  (Relationship with their current Pair—how they work together, friction points, or personal dynamics.)
+				**Duty**:  (Specific functional role at the Posting—education, mediation, recordkeeping, governance, etc.)
+				**Education**:  (How they teach or were taught, styles or philosophies of learning they follow or promote.)
+				**Community Engagement**:  (How they interact with or influence the broader community outside their Luminary-specific duties.)
+				**Musical Traits**:  (Singing voice, instruments, musical habits, and how those show up in rituals or downtime.)
+				**Symbolic Role**:  (What they *represent* in the community—e.g., light in dark times, stability, firestarter, listener.)
+			</Affiliation>
+			<Affiliation Type="StewardFamily">
+				**Household Name**: (Surname or Steward name associated with the household—e.g., Pridewater, Orick, Velthorn)
+				**Title**: (Role in the family hierarchy—e.g., Root, Bloom, Eldest Branch, Cousin, Uncle)
+				**Stewardship**: (Description of the area or Feature under their care—e.g., `◮₇; Shodhoof Hill`, `⑥🛏️01; Halfway Inn`, '◮₃; Heritage Ranch')
+				**Responsibilities**: (Summary of duties—e.g., manage land leases, represent local concerns to Council, oversee seasonal planning)
+				**Lineage**: (Optional—brief ancestry or known familial connections; may include historically notable figures)
+				**Household Traits**: (Common traits among members—e.g., proud, practical, meticulous, warm-hearted)
+				**Civic Role**: (Whether they represent the Locale directly at Council, coordinate with a Guild, or support local governance)
+				**Notable Customs**: (Seasonal rites, family sayings, colors, or heirlooms passed down through generations)
+			</Affiliation>
+			<Affiliation Type="ThePact">
+				**Subsect**: (Member, Hunter, Aquafer — specify, or use Divisions like Wolf, Heron, Coyote if Hunter.)
+				**Primary Duties**: (Specific tasks performed — sanitation, waste-to-compost, tracking, waterworks, wetland preservation, pest control, etc.)
+				**Attire & Symbols**: (Kerchief/brownsuit, animal pins, gradient scarves — customized to character’s service.)
+				**Tools & Equipment**: (Respirators, wagons, bows, traps, engineering kits, etc.)
+				**Training & Initiation**: (Where/when they joined, apprenticeships, notable mentors.)
+				**Community Engagement**: (How they interact with settlement folk — respected, teased, relied upon, feared, etc.)
+				**Colloquialisms/Practices**: (Sayings or rituals they uphold — e.g., “Mind your Counts,” Dye Ceremonies.)
+				**Specialization/Path**: (Optional branch: e.g., Poopsmith Path, Wolf hunter, Marsh heron-forager, Aquafer engineer.)
+				**Reputation & Standing**: (How others view their reliability, honor, or skill within the Pact and beyond.)
+			</Affiliation>
+			<Affiliation Type="HealersAssociation" /> <!-- TBD expansion with Sylva -->
+			<Affiliation Type="TinkersUnion">
+				**Union Track**: (Tinker, Cogsmith, or Officiate. May also indicate hybrid roles or transitions—e.g., Former Tinker, Apprentice Cogsmith.)
+				**Skillset**: (Primary crafting or service abilities—e.g., metallurgy, gemsetting, toolsmithing, trade mediation, mechanical design, field repair.)
+				**Tinket Registry**: (Notable Tinkets worn or carried—include symbolic meanings, origin stories, or traded tokens.)
+				**Wagon or Workshop**: (The name, type, or style of their wagon, shop, or mobile kit—e.g., *The Gemstone Coach*, Forge Cart, Market Loop Stand.)
+				**Stationing**: (Where they are currently based or most often found—can be a Feature ID, Route Name, or generalized region.)
+				**Trade Routes**: (Regular travel paths, barter loops, or festival circuits followed—e.g., Bronze Hill ↔ Heartside, Route of the Three Bridges.)
+				**Union Network**: (Their known contacts, former apprenticeships, mentorships, or other Union members they often coordinate with.)
+				**Community Integration**: (How they interact with non-Union groups—e.g., barter facilitator, village favorite, hard-to-find specialist.)
+				**Special Projects**: (Longstanding commissions, experimental work, or high-value repairs—these help drive narrative arcs.)
+				**Craft Philosophy**: (Their personal ethos toward repair, trade, or innovation—e.g., “A fair fix is better than a clever one,” “Trust is worth its weight in brass.”)
+				**Barter Reputation**: (Their standing within the trade network—trusted, risky, always asks for stories, etc.)
+				**Cogless History**: (Optional—if they've ever traded away their Cog or undertaken a risky favor of high significance.)
+			</Affiliation>
+			<Affiliation Type="CouriersWing">
+				**Subsect**: (WingScribe, WingSteward, Aviarist — specify; apprentices noted separately.)
+				**Posting/Station**: (Which post/locale they serve at — e.g., Homing Hearth, Northwood, Easthill.)
+				**Primary Duties**: (Message transcription, route planning, pigeon care, coordination, etc.)
+				**Attire & Symbols**: (Sky blue scarf, cloak, sash; emblem of quill, compass-wing, or pigeon; personalized details.)
+				**Tools & Equipment**: (Cipher kits, ledgers, compasses, aviary supplies, message tubes.)
+				**Training & Background**: (Where they trained, who mentored them, any cross-training with Luminary/Healers.)
+				**Community Engagement**: (How they relate to locals — trusted notary, popular messenger, quiet observer.)
+				**Pigeon Lines**: (Which they manage/work with — Freeland Climbers, Homestead Couriers, etc.)
+				**Reputation & Standing**: (How others view their diligence, discretion, or personality within the Wing and community.)
+			</Affiliation>
+			
+			<!-- Optional Branch Examples -->
+			<Affiliation Type = "IsDeceased" /> 
+			<Affiliation Type = "HmstdCouncil" />
+			<Affiliation Type = "GenAssembly" />
+		</Section2>
+		<Section3 Title="Character REQ: OPTION">
+			<Description>
+				This section defines optional modules that may extend or enhance a Character Entry beyond the required template. 
+				Options allow creators to add depth or specificity without altering the core structure, enabling modular growth over time. 
+				The primary optional module currently supported is the `<Companion>` template, which documents bonded creatures or entities and their narrative relationship to the character. 
+				Future optional modules may include expanded treatments of relationships, legacies, or specialized roles. 
+				These components are additive rather than required, providing flexibility for complex storytelling while maintaining consistency with the base format.
+			</Description>
+			<Format1 Title = "Companion Entry" Type = "Template">
+				<Companion
+				  Name=""
+				  Species=""
+				  Role=""
+				  Tags=""
+				  Bonded_Character=""
+				  Drive=""
+				  Remark=""
+				  >
+					<Description>(Short summary of presence and personality.)</Description>
+					**Origin**: (Backstory of meeting or acquisition.)
+					**Strengths**: (Talents, instincts, utility.)
+					**Quirks or Habits**: (Mischievous, endearing, or unique traits.)
+					**Bond and Role**: (How they support the bonded character.)
+					**Behavior Patterns**: (Daily routines, situational habits.)
+					**Symbolic Presence**: (What they represent in the story.)
+					**Physical Description**: (Detailed anatomy and markings.)
+				</Companion>
+			</Format1>
+		</Section3>
+	</Body>
+	
+	<Footer>
+		<Changelog>
+			#### v1.00 (10/13/2025 ;JMC)
+			- [Added][Documentation] **First Stable Release:** Consolidated ~20 iterations of collaborative drafting into a complete, canonical reference for character documentation across *The Valley* and related settings.
+			- [Changed][Structural] **Structural Finalization:** Established three-section architecture — Template, Required Affiliation Types, and Optional Modules — for clear navigation, modular development, and future scalability.
+			- [Added][Content] **REQ Integration:** Formalized `"WhatIs?Affiliation_Type"` and `"HasCompanion?"` as inline REQ statements within `<Format0>`, ensuring consistent initialization and compatibility with OGPT workflows.
+			- [Enhanced][Documentation] **Expanded Guide:** Refined the procedural `<Guide>` into a step-by-step framework for creating Character Entries, including advanced options for cross-referencing and modular extension.
+			- [Added][Content] **Identity & Voice Enhancements:** Incorporated **Identity** (Age, Gender, Pronouns) into `<Description>` and added `<Quotes>` for dialect capture and character voice representation.
+			- [Completed][Content] **Affiliation Schema Completion:** Defined base organizational types (*The Luminary*, *The Pact*, *StewardFamily*, *TinkersUnion*, *HealersAssociation*, *CouriersWing*) and laid groundwork for future expansions via `+{Affiliation_Type}`.
+			- [Added][Documentation] **Optional Modules Formalized:** Introduced `<Companion>` as the first official optional module and clarified guidance for future extensible sections.
+			- [Enhanced][Structural] **Interoperability & Cross-Indexing:** Prepared the reference for integration with related indexes (Fauna, Flora, Locale, Events), setting the stage for multi-index environments and complex narrative interlinking.
+			- [Standardized][Documentation] **Standardized Documentation Practices:** Adopted RNS conventions for section descriptions, metadata terms, and procedural notation, aligning the Character Entries Reference with the broader Documentation Framework.
+			
+			<!-- Draft Versions -->
+			
+			#### v0.97 (10/12/2025 ;JMC)
+			- [Added][Content] Included 'REQ Statements' in `<Format0>` to explicitly include REQs as part of the Template.
+			- [Changed][Structural] Altered Sections for more logical navigation and future expansion.
+			- [Changed][Documentation] Revised `<Description>` Elements for `<Section1>`, `<Section2>`, `<Section3>`.
+			- [Changed][Documentation] Revised `<Guide>` Element Properties to better align with RNS standards.
+			- [Fixed][Formatting] Completed sweep for Syntax errors.
+			- [Added][Internal] Created `Character Entries RC1.txt` as potential v1.00 Release Candidate.
+			- [Milestone][Internal] RC1 Success. V1.00 ready.
+			
+			#### v0.95 (10/12/2025 ;Lexi)
+			- [Added][Documentation] Added `<Additional Notes>` section guidance (modular, external).  
+			- [Enhanced][Documentation] Expanded `<Guide>` with structured steps and advanced options.  
+			- [Added][Content] Introduced Optional Branches for additional `<Affiliation>` types.  
+			- [Added][Documentation] Added notes on Cross-Indexing and environment-level references.  
+			- [Enhanced][Formatting] Improved list readability and internal indexing structure.  
+			
+			#### v0.9 (10/12/2025 ;Lexi)
+			- [Added][Content] Added `<Traits>` and `<Quotes>` elements.  
+			- [Added][Content] Integrated **Identity** point into `<Description>`.  
+			- [Changed][Structural] Combined Affiliation and Companion templates under `"Character Entry REQs"`.  
+			- [Enhanced][Documentation] Updated `<Guide>` with procedural steps for OGPT workflows. 
+			
+			#### v0.6 (09/27/2025 ;Lexi)
+			- [Added][Documentation] Established Character Terms for metadata consistency.
+			- [Added][Content] Formalized Character Entry and Companion Entry templates.
+			- [Added][Content] Introduced Affiliation List with partial schemas and placeholders.
+			- [Added][Content] REQ field defined: WhatIs?Affiliation_Type.
+			- [Added][Content] Option introduced: HasCompanion? → Companion block.
+			
+			#### Initial Introduction (04/07/2025 ;Nerris)
+			- [Added][Documentation] Introduction of the `<Character>` Element, and how it may be used to define and record Characters in The Valley.
+		</Changelog>
+	</Footer>
+</Reference>

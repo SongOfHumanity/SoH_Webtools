@@ -1,0 +1,441 @@
+<Reference Title = "Biome Entries" Index = "0.0(a)0_a" Type = "Core" Sub-Type = "Documentation" Version = "1.10" ;JMC>
+	<Header>
+		<Description>
+			This reference document outlines the standardized terminology and template structure for describing biomes within The Valley. 
+			It provides a cohesive approach to documenting hydrological, geological, and soil features, as well as key flora concepts, 
+			ensuring consistency and clarity across all biome entries. By integrating these guidelines, researchers and contributors 
+			can create detailed, cross-referenced records that align with The Valley’s overall ecological framework.
+		</Description>
+		<Keywords>
+			{Keywords:Topic} = "Biome Documentation, Environmental Reference, The Valley, Ecological Research, Standardized Format",
+			{Keywords:Concept} = "Terminology Consistency, Hydrological Terms, Geological Terms, Soil Classification, Flora Reference, Biome Entry Template",
+			{Keywords:Term} = "Overview, Divisions, Environment, Features, Human Interaction, Branching Modules, Cross-Referencing"
+		</Keywords>
+	</Header>
+	
+	<Structure>
+		<Keywords Title = "Fauna Terms" Type = "Term" Sub-Type = "Definition">
+			<Detail1 Title = "Hydrological Terms" Type = "Definition" Sub-Type = "_list">…
+				<li1.01>…</li1.01>
+				…
+				<li1.12>…</li1.12>
+			</Detail1>
+			
+			<Detail2 Title = "Geological Terms" Type = "Definition" Sub-Type = "_list">…
+				<li2.01>…</li2.01>
+				…
+				<li2.12>…</li2.12>
+			</Detail2>
+			
+			<Detail3 Title = "Soil Types" Type = "Definition" Sub-Type = "_list">…
+				<li3.01>…</li3.01>
+				…
+				<li3.11>…</li3.11>
+			</Detail3>
+			
+			<Detail4 Title = "Common Flora Terms" Type = "Definition" Sub-Type = "_list">…
+				<li4.01>…</li4.01>
+				…
+				<li4.08>…</li4.08>
+			</Detail4>
+			
+			<Detail5 Title = "Future Supplemental Lists" Type = "Placeholder" Sub-Type = "_list">…
+			</Detail5>
+		</Keywords>
+		<Section Title = "Biome Entry Template">
+			<Guide Type = "Template" Sub-Type = "_list">…
+				<li.d>…</li.d>
+				…
+				<li.k>…</li.k>
+			</Guide>
+			<Format Title = "Fauna Entry" Type = "Template">
+				### {Biome_Name} ({Biome_Code})
+				REQ IsBiome_Major? = Boolean
+				REQ IsBiome_Type? = [Cave, Forest, Grassland, Hill, Mountain, Plain, Waterway, Wetland]
+					{Biome:Overview}:
+					OPTION(IsBiome_Major?=True)
+						{Biome:Divisions}
+					;
+					{Biome:Climate}:
+						OPTION(IsBiome_Type? = [Waterway, Wetland, Mountain, Hill, Cave])
+							{Biome:Hydrology};
+						OPTION(IsBiome_Type? = [Forest, Grassland, Hill, Plain])
+							{Biome:Soil_Composition};
+						OPTION(IsBiome_Type? = [Mountain, Cave])
+							{Biome:Interior};
+					;
+					{Biome:KeyFeature}:
+						OPTION(IsBiome_Type? = [Forest, Grassland, Wetland, Waterway])
+							{Biome:Flora};
+						OPTION(IsBiome_Type? = [Forest, Mountain, Hill, Wetland])
+							{Biome:Fauna};
+						OPTION(IsBiome_Type? = [Hill, Mountain])
+							{Biome:Mineral_Resources},
+					;
+					{Biome:Human_Interactions}:
+						OPTION(IsBiome_Type? = [Waterway, Mountain, Hill])
+							{Biome:Human_Economy};
+						OPTION(IsBiome_Type? = [Wetland, Waterway, Forest, Plain])
+							{Biome:Human_Culture};
+					{Biome:Significance}:
+					;
+			</Format>
+		</Section>
+	</Structure>
+	
+	
+	<Body>
+		<Keywords Title = "Biome Terms:" Type = "Term" Sub-Type = "Definition">
+			<Description>
+				This section contains a collection of terms and definitions essential for documenting various aspects of biomes within The Valley. 
+				These terms are grouped into four categories—Hydrological Terms, Geological Terms, Soil Types, and Common Flora Terms—providing 
+				a comprehensive lexicon for describing environmental features, soil composition, and vegetation layers. 
+				Each category helps ensure consistency in how we reference water flow, rock formations, soil profiles, and plant life across diverse biomes.
+			</Description>
+			
+			<Detail1 Title = "Hydrological Terms" Type = "Definition" Sub-Type = "_list">
+				<li1_a Type = "Description" Sub-Type = "Overview">
+					A list of terms related to water movement, sources, and bodies within Biomes.
+				</li1_a>
+				<li1.01 Name = "Aquifer:">
+					An underground layer of water-bearing rock or sediment that supplies springs and wells.
+				</li1.01>
+				<li1.02 Name = "Riparian Zone:">
+					The interface between land and a river or stream, often rich in biodiversity.
+				</li1.02>
+				<li1.03 Name = "Watershed:">
+					An area of land where all water drains into a common outlet, such as a river or lake.
+				</li1.03>
+				<li1.04 Name = "Estuary:">
+					A partially enclosed body of water where freshwater from rivers mixes with saltwater from the sea.
+				</li1.04>
+				<li1.05 Name = "Floodplain:">
+					Flat land near a river prone to flooding during heavy rainfall or seasonal changes.
+				</li1.05>
+				<li1.06 Name = "Tributary:">
+					A smaller stream or river that feeds into a larger one.
+				</li1.06>
+				<li1.07 Name = "Source:">
+					The starting point of a river, often in highlands or mountains.
+				</li1.07>
+				<li1.08 Name = "Delta:">
+					A landform created at the mouth of a river where it deposits sediment into a slower body of water.
+				</li1.08>
+				<li1.09 Name = "Marsh:">
+					A wetland dominated by herbaceous plants, often found at the edges of lakes and rivers.
+				</li1.09>
+				<li1.10 Name = "Swamp:">
+					A wetland dominated by woody plants such as trees and shrubs.
+				</li1.10>
+				<li1.11 Name = "Spring:">
+					A natural source of water flowing from underground to the surface, often forming small streams.
+				</li1.11>
+				<li1.12 Name = "Runoff:">
+					Water that flows over the surface of the land rather than being absorbed into the soil.
+				</li1.12>
+			</Detail1>
+			
+			<Detail2 Title = "Geological Terms" Type = "Definition" Sub-Type = "_list">
+				<li2_a Type = "Description" Sub-Type = "Overview">
+					These terms describe various geological features and rock formations found in Biomes.
+				</li2_a>
+				<li2.01 Name = "Escarpment:">
+					A steep slope or long cliff that forms as a result of erosion or faulting.
+				</li2.01>
+				<li2.02 Name = "Ridge:">
+					A long, narrow elevation of land, often forming a watershed boundary.
+				</li2.02>
+				<li2.03 Name = "Outcrop:">
+					A visible exposure of bedrock or ancient geological layers on the surface of the earth.
+				</li2.03>
+				<li2.04 Name = "Promontory:">
+					A high point of land projecting into a body of water or lowland.
+				</li2.04>
+				<li2.05 Name = "Valley:">
+					A low area between hills or mountains, often with a river running through it.
+				</li2.05>
+				<li2.06 Name = "Plateau:">
+					An elevated flat area of land that is higher than the surrounding terrain.
+				</li2.06>
+				<li2.07 Name = "Gorge:">
+					A narrow valley with steep, rocky walls, often carved by a river.
+				</li2.07>
+				<li2.08 Name = "Canyon:">
+					A deep, narrow valley with steep sides, typically with a river flowing through it.
+				</li2.08>
+				<li2.09 Name = "Moraine:">
+					An accumulation of glacial debris (soil and rock) left behind by a moving glacier.
+				</li2.09>
+				<li2.10 Name = "Spire:">
+					A tall, pointed rock formation, often found in mountainous regions.
+				</li2.10>
+				<li2.11 Name = "Boulder Field:">
+					An area covered with large rocks and boulders, typically resulting from glacial or volcanic activity.
+				</li2.11>
+				<li2.12 Name = "Karst:">
+					A landscape formed by the dissolution of soluble rocks, such as limestone, characterized by caves and sinkholes.
+				</li2.12>
+			</Detail2>
+			
+			<Detail3 Title = "Soil Types" Type = "Definition" Sub-Type = "_list">
+				<li3_a Type = "Description" Sub-Type = "Overview">
+					A classification of common soil types found in various Biomes.
+				</li3_a>
+				<li3.01 Name = "Loam:">
+					A fertile soil with a balanced mix of sand, silt, and clay, ideal for agriculture.
+				</li3.01>
+				<li3.02 Name = "Clay:">
+					A dense, fine-grained soil that retains water well but drains poorly.
+				</li3.02>
+				<li3.03 Name = "Silt:">
+					A smooth soil with fine particles, often found near rivers and lakes.
+				</li3.03>
+				<li3.04 Name = "Sand:">
+					A coarse soil type with large particles, allowing for good drainage but poor nutrient retention.
+				</li3.04>
+				<li3.05 Name = "Peat:">
+					An organic soil formed from decayed plant material, commonly found in wetlands.
+				</li3.05>
+				<li3.06 Name = "Chalk:">
+					A soil type derived from limestone, typically alkaline and well-draining.
+				</li3.06>
+				<li3.07 Name = "Gravelly:">
+					Soil with a high proportion of small stones or gravel, common in mountainous areas.
+				</li3.07>
+				<li3.08 Name = "Alluvial:">
+					Soil deposited by rivers, often found in floodplains and known for its high fertility.
+				</li3.08>
+				<li3.09 Name = "Volcanic:">
+					Soil derived from volcanic ash, rich in minerals and very fertile.
+				</li3.09>
+				<li3.10 Name = "Podzol:">
+					A type of acidic soil found under coniferous forests, characterized by a distinct layer of leached material.
+				</li3.10>
+				<li3.11 Name = "Serpentine:">
+					Soil derived from serpentine rock, often poor in essential nutrients but supporting unique flora.
+				</li3.11>
+			</Detail3>
+			
+			<Detail4 Title = "Common Flora Terms" Type = "Definition" Sub-Type = "_list">
+				<li4_a Type = "Description" Sub-Type = "Overview">
+					These terms relate to vegetation commonly referenced in Biome documentation.
+				</li4_a>
+				<li4.01 Name = "Canopy:">
+					The upper layer of a forest, formed by mature tree crowns that block sunlight from reaching the ground.
+				</li4.01>
+				<li4.02 Name = "Understory:">
+					The layer of vegetation beneath the forest canopy, consisting of shrubs, young trees, and ferns.
+				</li4.02>
+				<li4.03 Name = "Groundcover:">
+					Low-growing plants that cover the soil, helping to prevent erosion.
+				</li4.03>
+				<li4.04 Name = "Perennial:">
+					Plants that live for more than two years, typically flowering annually.
+				</li4.04>
+				<li4.05 Name = "Deciduous:">
+					Trees and shrubs that shed their leaves annually.
+				</li4.05>
+				<li4.06 Name = "Coniferous:">
+					Trees that bear cones and have needle-like leaves, typically evergreen.
+				</li4.06>
+				<li4.07 Name = "Riparian Vegetation:">
+					Plants that grow along riverbanks and are adapted to periodic flooding.
+				</li4.07>
+				<li4.08 Name = "Endemic Species:">
+					Species that are native to a specific region and found nowhere else.
+				</li4.08>
+			</Detail4>
+	
+			<Detail5 Title = "Future Supplemental Lists" Type = "Placeholder" Sub-Type = "_list">
+				<li5_a Type = "Description" Sub-Type = "Overview">
+					This section will include additional glossaries such as **Climatic Terms**, **Vegetation Types**, and other environmental factors as needed in future expansions.
+				</li5_a>
+			</Detail5>
+		</Keywords>
+		
+		<Section Title = "Biome Entry Template">
+			<Description>
+				This section provides a unified template for documenting **Biomes** within The Valley, aligning with the approach used for Fauna and Flora references. 
+				By applying this structured format, each biome entry—whether forest, plains, hills, wetlands, waterways, grasslands, mountains, or caves—maintains consistent core sections (Overview, Environment, Human Interaction, etc.), while allowing optional "Branches" for more specialized details (e.g., sub-zones, unique resources, critical hydrology). 
+				The goal is to ensure clarity, uniformity, and depth across The Valley’s Biome Index, facilitating easier cross-referencing, incremental expansions, and synergy with Fauna/Flora references.
+			</Description>
+			
+			<Guide Type = "Template" Sub-Type = "_list">
+				<li0_a Type = "Description" Sub-Type = "Overview">
+					Biome Entry Template Usage Instructions:
+				</li0_a>
+				
+				<li.d Title = "Scope and Usage">
+					This template is used for documenting **Biomes** within The Valley, accommodating both **Major Biomes** (which contain multiple **Divisions**) and **Minor Biomes** (which stand alone).  
+					Each biome is assigned a **Biome Code** and, when applicable, **Sub-Biome Codes** to ensure clarity across references.  
+			
+					Additionally, each Biome Entry includes a **Biome Type Selector** (`IsBiome_Type?`), which determines the relevant **optional elements and modules** applicable to the Biome.  
+				</li.d>
+				
+				<li.e Title = "Major vs. Minor Biomes">
+					All Biomes require a **Boolean Definition**:  
+					- `REQ IsBiome_Major? = True` → Indicates a **Major Biome** (includes Divisions).  
+					- `REQ IsBiome_Major? = False` → Indicates a **Minor Biome** (standalone; no Divisions section).  
+				</li.e>
+				
+				<li.f Title = "Biome Type Selector">
+					Each Biome must be assigned a **Biome Type** to determine the appropriate **optional modules**:  
+					`REQ IsBiome_Type? = [Cave, Forest, Grassland, Hill, Mountain, Plain, Waterway, Wetland]`  
+			
+					Based on the Biome Type selection, **additional content branches** are dynamically included:  
+					- **Waterway, Wetland, Mountain, Cave:** → Includes `Hydrology` Section  
+					- **Forest, Grassland, Hill, Plain:** → Includes `Soil Composition` Section  
+					- **Mountain, Cave:** → Includes `Interior Features` (for caves, tunnels, or karst systems)  
+					- **Hill, Mountain:** → Includes `Mineral Resources` (geological deposits, mining history)  
+				</li.f>
+				
+				<li.g Title = "Template Sections">
+					Each Biome Entry follows a structured format with these core sections:  
+					- **Overview**: General description, boundaries, climate.  
+					- **Divisions (if Major Biome)**: Sub-Biome Codes (`D₁, E₂`) define internal divisions.  
+					- **Environment**: Climate, soil composition, hydrology, and seasonal variations.  
+					- **Features**: Terrain, flora, fauna, mineral resources, or unique biome traits.  
+					- **Human Interaction**: Settlements, cultural significance, and economic importance.  
+					- **Overall Significance**: Ecological role, historical importance, or keystone species.  
+					Each section starts with a **bolded header and colon**, ensuring consistency.  
+				</li.g>
+				
+				<li.h Title = "Divisions and Sub-Biome Codes">
+					For **Major Biomes**, sub-zones are listed in the "Divisions" section.  
+					- **Format**: `Biotype_Code + Subscript Index` (e.g., `D₁: Northern Marshwood`, `E₂: Western Flats`).  
+					- **Cross-Referencing**: These ensure clear connections to other Biome, Fauna, or Flora documentation.  
+				</li.h>
+				
+				<li.i Title = "Modules and Branches">
+					Some Biomes require additional detail through **Modules**, determined by `IsBiome_Type?`:  
+					- **Forest Module**: Tree composition, canopy layers, distinct ecological sub-zones.  
+					- **Waterways Module**: Flow patterns, riparian zones, seasonal variation.  
+					- **Hills Module**: Elevation zones, mineral deposits, land formations.  
+					- **Mountains Module**: Elevation breakdown, interior cave systems, mineral wealth.  
+			
+					- **Optional Branches** can add:  
+						- **Hydrology**: Key for Wetlands, Waterways, and Mountain sources.  
+						- **Interior Features**: Cave networks, tunnels (used for Mountains and Underground Biomes).  
+						- **Cultural Significance**: Tied to local traditions, historical events, or mythological importance.  
+						- **Economic Importance**: Details industries such as logging, agriculture, or mining.  
+						- **Common Flora & Fauna**: Major species if not already covered in Features.  
+				</li.i>
+				
+				<li.j Title = "Cross-Referencing and Consistency">
+					Where relevant, cross-reference **Fauna, Flora, and Societal Documentation**:  
+					- Use **standardized Biome Codes** (e.g., `Forest_D`, `Hills_K`) to align expansions.  
+					- **Fauna Cross-Reference**: Mention keystone species tied to the Biome.  
+					- **Flora Cross-Reference**: Detail plant species distribution.  
+					- **Cultural Tie-Ins**: Reference settlements, traditional uses, or historical events.  
+				</li.j>
+				
+				<li.k Title = "Future Expansion and Modularity">
+					Like Fauna and Flora entries, Biome documentation remains **expandable**:  
+					- Start with a **basic Overview** and minimal data.  
+					- Expand with new **Modules** for complex Biomes (e.g., **Hydrology, Elevation, Mineral Resources**).  
+					- Maintain **consistent section headings** for ease of retrieval and referencing.  
+				</li.k>
+			</Guide>
+			
+			<Format Title = "Biome Entry" Type = "Template">
+				### {Biome_Name} ({Biome_Code})
+				REQ IsBiome_Major? = Boolean
+				REQ IsBiome_Type? = [Cave, Forest, Grassland, Hill, Mountain, Plain, Waterway, Wetland]
+				
+				#### **Overview**:
+					IS
+						{Biome:Overview} = $$Description
+						(General description, location, boundaries, climate.)
+					
+					OPTION(IsBiome_Major?=True)
+						#### **Divisions** (Major Biomes Only):
+						{Biome:Divisions} = $$Detail_List
+						(Sub-biomes labeled using Subscript Indexing: `D₁, E₂`, etc.)
+				
+				#### **Environment**:
+					IS
+						{Biome:Climate} = $$Description
+						(Seasonal patterns, temperature range, precipitation.)
+			
+					OPTION(IsBiome_Type? = [Waterway, Wetland, Mountain, Hill, Cave])
+						{Biome:Hydrology} = $$Description
+						(Water movement, seasonal variations, flow patterns.)
+			
+					OPTION(IsBiome_Type? = [Forest, Grassland, Hill, Plain])
+						{Biome:Soil_Composition} = $$Description
+						(Primary soil types and fertility characteristics.)
+			
+					OPTION(IsBiome_Type? = [Mountain, Cave])
+						{Biome:Interior} = $$Description
+						(Underground caves, tunnels, or karst features.)
+				
+				#### **Features**:
+					IS
+						{Biome:KeyFeature} = $$Description
+						(Defining landforms such as cliffs, valleys, ridgelines.)
+			
+					OPTION(IsBiome_Type? = [Forest, Grassland, Wetland, Waterway])
+						{Biome:Flora} = $$Description
+						(Tree composition, understory, dominant plant life.)
+			
+					OPTION(IsBiome_Type? = [Forest, Mountain, Hill, Wetland])
+						{Biome:Fauna} = $$Description
+						(Common species, endemic wildlife, keystone species.)
+			
+					OPTION(IsBiome_Type? = [Hill, Mountain])
+						{Biome:Mineral_Resources} = $$Description
+						(Stone and ore deposits, historical mining significance.)
+				
+				#### **Human Interaction**:
+					IS
+						{Biome:Human_Interactions} = $$Description
+						(Usage for settlements, agriculture, industry, or trade.)
+					
+					OPTION(IsBiome_Type? = [Waterway, Mountain, Hill])
+						{Biome:Human_Economy} = $$Description
+						(Mining, forestry, fishing, or resource extraction.)
+					
+					OPTION(IsBiome_Type? = [Wetland, Waterway, Forest, Plain])
+						{Biome:Human_Culture} = $$Description
+						(Folklore, traditions, sacred sites.)
+				
+				#### **Overall Significance**:
+					{Biome:Significance} = $$Description
+					(How this Biome contributes to **The Valley’s** ecology, culture, and history.)
+			</Format>
+		</Section>
+	</Body>
+	<Footer>
+		<Changelog>
+			#### v1.10 (03/09/2025 ;Alder):
+			- [Added Introduced `REQ IsBiome_Type? = [Cave, Forest, Grassland, Hill, Mountain, Plain, Waterway, Wetland]` as a required selector, enabling dynamic inclusion of **optional modules** based on Biome Type.
+			- [Refined] Adjusted the `<Format>` structure to integrate **Biome Type Selector** conditions, ensuring relevant **Hydrology, Soil Composition, Mineral Resources, and Interior Features** sections appear only where applicable.
+			- [Expanded] Revised `<Guide>` to reflect new **Biome Type Selector** implementation, clarifying how **optional branches** are assigned dynamically.
+			- [Optimized] Streamlined **Optional Branches** under **Features and Human Interaction**, ensuring sections like **Flora, Fauna, Economy, and Cultural Significance** are included based on Biome Type.
+			- [Standardized] Ensured that **Hydrology remains required** for Waterways, Wetlands, Hills, Mountains, and Caves while keeping it optional elsewhere.
+			- [Future-Proofed] Modified `<Structure>` to anticipate potential **multi-category Biomes** (e.g., Forested Wetlands, Mountainous Grasslands) by allowing hybrid Biome Types.
+			
+			#### v1.00 (03/09/2025 ;Alder):
+			- [Codified][Boolean] Introduced `REQ IsBiome_Major? = Boolean` as a **required** definition to explicitly differentiate **Major Biomes** (with Divisions) from **Minor Biomes** (standalone).
+			- [Refined][Hydrology] Expanded **Hydrology** as a **dedicated required section** under **Environment**, ensuring its presence in all Biome Entries while keeping additional water-specific details optional.
+			- [Clarified][Interior] Introduced **Interior Features** as an optional branch, formally accommodating **Caves, Tunnels, and Karst Systems** under any biome where applicable.
+			- [Expanded][Modules] Established **Mountains Module**, alongside previously defined **Forests, Waterways, and Hills Modules**, standardizing terrain, elevation, and mineral resource documentation.
+			- [Standardized][Cross-Referencing] Strengthened **Fauna & Flora Cross-Referencing** guidelines in `<Guide>` (`<li.i>`), ensuring biome-dependent species link back to their respective indexes.
+			- [Defined][Economic & Cultural Sections] Clarified **Human Interaction** sub-sections, formalizing **Cultural Significance** and **Economy & Industry** as structured, optional expansions.
+			- [Reformatted][Structure] Improved section nesting and indentation for clarity within `<Format>`, aligning with cross-documentation consistency.
+			- [Future-Proofed][Supplemental] Expanded **Future Supplemental Lists** placeholder (`<Detail5>` in `<Body>`), anticipating **Climatic Terms, Vegetation Types, and Additional Geological Features**.
+			
+			#### v0.90 (01/07/2025 ;Lexi):
+			- [Added][Guide] A new bullet in `<li.g>` under the **Branches and Modules** list to introduce **Hydrology** as an optional branch for biomes interacting with water sources, covering flow patterns, seasonal variations, and water quality.
+			- [Clarified][Divisions] Inserted a note under **Divisions (Branch for Major Biomes)** referencing the `{Biotype_Code + Subscript Index}` format (e.g., `D₁`, `E₂`) to ensure consistent sub-biome code usage in cross-referencing.
+			- [Introduced][Placeholder] Appended a `<Detail5>` block labeled **Future Supplemental Lists** in the `<Body>` after **Common Flora Terms**, anticipating expansions such as Climatic Terms and Vegetation Types.
+			- [Noted][Appendix] Appended a final note in the **Biome Entry** `<Format>` (`{Note}: See **Appendix A: Example Biome Entries**...`) prompting the reader to consult sample entries for different biome types (e.g., Forests, Wetlands, Mountains, Waterways).
+			- [Refined][Optional Branches] Highlighted new optional sections **Cultural Significance** and **Common Flora & Fauna** in `<li.g>` to integrate local lore or key species listings.
+			- [Maintained][Structure] Ensured consistent formatting and hierarchical nesting, keeping each core section (Overview, Divisions, Environment, Features, Human Interaction) intact while enabling modular expansions.
+			
+			#### v0.50 (01/06/2025 ;Alder, Lexi):
+			- Formalization of the *Biome Entries Reference* based on prior iterations with Alder.
+			- Definitions and structured templates codified for consistent use across The Valley’s ecosystem documentation.
+		</Changelog>
+	</Footer>
+</Reference>

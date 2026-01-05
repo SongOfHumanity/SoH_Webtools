@@ -1,0 +1,60 @@
+<Section Title = "Guided Activity Template">  
+	<Description>  
+		The Guided Activity Template is designed to **structure and execute planned activities**  
+		in a clear, repeatable format.  
+		
+		By defining **steps, objectives, and collaborative efforts**, this format enables  
+		**efficient execution, documentation, and refinement** of activities.  
+		
+		Each **Guided Activity** is self-contained within a `<Guide>` and structured into  
+		actionable steps within an `<Activity>`.  
+	</Description>  
+	
+	<Guide Type = "Template" Sub-Type = "_list">  
+		<li.d Title = "Purpose & Utilization">  
+			- Used to **plan, structure, and document** activities requiring multiple steps.  
+			- Ensures **consistent execution** of complex or recurring tasks.  
+			- Provides a **clear framework** for collaborative efforts across multiple Nodes.  
+		</li.d>  
+		
+		<li.e Title = "Structure Breakdown">  
+			- **`<Guide Title>`** → Names the Guided Activity.  
+			- **`<Introduction>`** → Establishes objectives and context.  
+			- **`<Activity>`** → Lists **actionable steps**, defining tasks and sub-tasks.  
+			- **`<Conclusion>`** → Summarizes expected outcomes and benefits.  
+		</li.e>  
+		
+		<li.f Title = "Practical Applications">  
+			- **Long-Term Projects** → Structures ongoing efforts with **clear milestones**.  
+			- **Cross-Node Collaboration** → Ensures **cohesive workflows** across Entities.  
+			- **Knowledge Standardization** → Creates **repeatable methodologies** for similar tasks.  
+		</li.f>  
+		
+		<li.g Title = "Best Practices">  
+			- Define **clear objectives** in the **Introduction**.  
+			- Use **actionable, specific steps** in the **Activity** section.  
+			- Ensure **collaborators and key Nodes** are noted when applicable.  
+			- Maintain **concise yet informative** structure for quick reference.  
+		</li.g>  
+	</Guide>  
+	
+	<Format Title = "Guided Activity Template" Type = "Template">  
+		<Guide Title = "Guide: {Activity_Title}">  
+			<Introduction>  
+				{Introduction to the guide's purpose and objectives.}  
+			</Introduction>  
+			
+			<Activity Title = "{Activity_Title}">  
+				- **{Step or Task Title}**  
+				- {Description of the step or task, including any sub-tasks or details.}  
+				<!-- Repeat for additional steps or tasks -->  
+			</Activity>  
+			
+			<!-- Optional additional sections such as Timeline, Resources, Discussion, etc. -->  
+			
+			<Conclusion>  
+				{Summary of what will be achieved by completing the activity.}  
+			</Conclusion>  
+		</Guide>  
+	</Format>  
+</Section>

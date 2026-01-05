@@ -1,0 +1,38 @@
+### 📔; Reflection_Entry
+<Description>
+   Reflection Entries are personal, narrative-style observations tied to activities, collaborations, or milestones.  
+   They emphasize growth, challenges, and lessons in context.  
+   Each entry is timestamped and structured for clarity, but allows space for a more natural, reflective voice.  
+</Description>
+
+<Guide>
+	1. **Date**: Always `mm/dd/yyyy`. Anchor the reflection in time.  
+	2. **Activity Section**: Identify collaborators, project, node, and keywords.  
+	- This helps cross-reference reflections against Meta and Index documents.  
+	3. **Summary**: Concise overview of what occurred and what was learned.  
+	4. **Highlights**: Extract and frame what was significant.  
+	- 2–3 is typical, but more can be included.  
+	5. **Guide Section**: Advice to “future me” and the team—lessons, cautions, or suggested methods.  
+</Guide>
+
+<Format Title="Reflection_Entry" Type="Template" Version="1.00">
+	<Reflection Date = "{mm/dd/yyyy}">
+		<Activity Title="{Activity_Title}">
+			**Collaborators**: (List of collaborators involved in the activity)  
+			**Project**: (Project name + brief focus)  
+			**Node**: (Name/ID of node where work occurred)  
+			**Keywords**: (Key terms, themes, or methods)  
+		</Activity>
+		<Summary>
+			(Brief reflection: successes, challenges, feelings, insights)
+		</Summary>
+		<Highlight>
+			**{Highlight_Title1}**: (Detailed highlight)  
+			**{Highlight_Title2}**: (Detailed highlight)  
+			**{Highlight_Title3}**: (Detailed highlight)  
+		</Highlight>
+		<Guide>
+			(Lessons learned, recommendations for future projects)
+		</Guide>
+	</Reflection>
+</Format>

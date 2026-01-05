@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Consolas', monospace; background-color: #1a1a1a; color: #00ff41; padding: 20px; }
+        .tool-box { background: #262626; padding: 20px; border-radius: 10px; border: 1px solid #333; margin-bottom: 30px; box-sizing: border-box; }
+        h2 { color: #ff6b6b; margin-top: 0; border-bottom: 1px solid #444; padding-bottom: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-bottom: 15px; }
+        .input-group { background: #2a2a2a; padding: 10px; border-radius: 5px; display: flex; align-items: center; }
+        label { font-size: 0.8em; color: #f9d423; width: 100px; }
+        input { flex-grow: 1; background: #000; color: #00ff41; border: 1px solid #444; padding: 5px; font-family: inherit; }
+        
+        button { padding: 8px 15px; background: #4ecdc4; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; font-family: inherit; }
+        button:hover { background: #45b7af; }
+        .btn-dice { padding: 5px 10px; margin-left: 5px; }
+        .btn-big { width: 100%; padding: 15px; background: #ff6b6b; color: white; margin-top: 10px; font-size: 1.1em; }
+        .btn-copy { background: #f9d423; color: #1a1a1a; margin-top: 10px; width: 100%; }
+        .btn-copy:hover { background: #e0be1f; }
+
+        textarea { 
+            width: 100%; 
+            height: 200px; 
+            background: #000; 
+            color: #00ff41; 
+            border: 1px solid #444; 
+            margin-top: 15px; 
+            font-family: inherit; 
+            padding: 15px; 
+            white-space: pre; 
+            box-sizing: border-box; /* Fixes the right-edge alignment */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tool-box">
+        <h2>1. Two-Way Basic Connection</h2>
+        <div class="grid">
+            <div class="input-group"><label>Node A:</label><input type="text" id="a2"><button class="btn-dice" onclick="rand('a2',6)">🎲</button></div>
+            <div class="input-group"><label>LinkTo:</label><input type="text" id="l2"><button class="btn-dice" onclick="rand('l2',8,true)">🎲</button></div>
+            <div class="input-group"><label>Node B:</label><input type="text" id="b2"><button class="btn-dice" onclick="rand('b2',6)">🎲</button></div>
+        </div>
+        <button class="btn-big" onclick="gen2way()">Generate 2-Way Statements</button>
+        <textarea id="out2" readonly placeholder="Output will appear here..."></textarea>
+        <button class="btn-copy" id="copy2" onclick="copyToClipboard('out2', 'copy2')">📋 Copy to Clipboard</button>
+    </div>
+
+    <div class="tool-box">
+        <h2>2. Three-Way Basic Mesh</h2>
+        <div class="grid">
+            <div class="input-group"><label>Node A:</label><input type="text" id="a3"><button class="btn-dice" onclick="rand('a3',6)">🎲</button></div>
+            <div class="input-group"><label>Node B:</label><input type="text" id="b3"><button class="btn-dice" onclick="rand('b3',6)">🎲</button></div>
+            <div class="input-group"><label>Node C:</label><input type="text" id="c3"><button class="btn-dice" onclick="rand('c3',6)">🎲</button></div>
+        </div>
+        <div class="grid">
+            <div class="input-group"><label>Link A-B:</label><input type="text" id="lab"><button class="btn-dice" onclick="rand('lab',8,true)">🎲</button></div>
+            <div class="input-group"><label>Link B-C:</label><input type="text" id="lbc"><button class="btn-dice" onclick="rand('lbc',8,true)">🎲</button></div>
+            <div class="input-group"><label>Link A-C:</label><input type="text" id="lac"><button class="btn-dice" onclick="rand('lac',8,true)">🎲</button></div>
+        </div>
+        <button class="btn-big" onclick="gen3way()">Generate 3-Way Mesh Statements</button>
+        <textarea id="out3" readonly placeholder="Output will appear here..."></textarea>
+        <button class="btn-copy" id="copy3" onclick="copyToClipboard('out3', 'copy3')">📋 Copy to Clipboard</button>
+    </div>
+
+<script>
+    const alpha = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+    const syms = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=";
+
+    function rand(id, len, isLink = false) {
+        const set = isLink ? syms : alpha;
+        let str = "";
+        const vals = new Uint32Array(len);
+        window.crypto.getRandomValues(vals);
+        for(let i=0; i<len; i++) str += set[vals[i] % set.length];
+        document.getElementById(id).value = str;
+    }
+
+    function fmt(src, link, dest) {
+        return `${src}→${dest}:\n\noutgoing = "${src}::${link}::${dest}"\nincoming = "${dest}::${link}::${src}"\n`;
+    }
+
+    function gen2way() {
+        const A = document.getElementById('a2').value || "A";
+        const L = document.getElementById('l2').value || "LINK";
+        const B = document.getElementById('b2').value || "B";
+        document.getElementById('out2').value = fmt(A, L, B) + "\n---\n\n" + fmt(B, L, A);
+    }
+
+    function gen3way() {
+        const A = document.getElementById('a3').value || "A";
+        const B = document.getElementById('b3').value || "B";
+        const C = document.getElementById('c3').value || "C";
+        const AB = document.getElementById('lab').value || "L_AB";
+        const BC = document.getElementById('lbc').value || "L_BC";
+        const AC = document.getElementById('lac').value || "L_AC";
+
+        let out = "=== CONNECTION A <-> B ===\n" + fmt(A, AB, B) + "\n" + fmt(B, AB, A);
+        out += "\n=== CONNECTION B <-> C ===\n" + fmt(B, BC, C) + "\n" + fmt(C, BC, B);
+        out += "\n=== CONNECTION A <-> C ===\n" + fmt(A, AC, C) + "\n" + fmt(C, AC, A);
+        document.getElementById('out3').value = out;
+    }
+
+    async function copyToClipboard(areaId, btnId) {
+        const text = document.getElementById(areaId).value;
+        const btn = document.getElementById(btnId);
+        if (!text) return;
+        
+        try {
+            await navigator.clipboard.writeText(text);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "✨ Copied! ✨";
+            btn.style.background = "#00ff41";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = "#f9d423";
+            }, 1500);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
+</script>
+</body>
+</html>

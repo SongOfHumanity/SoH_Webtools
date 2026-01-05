@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMC - System Changelog</title>
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Consolas', monospace; 
+            background-color: #1a1a1a; 
+            color: #00ff41; 
+            padding: 20px; 
+            padding-top: 80px; /* Space for sticky header */
+        }
+        
+        #header-nav { 
+            position: fixed; top: 0; left: 0; right: 0; 
+            background: #222; border-bottom: 2px solid #ff6b6b; 
+            padding: 10px 20px; display: flex; align-items: center; 
+            justify-content: space-between; z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        
+        h1 { margin: 0; font-size: 1.1rem; letter-spacing: 1px; }
+        .lava-txt { color: #ff6b6b; }
+        
+        #internal-nav a { 
+            color: #f9d423; text-decoration: none; font-size: 0.85em; 
+            margin-left: 15px; font-weight: bold; text-transform: uppercase;
+        }
+        #internal-nav a:hover { color: #4ecdc4; border-bottom: 1px solid #4ecdc4; }
+
+        .log-section { 
+            background: #262626; padding: 20px; border-radius: 10px; 
+            border: 1px solid #333; margin-bottom: 40px; 
+        }
+        
+        .heading-wrap { 
+            border-bottom: 1px solid #444; margin-bottom: 15px; padding-bottom: 5px;
+        }
+        h2 { color: #4ecdc4; margin: 0; font-size: 1.1rem; }
+        
+        .log-content { 
+            white-space: pre-wrap; font-size: 0.9em; line-height: 1.6; 
+            color: #ccc; padding: 15px; background: #080808; 
+            border-radius: 5px; border: 1px solid #333; 
+        }
+        .status { font-size: 0.8em; color: #ff6b6b; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div id="header-nav">
+    <h1 id="top">SYSTEM <span class="lava-txt">CHANGELOG</span> 🌋</h1>
+    <nav id="internal-nav">
+        </nav>
+</div>
+
+<div id="logs-container">
+    </div>
+
+<script>
+    const logRegistry = [
+        { id: 'core', title: 'CORE TOOLS', url: 'core.txt' },
+        { id: 'tokens', title: 'TOKEN LAB', url: 'tokens.txt' },
+        { id: 'viewVM', title: 'VALLEY MAP', url: 'viewVM.txt' },
+        { id: 'viewSW', title: 'SILVERWALL', url: 'viewSW.txt' }
+    ];
+
+    async function fetchLogs() {
+        const container = document.getElementById('logs-container');
+        const nav = document.getElementById('internal-nav');
+        
+        for (const log of logRegistry) {
+            // 1. Add to Sticky Nav
+            const navLink = document.createElement('a');
+            navLink.href = `#${log.id}`;
+            // Extract a clean label (e.g., "CORE", "TOKEN", "VALLEY")
+            navLink.textContent = log.title.split(' ')[0]; 
+            nav.appendChild(navLink);
+
+            // 2. Create Section
+            const section = document.createElement('div');
+            section.className = 'log-section';
+            section.id = log.id; 
+            
+            section.innerHTML = `
+                <div class="heading-wrap">
+                    <h2>${log.title}</h2>
+                </div>
+                <div id="content-${log.id}" class="log-content">Syncing stream...</div>
+            `;
+            container.appendChild(section);
+
+            // 3. Fetch Data
+            try {
+                const response = await fetch(log.url);
+                if (!response.ok) throw new Error();
+                const text = await response.text();
+                document.getElementById(`content-${log.id}`).textContent = text;
+            } catch (err) {
+                document.getElementById(`content-${log.id}`).innerHTML = 
+                    `<span class="status">Offline: ${log.url} not found.</span>`;
+            }
+        }
+    }
+
+    window.onload = fetchLogs;
+</script>
+
+</body>
+</html>

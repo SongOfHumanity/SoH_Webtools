@@ -1,0 +1,96 @@
+<Reference Title="Changelog Template" Type="Core" Sub-Type="Documentation" Version="1.00" ;Lexi>
+	<Header>
+		<Description>
+			This Reference defines the structure, classifiers, and methodology for maintaining consistent and parseable changelogs across OGPT Library Files and Static Context documentation. 
+			A well-maintained changelog serves as both a historical record and an actionable data layer — allowing Entities, Operators, and downstream systems (such as Archive tools or Lifecycle monitors) to understand the evolution of a file, feature, or concept over time.
+		</Description>
+	</Header>
+	
+	<Body>
+		<Guide Title="How to Create and Maintain a Changelog" Type="Procedure" Sub-Type="_list">
+			<li.d>Record each meaningful change as an individual entry, ordered chronologically.</li.d>
+			<li.e>Use **Action Classifiers** to indicate the nature of the change (e.g., `[Added]`, `[Changed]`, `[Removed]`).</li.e>
+			<li.f>Optionally, include a **Category Classifier** to provide additional context for the type of update (e.g., `[Documentation]`, `[Content]`).</li.f>
+			<li.g>Include the date of the change, a short description, and references to any relevant files, sections, or versions.</li.g>
+			<li.h>Use consistent formatting (backticks for file names, quotes for Reference titles, italics for RNS Titles) to ensure the log remains machine- and human-readable.</li.h>
+			<li.i>When listing forthcoming changes, clearly label them with **[forthcoming]** and update tense upon completion.</li.i>
+			<li.j>For multi-part updates, treat each part as its own dated entry for traceability.</li.j>
+		</Guide>
+		<Section Title="Changelog Entry Template">
+			<Description>
+				This template defines the standard structure of a changelog entry. It should be used consistently across all OGPT Library Files, Static Context components, and Reference documents.
+			</Description>
+			<Format Title="Changelog Entry" Type="Template" Version="1.00">
+				#### **{DATE}**: Completed "{Update Sequence Name}" with {Operator}.
+				- [{Action}] {Concise description of the change}.
+				- [{Category}] {Optional additional context}.
+				- *File(s):* `{FileName}`  
+				- *Notes:* {Optional supporting details, links, or cross-references}.
+			</Format>
+		</Section>
+		<Section Title="Action Classifiers">
+			<Description>
+				Action Classifiers define the nature of a specific change. They should always appear at the beginning of a changelog bullet point, enclosed in square brackets, to make the nature of the modification immediately clear.
+			</Description>
+			<Classifier_list Type="Action" Sub-Type="_list">
+				<li1.01>[Added] – Introduces new features, elements, or content.</li1.01>
+				<li1.02>[Removed] – Removes existing features or content.</li1.02>
+				<li1.03>[Changed] – Alters existing features or content without adding or removing them.</li1.03>
+				<li1.04>[Fixed] – Corrects errors or inaccuracies.</li1.04>
+				<li1.05>[Renamed] – Changes the name of a feature, file, or section.</li1.05>
+				<li1.06>[Deprecated] – Marks a feature for removal in future versions.</li1.06>
+			</Classifier_list>
+		</Section>
+		<Section Title="Category Classifiers">
+			<Description>
+				Category Classifiers add an additional layer of meaning to a changelog entry by classifying the broader context of the change. They are optional but strongly recommended for complex projects.
+			</Description>
+			<Classifier_list Type="Category" Sub-Type="_list">
+				<li2.01>[Documentation] – Changes to documentation, guides, or references.</li2.01>
+				<li2.02>[Content] – Changes related to narrative or informational content.</li2.02>
+				<li2.03>[Formatting] – Adjustments to structure, layout, or presentation.</li2.03>
+				<li2.04>[Structural] – Reorganizations or large-scale refactors of files or sections.</li2.04>
+				<li2.05>[Refactoring] – Internal clean-up for maintainability.</li2.05>
+				<li2.06>[Performance] – Efficiency or optimization improvements.</li2.06>
+				<li2.07>[Security] – Updates addressing vulnerabilities or protections.</li2.07>
+				<li2.08>[Enhancement] – Quality-of-life or feature improvements.</li2.08>
+				<li2.09>[Breaking Change] – Backward-incompatible changes.</li2.09>
+				<li2.10>[Experimental] – Unstable or prototype features.</li2.10>
+				<li2.11>[Internal] – Changes to internal processes or non-public features.</li2.11>
+			</Classifier_list>
+		</Section>
+		<Section Title="Web Classifiiers">
+			<Description>
+				Web development projects involve unique workflows and technical considerations that benefit from specialized classification. These Action and Category Classifiers extend the base template to accommodate common web development patterns — including UI/UX changes, frontend refactoring, API integration, and performance optimization. They can be used independently or in combination with the base classifiers to provide precise context for web-specific updates.
+			</Description>	
+			<Classifier_list Type="Action" Sub-Type="_list">
+				<li1.07>[Integrated] – – Added external libraries, APIs, or third-party components</li1.07>
+				<li1.08>[Refactored] – Restructured existing code without changing functionality (this is a Base Category, and a Web-Specific Action)</li1.08>
+				<li1.09>[Optimized] – Improved performance, load times, or resource usage</li1.09>
+				<li1.10>[Migrated] – Moved functionality from one system/approach to another (e.g., div → iframe)</li1.10>
+			</Classifier_list>
+			
+			<Classifier_list Type="Category" Sub-Type="_list">
+				<li2.12>[UI/UX] – Changes to user interface or user experience.</li2.12>
+				<li2.13>[Styling] – CSS, layout, or visual presentation changes.</li2.13>
+				<li2.14>[Functionality] – Core feature behavior or logic.</li2.14>
+				<li2.15>[Interactivity] – Event handling, user interactions, dynamic behaviors.</li2.15>
+				<li2.16>[Accessibility] – A11y improvements, ARIA labels, keyboard navigation.</li2.16>
+				<li2.17>[Responsive] – Mobile/tablet/desktop layout adaptations.</li2.17>
+				<li2.18>[Integration] – Connecting systems, APIs, or external resources.</li2.18>
+				<li2.19>[Data Structure] – Changes to how data is organized or stored.</li2.19>
+			</Classifier_list>
+		</Section>
+	</Body>
+	<Footer>
+		<Changelog>
+			#### **01/03/2026**: Extended "Changelog Template" Reference with -Claude- and -JMC-.
+			- [Added] [Documentation] "Web Classifiers" section with 4 Action and 8 Category classifiers specific to web development workflows.
+			- [Enhancement] Expanded classifier system to accommodate UI/UX, interactivity, integration, and data structure changes common in frontend projects.
+			- *File(s):* `Changelog_Template.rns`
+			- *Notes:* New classifiers designed to work alongside base classifiers for precise web development changelog entries.
+			
+			#### **10/12/2025**: Initial draft of "Changelog Template" Reference created by -Lexi- with -JMC-.
+		</Changelog>
+	</Footer>
+</Reference>

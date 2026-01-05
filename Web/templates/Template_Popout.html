@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Pop-out</title>
+    <style>
+        body { font-family: 'Consolas', monospace; background-color: #1a1a1a; color: #00ff41; margin: 0; display: flex; flex-direction: column; height: 100vh; padding: 15px; box-sizing: border-box; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .title { color: #f9d423; font-weight: bold; font-size: 0.9em; }
+        textarea { flex-grow: 1; background: #080808; color: #00ff41; border: 1px solid #333; border-radius: 5px; padding: 15px; font-family: inherit; font-size: 0.9em; line-height: 1.5; white-space: pre; overflow: auto; outline: none; }
+        .btn-group { display: flex; gap: 8px; }
+        .btn { padding: 6px 12px; border: none; border-radius: 3px; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 0.75em; }
+        .btn-copy { background: #f9d423; color: #000; }
+        .btn-reset { background: #ff6b6b; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="title" id="display-name">Loading...</div>
+        <div class="btn-group">
+            <button class="btn btn-reset" onclick="loadContent()">🔄 Reset</button>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyText()">📋 Copy</button>
+        </div>
+    </div>
+    <textarea id="output" wrap="off"></textarea>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const fileName = params.get('file');
+        const displayName = params.get('name');
+
+        async function loadContent() {
+            if (!fileName) return;
+            document.getElementById('display-name').textContent = `INSTANCE: ${displayName}`;
+            try {
+                const response = await fetch(fileName);
+                const text = await response.text();
+                document.getElementById('output').value = text;
+            } catch (err) {
+                document.getElementById('output').value = "Error loading template.";
+            }
+        }
+
+        async function copyText() {
+            const area = document.getElementById('output');
+            await navigator.clipboard.writeText(area.value);
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = "✨ COPIED";
+            setTimeout(() => { btn.innerHTML = "📋 COPY"; }, 1000);
+        }
+
+        window.onload = loadContent;
+    </script>
+</body>
+</html>

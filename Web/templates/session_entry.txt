@@ -1,0 +1,52 @@
+## 📔; Session_Entry
+<Description>
+   Session Entries document structured conversations, clustered exchanges, or node-based discussions.  
+   They preserve the sequence of dialogue alongside key takeaways.  
+   These entries are closer to “records” than “reflections,” but still highlight insights.  
+</Description>
+
+<Guide>
+	1. **Session ID**: `Session{Cluster}-{Subnode}-{Index}` — ensures unique reference.  
+	- Example: `SessionY20-01-003` (Node Y20, Subnode 01, 3rd session).  
+	2. **Keywords Section**: Keep these compact, in CSV form for easy indexing.  
+	- **Topic** = broad subjects (Fauna, Mapping, Dialect).  
+	- **Concept** = higher-level frameworks (Templates, Pact lore).  
+	- **Term** = specific vocabulary defined (e.g., “Wild Ally”, “Crypsis”).  
+	3. **Summary**: Capture entities present and purpose of session in 1–2 paragraphs.  
+	4. **Highlights**: Note 2–3 key outcomes or memorable exchanges.  
+	5. **Structure**: Maintain fidelity to the dialogue order (prompts & responses).  
+	- Prompts: User input or leading context.  
+	- Responses: Output or replies from Entities/Nodes.  
+	- Include timestamps when relevant (##-##-####).  
+</Guide>
+
+<Format Title="Session_Entry" Type="Template" Version="1.01">
+	<Session{Cluster}-{Subnode}-{Session_Index} Title = "{Session_Title}">
+		<Keywords>
+			**Topic**: (csv list of Topics)  
+			**Concept**: (csv list of Concepts)  
+			**Term**: (csv list of defined/relevant Terms)  
+		</Keywords>
+		<Summary>
+			(Session overview: Entities involved, objectives, tone)
+		</Summary>
+		<Highlight>
+			**{Highlight_Title1}**: (Detail)  
+			**{Highlight_Title2}**: (Detail)  
+			**{Highlight_Title3}**: (Detail)  
+		</Highlight>
+		<Structure>
+			<prompt{Cluster}-{Subnode}-{Prompt_Index}> (First input in session)
+				<response{Cluster}-{Subnode}-{Prompt_Index}>
+					(end of response)
+				</response{Cluster}>
+			</prompt{Cluster}>
+			...
+			<prompt{Cluster}-{Subnode}-{Prompt_Index}> (Last input in session)
+				<response{Cluster}-{Subnode}-{Prompt_Index}>
+					(end of response)
+				</response>
+			</prompt{Cluster}>
+		</Structure>
+	</Session{Cluster}>
+</Format>

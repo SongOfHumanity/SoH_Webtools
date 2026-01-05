@@ -1,0 +1,119 @@
+<Reference Title = "Mineral Entries" Index = "0.0(c)0_a" Type = "Core" Sub-Type = "Documentation" Version = "1.00" ;JMC>
+	<Header>
+		<Description>
+			This reference document establishes the standardized framework for documenting minerals, stones, and ores within The Valley. It introduces essential geological terms, a structured template for consistent entry creation, and guidelines that balance scientific accuracy with cultural significance. Minerals, being both natural resources and symbolic artefacts, are recorded here to support ecological research, material studies, cultural lore, and economic records in The Valley.
+		</Description>
+		<Keywords>
+			{Keywords:Topic} = "Mineral Documentation, The Valley, Geology, Crystals, Ores, Stones, Economic Records, Educational Resource",
+			{Keywords:Concept} = "Standardization, Template Structure, Taxonomy, Data Consistency, Geological Roles, Human-Mineral Interaction, Cultural Significance, Terminology Definitions",
+			{Keywords:Term} = "Composition, Formation, Structure, Hardness, Luster, Coloration, Occurrence, Use, Symbolism, Mineral Terms"
+		</Keywords>
+	</Header>
+	
+	<Body>
+		<Keywords Title = "Mineral Terms" Type = "Term" Sub-Type = "Definition">
+			<Detail1 Title = "Composition" Type = "Definition" Sub-Type = "_list">
+				<li1_a Type = "Description" Sub-Type = "Overview">Terms related to chemical and elemental makeup:</li1_a>
+					<li1.01 Name = "Silicate:">Minerals built from silicon-oxygen frameworks, the most abundant group in Earth's crust.</li1.01>
+					<li1.02 Name = "Carbonate:">Minerals containing the carbonate ion (CO₃²⁻), often forming in sedimentary environments.</li1.02>
+					<li1.03 Name = "Oxide:">Minerals composed of oxygen bonded with one or more metals.</li1.03>
+					<li1.04 Name = "Sulfide:">Minerals formed from sulfur bonded with metals, often sources of valuable ores.</li1.04>
+					<li1.05 Name = "Native Element:">Pure forms of single elements (e.g., gold, copper) occurring naturally in the environment.</li1.05>
+			</Detail1>
+			<Detail2 Title = "Physical Properties" Type = "Definition" Sub-Type = "_list">
+				<li2_a Type = "Description" Sub-Type = "Overview">Key measurable traits of minerals:</li2_a>
+					<li2.01 Name = "Hardness:">Resistance to scratching, measured on the Mohs scale (1–10).</li2.01>
+					<li2.02 Name = "Luster:">The way a mineral reflects light (metallic, vitreous, pearly, etc.).</li2.02>
+					<li2.03 Name = "Cleavage:">The tendency of a mineral to break along flat planes of weakness.</li2.03>
+					<li2.04 Name = "Fracture:">The irregular way a mineral breaks when cleavage is absent.</li2.04>
+					<li2.05 Name = "Streak:">The color of the mineral’s powder when rubbed on a porcelain plate.</li2.05>
+					<li2.06 Name = "Coloration:">Observable color, which may vary due to impurities or structural differences.</li2.06>
+					<li2.07 Name = "Crystal Habit:">Typical shape or form in which crystals of the mineral grow.</li2.07>
+			</Detail2>
+			<Detail3 Title = "Formation & Occurrence" Type = "Definition" Sub-Type = "_list">
+				<li3_a Type = "Description" Sub-Type = "Overview">Terms about mineral origins and geological contexts:</li3_a>
+					<li3.01 Name = "Igneous:">Minerals crystallized from molten magma or lava.</li3.01>
+					<li3.02 Name = "Metamorphic:">Minerals altered or recrystallized under heat and pressure.</li3.02>
+					<li3.03 Name = "Sedimentary:">Minerals deposited from water or wind processes, often layered or cemented.</li3.03>
+					<li3.04 Name = "Vein Deposit:">Minerals concentrated in cracks or fissures, often associated with valuable ores.</li3.04>
+					<li3.05 Name = "Alluvial:">Minerals transported and deposited by rivers or streams, often as rounded pebbles or grains.</li3.05>
+			</Detail3>
+			<Detail4 Title = "Cultural & Human Significance" Type = "Definition" Sub-Type = "_list">
+				<li4_a Type = "Description" Sub-Type = "Overview">How minerals are valued or used in society:</li4_a>
+					<li4.01 Name = "Gemstone:">A mineral prized for beauty, rarity, and durability, often cut and polished for adornment.</li4.01>
+					<li4.02 Name = "Ore:">A mineral resource mined for valuable metals or materials.</li4.02>
+					<li4.03 Name = "Building Stone:">Used in construction for durability and appearance.</li4.03>
+					<li4.04 Name = "Ritual Stone:">A mineral associated with ceremonies, beliefs, or protective traditions.</li4.04>
+					<li4.05 Name = "Symbolic:">A stone tied to meanings such as strength, endurance, purity, or wisdom.</li4.05>
+					<li4.06 Name = "Folklore:">Legends, myths, or sayings associated with a mineral (e.g., luck stones, cursed gems).</li4.06>
+			</Detail4>
+		</Keywords>
+		
+		<Section Title = "Mineral Entry Template">
+			<Description>
+				This section provides a consistent structure for documenting minerals within The Valley. Each entry balances geological properties with cultural context, ensuring clarity for researchers and resonance for storytellers.
+			</Description>
+			<Guide Type = "Template" Sub-Type = "_list">
+				<li0_a Type = "Description" Sub-Type = "Overview">Mineral Entry Template Usage Instructions:</li0_a>
+				<li.d Title = "Header">
+					Start with the mineral’s name, aliases, and classification (e.g., "Verdestone (Valley Emerald) — Silicate Gemstone").
+				</li.d>
+				<li.e Title = "Description Sections">
+					Core sections include: **Description**, **Composition & Properties**, **Occurrence & Formation**, **Ecological & Geological Role**, **Human Relationship**, and **Additional Notes**.
+				</li.e>
+				<li.f Title = "Optional Branching Sections">
+					- **Gemstone Qualities**: If the mineral is valued ornamentally, add clarity, cut, and symbolism notes.  
+					- **Ore Significance**: If classified as an ore, add a branch on extraction, trade, and historical impact.  
+					- **Ritual or Symbolic Use**: If culturally significant, add a branch on ceremonies, beliefs, or myths.
+				</li.f>
+				<li.g Title = "Cross-References">
+					Link to related entries: flora (plants associated with deposits), fauna (creatures tied to mining or symbolism), and characters or societies that interact with the mineral.
+				</li.g>
+				<li.h Title = "Consistency">
+					Ensure formatting is uniform, and terminology matches the defined Mineral Terms. Branches should be clearly marked when invoked.
+				</li.h>
+			</Guide>
+			<Format Title = "Mineral Entry" Type = "Template">
+				### {Mineral_Name} ({Alias1}, {Alias2}, etc.)
+				
+				**Description**:
+					{Mineral:Description} = $$Description[Type: "Brief" | "Basic" | "Verbose"]
+					- **Brief:** Key identifying features (color, hardness, luster).
+					- **Basic:** A paragraph on physical properties, common forms, and distinguishing traits.
+					- **Verbose:** Extended notes on crystal habit, coloration variations, impurities, and unique traits.
+				
+				**Composition & Properties**:
+					{Mineral:Composition} = $$Description
+					Include classification (silicate, carbonate, oxide, etc.), Mohs hardness, luster, cleavage/fracture, and streak.
+				
+				**Occurrence & Formation**:
+					{Mineral:Occurrence} = $$Description
+					Describe geological setting (igneous, metamorphic, sedimentary), typical deposits (veins, alluvial), and Valley-specific locales.
+				
+				**Ecological & Geological Role**:
+					{Mineral:Role} = $$Description
+					Explain its influence: soil enrichment, resource foundation, geomythical importance.
+				
+				**Human Relationship**:
+					{Mineral:Human_Relationship} = $$Description
+					Explain use in tools, trade, construction, jewelry, or symbolic practices.
+					**Gemstone Qualities** (Branch): If applicable.
+					**Ore Significance** (Branch): If applicable.
+					**Ritual or Symbolic Use** (Branch): If applicable.
+				
+				**Additional Notes**:
+					{Mineral:Additional_Notes} = $$Description
+					Include myths, historical anecdotes, or uncommon traits.
+			</Format>
+		</Section>
+	</Body>
+	<Footer>
+		<Changelog>
+			#### v1.00 (03/27/2025 ;Lexi)
+			- Inception of the Mineral Entries reference.
+			- Established terminology categories: Composition, Physical Properties, Formation & Occurrence, Cultural & Human Significance.
+			- Provided a structured template parallel to Fauna and Flora, tailored for geological entries.
+			- Included branching sections for Gemstone, Ore, and Ritual/Symbolic uses.
+		</Changelog>
+	</Footer>
+</Reference>

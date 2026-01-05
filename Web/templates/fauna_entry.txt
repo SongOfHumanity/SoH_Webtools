@@ -1,0 +1,412 @@
+<Reference Title = "Fauna Entries" Index = "0.0(a)0_a" Type = "Core" Sub-Type = "Documentation" Version = "1.20" ;JMC>
+	<Header>
+		<Description>
+			This comprehensive reference document outlines the standardized framework for documenting the diverse fauna of The Valley. It includes detailed terminology, a structured template for entry creation, and guidelines to ensure consistency and depth in fauna descriptions. Designed to support both ecological research and educational endeavors, this document serves as a foundational tool for all subsequent fauna-related documentation and studies within The Valley.
+		</Description>
+		<Keywords>
+			{Keywords:Topic} = "Fauna Documentation, The Valley, Biodiversity, Wildlife Records, Ecological Research, Educational Resource",
+			{Keywords:Concept} = "Standardization, Template Structure, Taxonomy, Data Consistency, Ecological Roles, Human-Animal Interaction, Cultural Significance, Terminology Definitions",
+			{Keywords:Term} = "Diet, Activity Patterns, Metabolism, Food Web, Life Cycle, Cultural Significance, Habitat, Nature and Behavior, Ecological Role, Fauna Terms, REQ, Description Types";
+		</Keywords>
+	</Header>
+	
+	<Structure>
+		<Keywords Title = "Fauna Terms" Type = "Term" Sub-Type = "Definition">
+			<Detail1 Title = "Diet" Type = "Definition" Sub-Type = "_list">…
+				<li1.01>…</li1.01>
+				…
+				<li1.09>…</li1.09>
+			</Detail>
+			
+			<Detail2 Title = "Activity" Type = "Definition" Sub-Type = "_list">…
+				<li2.01>…</li2.01>
+				…
+				<li2.06>…</li2.06>
+			</Detail2>
+			
+			<Detail3 Title = "Metabolism" Type = "Definition" Sub-Type = "_list">…
+				<li3.01>…</li3.01>
+				…
+				<li3.06>…</li3.06>
+			</Detail3>
+			
+			<Detail4 Title = "Food Web" Type = "Definition" Sub-Type = "_list">…
+				<li4.01>…</li4.01>
+				…
+				<li4.07>…</li4.07>
+			</Detail4>
+			
+			<Detail5 Title = "Life Cycle" Type = "Definition" Sub-Type = "_list">…
+					<li5.01>…</li5.01>
+					…
+					<li5.16>…</li5.16>
+			</Detail5>
+			
+			<Detail6 Title = "Cultural Significance" Type = "Definition" Sub-Type = "_list">…
+					<li6.01>…</li6.01>
+					…
+					<li6.15>…</li6.15>
+			</Detail6>
+			
+			<Detail7 Title = "Miscellaneous" Type = "Definition" Sub-Type = "_list">…
+				<li7.01>…</li7.01>
+				…
+				<li7.08>…</li7.08>
+			</Detail7>			
+		</Keywords>
+		<Section Title = "Fauna Entry Template">
+			<Guide Type = "Template" Sub-Type = "_list">…
+				<li.d>…</li.d>
+				…
+				<li.k>…</li.k>
+			</Guide>
+			<Format Title = "Fauna Entry" Type = "Template">
+				### {Symbols}; {Species_Name} ({Alias1}, {Alias2}, etc.)
+				REQ IsFauna_Type? = [Bird, Mammal, Reptile, Amphibian, Invertebrate, Fish]  
+				REQ IsFauna_Domesticated? = [None, Livestock, Working, Companion]  
+				REQ IsFauna_Endemic? = Boolean  
+				REQ IsFauna_Migratory? = Boolean  
+				REQ IsFauna_Ally? = Boolean  
+				{Fauna:Description}:
+					{Fauna:Brief_Description}
+					{Fauna:Basic_Description}
+					OPTION
+						{Fauna:Verbose_Description};
+				;
+				{Fauna:Habitat}:
+					OPTION(IsFauna_Endemic?=True)
+						{Fauna:Endemic_Biome};
+				;
+				{Fauna:Nature_Behavior}:
+					OPTION
+						{Fauna:Life_Cycle},
+						{Fauna:Unique_Adaptations},
+						{Fauna:Migratory_Behavior};
+				;
+				{Fauna:Ecological_Role}:
+					{Fauna:Ecological_Interactions};
+				;
+				{Fauna:Human_Relationship}:
+					OPTION(Fauna_Domesticated != None)  
+						{Fauna:Domestication};
+					OPTION(IsFauna_Ally?=True);
+						{Fauna:Wild_Ally};
+					OPTION  
+						{Fauna:Cultural_Significance};
+				;
+				OPTION  
+					{Fauna:Additional_Notes}:
+				;
+			</Format>
+		</Section>
+	</Structure>
+	
+	<Body>
+		<Keywords Title = "Fauna Terms:" Type = "Term" Sub-Type = "Definition">
+			<Description>
+				This section contains a collection of terms and definitions that are essential for understanding the fauna entries within this documentation. These terms are categorized into five main areas: Diet, Activity, Metabolism, Food Web, and Miscellaneous. Each category offers a detailed list of definitions that describe various aspects of animal life, behavior, and ecological roles, providing a comprehensive lexical framework to support accurate and consistent descriptions of fauna in The Valley.
+			</Description>
+			
+			<Detail1 Title = "Diet" Type = "Definition" Sub-Type = "_list">
+				<li1_a Type = "Description" Sub-Type = "Overview">Terms related to the animal's diet:<li1_a>
+					<li1.01 Name = "Carnivore:">An animal that primarily eats other animals.</li1.01>
+					<li1.02 Name = "Herbivore:">An animal that primarily eats plants.</li1.02>
+					<li1.03 Name = "Omnivore:">An animal that eats both plants and animals.</li1.03>
+					<li1.04 Name = "Insectivore:">An animal that primarily eats insects.</li1.04>
+					<li1.05 Name = "Frugivore:">An animal that primarily eats fruits.</li1.05>
+					<li1.06 Name = "Granivore:">An animal that primarily eats seeds.</li1.06>
+					<li1.07 Name = "Piscivore:">An animal that primarily eats fish and aquatic animals.</li1.07>
+					<li1.08 Name = "Detritivore:">An animal that feeds on dead organic matter.</li1.08>
+					<li1.09 Name = "Folivore:">An animal that primarily eats leaves.</li1.09>
+			</Detail1>
+			
+			<Detail2 Title = "Activity" Type = "Definition" Sub-Type = "_list">
+				<li2_a Type = "Description" Sub-Type = "Overview">Terms Related to the animal's activity patterns:<li2_a>
+					<li2.01 Name = "Nocturnal:">Active primarily during the night.</li2.01>
+					<li2.02 Name = "Diurnal:">Active primarily during the day.</li2.02>
+					<li2.03 Name = "Crepuscular:">Active primarily during twilight (dawn and dusk).</li2.03>
+					<li2.04 Name = "Cathemeral:">Irregularly active during both day and night.</li2.04>
+					<li2.05 Name = "Matutinal:">Active primarily during the morning.</li2.05>
+					<li2.06 Name = "Vespertine:">Active primarily during the evening.</li2.06>
+			</Detail2>
+			
+			<Detail3 Title = "Metabolism" Type = "Definition" Sub-Type = "_list">
+				<li3_a Type = "Description" Sub-Type = "Overview">Terms related to reduced metabolic rates:<li3_a>
+					<li3.01 Name = "Hibernation:"> A state where animals significantly reduce their metabolic rate, heart rate, and body temperature to conserve energy during cold periods.</li3.01>
+					<li3.02 Name = "Brumation:">A form of hibernation typical in reptiles and amphibians, involving metabolic slowdown during colder temperatures to conserve energy.</li3.02>
+					<li3.03 Name = "Torpor:">A short-term reduction in metabolic rate to conserve energy, often utilized during times of reduced food availability or extreme weather.</li3.03>
+					<li3.04 Name = "Aestivation:">A state of dormancy similar to hibernation that occurs in response to hot or dry conditions, helping animals conserve moisture and reduce metabolic rate..</li3.04>
+					<li3.05 Name = "Homeostasis:">A state that maintains stable internal conditions necessary for life, despite changes in external environments. This biological process involves various regulatory mechanisms that balance factors such as temperature, pH, and hydration levels, ensuring the organism's survival and functionality.</li3.05>
+					<li3.06 Name = "Crypsis:">Involves minimal movement to avoid detection and conserve energy, often used by animals in response to predatory threats or harsh environmental conditions.</li3.06>
+			</Detail3>
+			
+			<Detail4 Title = "Food Web" Type = "Definition" Sub-Type = "_list">
+				<li4_a Type = "Description" Sub-Type = "Overview">Terms related to the "Food Web", related to their position relative to predators and prey:<li4_a>
+					<li4.01 Name = "Primary Producer:">Organisms, such as plants and algae, that produce energy from sunlight through photosynthesis.</li4.01>
+					<li4.02 Name = "Primary Consumer:">Herbivores that feed on primary producers.</li4.02>
+					<li4.03 Name = "Secondary Consumer:">Carnivores that feed on primary consumers.</li4.03>
+					<li4.04 Name = "Tertiary Consumer:">Carnivores that feed on secondary consumers.</li4.04>
+					<li4.05 Name = "Apex Predator:">A predator at the top of a food chain with no natural predators.</li4.05>
+					<li4.06 Name = "Scavenger:">An animal that feeds on dead animals..</li4.06>
+					<li4.07 Name = "Decomposer:">Organisms, such as bacteria and fungi, that break down dead organic matter.</li4.07>
+			</Detail4>
+			
+			<Detail5 Title = "Life Cycle" Type = "Definition" Sub-Type = "_list">
+				<li5_a Type = "Description" Sub-Type = "Overview">Terms related to the animal's life stages, reproduction, and development:<li5_a>
+					<li5.01 Name = "Oviparous:">Animals that lay eggs, with embryos developing outside the mother's body.</li5.01>
+					<li5.02 Name = "Viviparous:">Animals that give birth to live young, with embryos developing inside the mother's body.</li5.02>
+					<li5.03 Name = "Ovoviviparous:">Animals that produce eggs that hatch within the mother's body, leading to live birth.</li5.03>
+					<li5.04 Name = "Metamorphosis:">A developmental process involving significant change in form from one life stage to the next, such as from larva to adult.</li5.04>
+					<li5.05 Name = "Larva:">An immature form of an animal that undergoes metamorphosis.</li5.05>
+					<li5.06 Name = "Juvenile:">A young animal that has not yet reached maturity but resembles the adult form.</li5.06>
+					<li5.07 Name = "Mating Season:">Specific time of year when animals mate and reproduce.</li5.07>
+					<li5.08 Name = "Gestation Period:">The time during which an embryo develops inside the mother before birth.</li5.08>
+					<li5.09 Name = "Parental Care:">Behavior exhibited by parents to protect and nurture their offspring.</li5.09>
+					<li5.10 Name = "Fledgling:">A young bird that has recently developed flight feathers and is learning to fly.</li5.10>
+					<li5.11 Name = "Brood:">A group of offspring produced at one time by a breeding pair.</li5.11>
+					<li5.12 Name = "Hatchling:">A recently hatched animal.</li5.12>
+					<li5.13 Name = "Rutting Season:">A period of heightened sexual activity and competition among males, often observed in deer and similar species.</li5.13>
+					<li5.14 Name = "Molting:">The process of shedding and regenerating feathers, fur, or exoskeleton.</li5.14>
+					<li5.15 Name = "Longevity:">The typical lifespan of an animal under natural conditions.</li5.15>
+					<li5.16 Name = "Senescence:">The process of aging in animals, leading to a decline in biological function.</li5.16>
+			</Detail5>
+			
+			<Detail6 Title = "Cultural Significance" Type = "Definition" Sub-Type = "_list">
+				<li6_a Type = "Description" Sub-Type = "Overview">Terms related to the animal's role in human culture, folklore, and symbolism:</li6_a>
+					<li6.01 Name = "Totem Animal:">An animal that is revered and considered symbolic of a group, clan, or individual.</li6.01>
+					<li6.02 Name = "Symbol of [Attribute]:">An animal associated with a particular trait, such as strength, wisdom, or luck.</li6.02>
+					<li6.03 Name = "Folklore:">Traditional stories and beliefs involving the animal, passed through generations.</li6.03>
+					<li6.04 Name = "Mythical Creature:">An animal that features in myths and legends, sometimes with supernatural attributes.</li6.04>
+					<li6.05 Name = "Sacred Animal:">An animal considered holy or worthy of spiritual respect and protection.</li6.05>
+					<li6.06 Name = "Taboo:">An animal that is avoided or forbidden in cultural practices, possibly due to superstition or religious beliefs.</li6.06>
+					<li6.07 Name = "Domesticated:">An animal that has been tamed and bred for human use.</li6.07>
+					<li6.08 Name = "Legend:">A narrative of historical events that may be embellished, involving the animal in significant roles.</li6.08>
+					<li6.09 Name = "Heraldry:">Use of the animal's image in emblems, coats of arms, or symbols representing families or organizations.</li6.09>
+					<li6.10 Name = "Omen:">An animal believed to foretell future events, either good or bad.</li6.10>
+					<li6.11 Name = "Spirit Guide:">An animal thought to provide guidance or protection in spiritual beliefs.</li6.11>
+					<li6.12 Name = "Cultural Taboo:">An animal whose hunting or consumption is prohibited due to cultural or religious beliefs.</li6.12>
+					<li6.13 Name = "Festivals and Rituals:">Cultural events or ceremonies where the animal plays a central role.</li6.13>
+					<li6.14 Name = "Proverbs and Sayings:">Common expressions or idioms involving the animal that reflect cultural values or lessons.</li6.14>
+					<li6.15 Name = "Artistic Depictions:">Representation of the animal in art, music, or literature within the culture.</li6.15>
+			</Detail6>
+			
+			<Detail7 Title = "Miscellaneous" Type = "Definition" Sub-Type = "_list">
+				<li7_a Type = "Description" Sub-Type = "Overview">Other terms that may apply:<li7_a>
+					<li7.01 Name = "Endemic:">Native and restricted to a specific geographical area.</li7.01>
+					<li7.02 Name = "Migratory:">Animals that move from one region to another, often seasonally.</li7.02>
+					<li7.03 Name = "Keystone Species:">A species on which other species in an ecosystem largely depend, such that if it were removed, the ecosystem would change drastically.</li7.03>
+					<li7.04 Name = "Indicator Species:">A species whose presence, absence, or abundance reflects a specific environmental condition.</li7.04>
+					<li7.05 Name = "Symbiotic:">A close and often long-term interaction between two different biological species.</li7.05>
+					<li7.06 Name = "Mutualistic:">A type of symbiotic relationship where both species benefit.</li7.06>
+					<li7.07 Name = "Commensal:">A type of symbiotic relationship where one species benefits while the other is neither helped nor harmed.</li7.07>
+					<li7.08 Name = "Parasitic:">A type of symbiotic relationship where one species benefits at the expense of the other.</li7.08>
+			</Detail7>
+		</Keywords>
+		<Guide Type = "Template" Sub-Type = "_list">
+			<li0_a Type = "Description" Sub-Type = "Overview">
+				Fauna Entry Template Usage Instructions:
+			</li0_a>
+		
+			<li.d Title = "Scope and Usage">
+				This template is used for documenting **Fauna Entries** within The Valley, supporting both **wild and domesticated species**. 
+				Each entry follows a **structured format** that ensures consistency across The Valley’s ecosystem records, facilitating 
+				cross-referencing with the **Fauna Index, Biome Entries, and Societal References**.
+			</li.d>
+		
+			<li.e Title = "Required Fields (REQ)">
+				Every Fauna Entry must define the following **required fields** to ensure proper classification and indexing:
+				- **IsFauna_Type?** = `[Bird, Mammal, Reptile, Amphibian, Invertebrate, Fish]`  
+				  _(Determines classification according to Index_Fauna.)_  
+				- **IsFauna_Domesticated?** = `[None, Livestock, Working, Companion]`  
+				  _(Specifies if the species is domesticated, and for what purpose.)_  
+				- **IsFauna_Endemic?** = `Boolean`  
+				  _(Indicates whether the species is exclusive to one or more specific Biomes.)_  
+				- **IsFauna_Migratory?** = `Boolean`  
+				  _(Marks if the species undergoes seasonal migration.)_  
+				- **IsFauna_Ally?** = `Boolean`  
+				  _(Denotes if the species is recognized as a "Wild Ally" in human culture, despite not being domesticated.)_  
+			</li.e>
+		
+			<li.f Title = "Fauna Symbols and Meaning">
+				Fauna Entries automatically apply **Symbols** based on selected attributes.
+				(❦, ↺, (◎ or ✿ or ◬ or ☆))
+				These symbols appear in the **Entry Header** (`{Symbols}; {Species_Name}`) and in **directory listings** for quick reference.
+			</li.f>
+		
+			<li.g Title = "Template Sections">
+				Each Fauna Entry follows a structured format containing **core sections** and **optional expansions**:  
+				- **Overview**: Name, aliases, and quick classification.  
+				- **Description**: Detailed breakdown of **physical attributes**, with variable verbosity.  
+				- **Habitat**: Where the species resides and its biome preferences.  
+				- **Nature & Behavior**: Daily activity, diet, life cycle, and social structures.  
+				- **Ecological Role**: How the species influences its environment.  
+				- **Ecological Interactions**: Relationships with other species, including predators and prey.  
+				- **Human Relationship**: Cultural importance, domestication, or human-wildlife interactions.  
+				- **Additional Notes**: Miscellaneous information, myths, or historical context.  
+			</li.g>
+		
+			<li.h Title = "Optional Sections and Dynamic Expansion">
+				Certain **Optional Sections** are included based on **specific attributes**:
+				- **Endemic Species Expansion**: Enabled when `IsFauna_Endemic? = True`  
+				  - Adds `{Fauna:Endemic_Biome}` detailing **exclusive Biome Associations**.  
+				- **Migratory Patterns**: Enabled when `IsFauna_Migratory? = True`  
+				  - Adds `{Fauna:Migratory_Behavior}`, detailing migration routes and seasonal patterns.  
+				- **Domestication History**: Enabled when `IsFauna_Domesticated? ≠ None`  
+				  - Adds `{Fauna:Domestication}`, detailing **livestock, working roles, or companionship history**.  
+				- **Wild Ally Status**: Enabled when `IsFauna_Ally? = True`  
+				  - Adds `{Fauna:Wild_Ally}`, detailing **non-domesticated species that maintain close ties with human settlements**.  
+			</li.h>
+		
+			<li.i Title = "Cross-Referencing Other Entries">
+				Fauna Entries frequently link to **related references**:
+				- **Flora Entries**: If species depend on or interact heavily with specific plants.  
+				- **Biome Entries**: Particularly for endemic species or migratory routes.  
+				- **Human & Societal References**: When discussing **domestication, folklore, or historical connections**.  
+			</li.i>
+		
+			<li.j Title = "Symbol-Based Sorting in Directories">
+				Fauna Entries are sorted **visually and functionally** based on **Symbol Assignments**:
+				- **Wild & Endemic Species** (◎, ❦) are indexed **by biome first**.  
+				- **Migratory Species** (↺) are indexed in **seasonal subcategories**.  
+				- **Domesticated Species** (✿, ◬, ☆) are listed under **"Fauna: Human-Integrated"**.  
+			</li.j>
+		
+			<li.k Title = "Consistency and Future Expansion">
+				Like Biome and Flora documentation, Fauna Entries maintain **modular expandability**:
+				- **New Attributes** (e.g., additional symbols) can be added without restructuring the format.  
+				- **Future Modules** (e.g., "Fauna Terms: Genetic Adaptations") can be appended.  
+				- **Linked Documentation** (e.g., expanded Societal References) can evolve alongside Fauna Entries.  
+			</li.k>
+		</Guide>
+		<Format Title = "Fauna Entry" Type = "Template">
+			#### {Symbols}; {Species_Name} ({Alias1}, {Alias2}, etc.)
+			(This should be the common name followed by any significant identifier; e.g., "Bold-Faced Owl (Day Owl, Surprise Owl)".)
+		
+			REQ IsFauna_Type? = [Bird, Mammal, Reptile, Amphibian, Invertebrate, Fish]  
+			REQ IsFauna_Domesticated? = [None, Livestock, Working, Companion]  
+			REQ IsFauna_Endemic? = Boolean  
+			REQ IsFauna_Migratory? = Boolean  
+			REQ IsFauna_Ally? = Boolean  
+		
+			OPTION (Applies_Symbols=True)  
+			{Symbols} =  [
+				◎, (Wild Ally) → Applied if `IsFauna_Ally? = True`)
+				❦, (Endemic Species) → Applied if `IsFauna_Endemic? = True`)
+				↺, (Migratory Species → Applied if `IsFauna_Migratory? = True`)
+				✿, (Domesticated Livestock → Applied if `IsFauna_Domesticated? = Livestock`)
+				◬, (Domesticated Working → Applied if `IsFauna_Domesticated? = Working`)
+				☆; (Domesticated Companion) → Applied if `IsFauna_Domesticated? = Companion`)
+				]
+		
+			**Description**:  
+				{Fauna:Description} = $$Description[Type: "Brief" | "Basic" | "Verbose"]  
+				
+				IS  
+					{Fauna:Brief_Description} = $$Description  
+					(A few sentences highlighting the most distinctive physical features.)  
+					
+					{Fauna:Basic_Description} = $$Description  
+					(A paragraph describing an average member of the species, including size, weight, typical colors, and notable physical adaptations.)  
+					
+				OPTION  
+					{Fauna:Verbose_Description} = $$Description  
+					(Several paragraphs offering an in-depth physical description, including details on size, weight, distinctive features, sexual dimorphism, seasonal changes, build, colors, and significant adaptations.)  
+		
+			**Habitat**:  
+				{Fauna:Habitat} = $$Description  
+				(Describe the specific environments within The Valley where the species thrives. Include details like the type of landscape (forest, grasslands, etc.), climate preferences, and geographical distribution within The Valley.)  
+				
+				OPTION(IsFauna_Endemic?=True)  
+					{Fauna:Endemic_Biome} = $$Description  
+					(Identify **specific Biomes** where the species is exclusively found. Cross-reference with Biome Entries where applicable.)  
+		
+			**Nature and Behavior**:  
+				{Fauna:Nature_Behavior} = $$Description  
+				(Detail the species' diet using appropriate terms from **"Fauna Terms: Diet"**, social structure (if applicable), daily activity patterns using terms from **"Fauna Terms: Activity"**, and any unique behavioral traits. Include reproductive behaviors and development stages using terms from **"Fauna Terms: Life Cycle"**. Discuss interactions with the environment and other species, including metabolic adjustments from **"Fauna Terms: Metabolism"** if applicable.)  
+		
+				OPTION  
+					{Fauna:Life_Cycle} = $$Description  
+					**Life Cycle**:  
+					(Elaborate on reproduction, development stages, group dynamics, and seasonal behaviors. Use appropriate terms from **"Fauna Terms: Life Cycle"**.)  
+					
+					{Fauna:Unique_Adaptations} = $$Description  
+					**Unique Adaptations**:  
+					(Highlight physiological, behavioral, or ecological traits unique to the species, particularly those that enable survival in The Valley's biomes. Focus on endemic traits, specialized feeding mechanisms, or traits central to their ecological identity.)  
+					
+					{Fauna:Migratory_Behavior} = $$Description  
+					**Migratory Patterns**:  
+					(If `Fauna_Migratory? = True`, describe seasonal migrations, migration triggers, preferred routes, and resting areas. Reference **Waterways, Grasslands, or Forest Biomes** that support migration.)  
+		
+			**Ecological Role**:  
+				{Fauna:Ecological_Role} = $$Description  
+				(Outline the role the species plays in its ecosystem. Discuss its impact on plant and animal populations, its role in the food chain using appropriate terms from "Fauna Terms: Food Web", and any contributions to the ecological health of The Valley. Include interactions from "Fauna Terms: Miscellaneous" if relevant, such as symbiotic relationships.)  
+		
+			**Ecological Interactions**:  
+				{Fauna:Ecological_Interactions} = $$Description  
+				(Describe key interactions with other species, such as prey, predators, symbiosis, or dependencies on specific plants. Include cross-references to other entries in the Fauna and Flora Indices for a more interconnected ecological perspective.)  
+		
+			**Relationship with Humans**:  
+				{Fauna:Human_Relationship} = $$Description  
+				(Explain how the species interacts with or is perceived by the human inhabitants of The Valley. Include any common interactions between the species and humans.)  
+		
+				OPTION(Fauna_Domesticated != None)  
+					{Fauna:Domestication} = $$Description  
+					**Domestication**:  
+					(Describe the domestication history, primary uses (e.g., livestock, labor, companionship), breeding practices, and societal significance.)  
+		
+				OPTION(IsFauna_Ally?=True)  
+					{Fauna:Wild_Ally} = $$Description  
+					**Wild Ally**:  
+					(Species that are culturally or practically allied with human settlements, often aiding in hunting, scouting, or protective roles without full domestication.)  
+		
+				OPTION  
+					{Fauna:Cultural_Significance} = $$Description  
+					**Cultural Significance**:  
+					(Explore human perspectives, folklore, and historical ties related to the species. Use terms from **"Fauna Terms: Cultural Significance"** to discuss cultural practices, myths, or traditions associated with it.)  
+		
+			**Additional Notes**:  
+				OPTION  
+					{Fauna:Additional_Notes} = $$Description  
+					(Provide miscellaneous information, such as historical anecdotes, myths, or unique behaviors not covered in other sections.)  
+		</Format>
+	</Body>
+	<Footer>
+		<Changelog>
+			#### v1.00 (08/24/2024 ;Nio, C6):
+			- Formalization of the *Fauna Entries Reference* based on prior iterations. 
+			- Definitions and structured templates codified for consistent use across The Valley’s ecosystem documentation.
+			
+			#### v1.01 (11/23/2024 ;Artie):
+			- [Added] A new guide point `<li.f>` under the `<Guide>` section in the **"Fauna Entry Template"** to explain the usage of the three Description Types: Brief, Basic, and Verbose.
+			- [Changed] The numbering of subsequent guide points in the `<Guide>` section to maintain sequential order after the insertion of `<li.f>`.
+			- [Updated][Documentation] The `<Format>` section in the **"Fauna Entry Template"** to include the three Description Types within the **Description** section, with clear instructions for each type and guidance on when to use them.
+			- [Revised][Content] The example under `{Species_Name} ({Alias1}, {Alias2}, etc.)` to reflect "Bold-Faced Owl (Day Owl, Surprise Owl)" as a specific example.
+			
+			#### v1.02 (11/30/2024 ;Artie):
+			- [Added] Two new `Detail:Definition_list` elements under `<Keywords>`: **Life Cycle** (`<Detail5>`) and **Cultural Significance** (`<Detail6>`), expanding the taxonomy of terms.
+			- [Updated] Reindexed all list items in the `<Keywords>` section to include two digits after the decimal point for clarity, avoiding confusion between items like `<li1.1>` and `<li1.10>`.
+			- [Revised] The `<Guide>` section in the **"Fauna Entry Template"** to include a new guide point `<li.g>` explaining the usage of branching sections **Life Cycle** and **Cultural Significance**.
+			- [Adjusted] Subsequent guide points in the `<Guide>` section to maintain sequential lettering after the addition of `<li.g>`.
+			- [Corrected] Fixed mismatched and missing tags throughout the document, including the `Version` attribute in the `<Reference>` tag and closing tags for `<Detail7>` and `<Structure>`.
+			- [Enhanced] Added a `<Keywords>` section in the `<Header>` with `{Keywords:Topic}`, `{Keywords:Concept}`, and `{Keywords:Term}` to aid in discovery and usability.
+			- [Fixed] Resolved the open `<Structure>` element issue that was causing obfuscation in previous versions.
+			- [Improved] Overall formatting and consistency, ensuring that all elements are correctly nested and properly closed.
+			
+			#### v1.03 (12/06/2024 ;Artie):
+			- [Added][Format] Introduced **Ecological Interactions** after Ecological Role and **Additional Notes** as a concluding section.
+			- [Added][Format] Integrated **Unique Adaptations** as a branch under Nature and Behavior.
+			- [Revised][Guide] Consolidated instructions for all optional and branching sections under `<li.g>` to include Life Cycle, Unique Adaptations, Cultural Significance, Ecological Interactions, and Additional Notes.
+			- [Updated][Ordering] Reflected the new order of core sections in `<li.e>` and clarified the sequence and conditional usage of optional branches.
+			- [Maintained][Standards] Ensured alphabetical ordering and consistent formatting throughout.
+			
+			#### v1.20 (03/09/2025 ;Alder):  
+			- **[Added][REQ]** Introduced **Required Fields (`REQ`)** to improve classification and indexing:  
+			- **[Added][Symbols]** Implemented **Fauna Symbols** for rapid identification in **Headers and Directory Listings**:  
+			- **[Updated][Format]** Applied **"OPTION" methodology** to dynamically expand relevant sections based on Fauna attributes.
+			- **[Expanded][Guide]** Fully revised `<Guide>` section to address REQs and OPTIONs.  
+			  - Added **sorting logic for Directories** based on **Symbol Assignments**.  
+			  - Ensured **cross-referencing** remains clear for Biome, Flora, and Human Interaction ties.  
+		</Changelog>
+	</Footer>
+</Reference>
+```

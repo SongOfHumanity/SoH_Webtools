@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Northwood Forest</title>
+  <style>
+    body {
+      font-family: Consolas, monospace;
+      background-color: black;
+      color: white;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+      margin: 1rem 0 0.5rem;
+    }
+    .collapsible {
+      cursor: pointer;
+      padding: 0.5rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #222;
+      margin-top: 1rem;
+    }
+    .content {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+    .content.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Northwood Forest</h1>
+
+<h2>Overview</h2>
+<ul>
+  <li><b>Divisions:</b></li>
+  <ul>
+    <li>Northern Northwood</li>
+    <li>Southern Northwood</li>
+    <li>Central Northwood</li>
+    <li>Eastern Northwood</li>
+  </ul>
+</ul>
+<p>Northwood Forest is a vast expanse in the northern part of <b>The Valley</b>, characterized by its temperate boreal climate and diverse terrain ranging from mountains to wetlands.</p>
+
+<h2>Divisions and Descriptions</h2>
+
+<h3 class="collapsible" onclick="toggleContent(this)">D1: Northern Northwood</h3>
+<div class="content">
+  <h4>Location and Boundaries:</h4>
+  <ul>
+    <li>Borders the <b>Northern Mountains</b> to the north.</li>
+    <li>Elevation increases as the forest merges into mountainous terrain.</li>
+  </ul>
+  <h4>Climate and Soil:</h4>
+  <ul>
+    <li><b>Climate:</b> Cooler temperatures due to higher elevation. Harsh winters with heavy snowfall.</li>
+    <li><b>Soil:</b> Rocky and thin, well-drained but low in nutrients.</li>
+  </ul>
+  <h4>Tree Composition:</h4>
+  <ul>
+    <li><b>Coniferous Dominance (80%):</b> Pine and Spruce thrive in cooler, mountainous conditions.</li>
+    <li><b>Birch (15%):</b> Present in sheltered areas.</li>
+    <li><b>Hardwoods (5%):</b> Oak and Hazel in protected valleys.</li>
+  </ul>
+  <h4>Features:</h4>
+  <ul>
+    <li><b>Terrain:</b> Rugged with steep slopes and rocky outcrops.</li>
+    <li><b>Clearings:</b> Rare; primarily natural meadows or avalanche paths.</li>
+    <li><b>Wildlife:</b> Includes mountain goats, lynx, and alpine birds.</li>
+  </ul>
+</div>
+
+<h3 class="collapsible" onclick="toggleContent(this)">D2: Southern Northwood</h3>
+<div class="content">
+  <h4>Location and Boundaries:</h4>
+  <ul>
+    <li>Borders <b>Mirror Lake</b>, <b>Willow Stream</b>, and <b>Silver Marshes</b> to the south.</li>
+    <li>Transitional zone between forest and wetlands.</li>
+  </ul>
+  <!-- Additional details omitted for brevity -->
+</div>
+
+<!-- Additional divisions (D3, D4, etc.) follow the same structure -->
+
+<script>
+  // Function to toggle visibility of collapsible sections
+  function toggleContent(element) {
+    const content = element.nextElementSibling;
+    content.classList.toggle('show');
+  }
+</script>
+
+</body>
+</html>

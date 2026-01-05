@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>-JMC- Command Center</title>
+    <style>
+        :root {
+            --lava-glow: #ff6b6b;
+            --teal-accent: #4ecdc4;
+            --amber-accent: #f9d423;
+        }
+        body { margin: 0; padding: 0; background: #1a1a1a; font-family: 'Consolas', monospace; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Fancy Navbar */
+        #navbar { 
+            background: #222; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 20px; 
+            height: 50px; 
+            border-bottom: 2px solid var(--lava-glow);
+            box-shadow: 0 2px 15px rgba(255, 107, 107, 0.3);
+            z-index: 100;
+        }
+
+        .nav-item { position: relative; display: inline-block; height: 100%; }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-item:hover .nav-link { background: #333; color: var(--teal-accent); }
+
+        /* Dropdown Logic */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #262626;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+            border-top: 2px solid var(--teal-accent);
+            z-index: 101;
+        }
+
+        .dropdown-content a {
+            color: #ccc;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.85em;
+        }
+
+        .dropdown-content a:hover { background-color: #333; color: var(--amber-accent); }
+        .nav-item:hover .dropdown-content { display: block; animation: flowIn 0.2s ease-out; }
+
+        @keyframes flowIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        iframe { flex-grow: 1; border: none; background: #1a1a1a; width: 100%; }
+
+        .lava-bar { height: 3px; background: linear-gradient(90deg, #ff4e50, #f9d423, #ff4e50); background-size: 200% 100%; animation: lavaMove 5s linear infinite; }
+        @keyframes lavaMove { 0% { background-position: 0% 0%; } 100% { background-position: -200% 0%; } }
+    </style>
+</head>
+<body>
+
+<div id="navbar">
+    <div class="nav-item">
+        <a href="Prompt_Indexer v2.html" target="viewport" class="nav-link">PROMPT INDEXER</a>
+    </div>
+
+    <div class="nav-item">
+        <a href="#" class="nav-link">TOKENS ▼</a>
+        <div class="dropdown-content">
+            <a href="tokens/Token_Rand5 v1.html" target="viewport">Rand5 Generator</a>
+            <a href="tokens/Token_NID v1.html" target="viewport">NID Generator</a>
+            <a href="tokens/Token_Connections v1.html" target="viewport">Connection Builder</a>
+        </div>
+    </div>
+
+    <div class="nav-item">
+        <a href="#" class="nav-link">MAPPING ▼</a>
+        <div class="dropdown-content">
+            <a href="viewVM/ValleyMap_Viewer v2.html" target="_blank">Valley Map Viewer ↗</a>
+            <a href="viewSW/SilverwallMap_Viewer.html" target="_blank">Silverwall Map Viewer ↗</a>
+        </div>
+    </div>
+
+    <div class="nav-item">
+        <a href="#" class="nav-link">LIBRARY ▼</a>
+        <div class="dropdown-content">
+            <a href="templates/Template_Viewer v2.html" target="viewport">Templates</a>
+        </div>
+    </div>
+</div>
+<div class="lava-bar"></div>
+
+<iframe name="viewport" src="logs/Changelog.html"></iframe>
+
+</body>
+</html>
