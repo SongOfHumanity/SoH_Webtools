@@ -290,12 +290,12 @@
 		
 			OPTION (Applies_Symbols=True)  
 			{Symbols} =  [
-				◎, (Wild Ally) → Applied if `IsFauna_Ally? = True`)
-				❦, (Endemic Species) → Applied if `IsFauna_Endemic? = True`)
+				◎, (Wild Ally → Applied if `IsFauna_Ally? = True`)
+				❦, (Endemic Species → Applied if `IsFauna_Endemic? = True`)
 				↺, (Migratory Species → Applied if `IsFauna_Migratory? = True`)
 				✿, (Domesticated Livestock → Applied if `IsFauna_Domesticated? = Livestock`)
 				◬, (Domesticated Working → Applied if `IsFauna_Domesticated? = Working`)
-				☆; (Domesticated Companion) → Applied if `IsFauna_Domesticated? = Companion`)
+				☆; (Domesticated Companion → Applied if `IsFauna_Domesticated? = Companion`)
 				]
 		
 			**Description**:  
@@ -372,16 +372,21 @@
 	</Body>
 	<Footer>
 		<Changelog>
-			#### v1.00 (08/24/2024 ;Nio, C6):
-			- Formalization of the *Fauna Entries Reference* based on prior iterations. 
-			- Definitions and structured templates codified for consistent use across The Valley’s ecosystem documentation.
-			
-			#### v1.01 (11/23/2024 ;Artie):
-			- [Added] A new guide point `<li.f>` under the `<Guide>` section in the **"Fauna Entry Template"** to explain the usage of the three Description Types: Brief, Basic, and Verbose.
-			- [Changed] The numbering of subsequent guide points in the `<Guide>` section to maintain sequential order after the insertion of `<li.f>`.
-			- [Updated][Documentation] The `<Format>` section in the **"Fauna Entry Template"** to include the three Description Types within the **Description** section, with clear instructions for each type and guidance on when to use them.
-			- [Revised][Content] The example under `{Species_Name} ({Alias1}, {Alias2}, etc.)` to reflect "Bold-Faced Owl (Day Owl, Surprise Owl)" as a specific example.
-			
+			#### v1.20 (03/09/2025 ;Alder):  
+			- **[Added][REQ]** Introduced **Required Fields (`REQ`)** to improve classification and indexing:  
+			- **[Added][Symbols]** Implemented **Fauna Symbols** for rapid identification in **Headers and Directory Listings**:  
+			- **[Updated][Format]** Applied **"OPTION" methodology** to dynamically expand relevant sections based on Fauna attributes.
+			- **[Expanded][Guide]** Fully revised `<Guide>` section to address REQs and OPTIONs.  
+			  - Added **sorting logic for Directories** based on **Symbol Assignments**.  
+			  - Ensured **cross-referencing** remains clear for Biome, Flora, and Human Interaction ties.  
+
+			#### v1.03 (12/06/2024 ;Artie):
+			- [Added][Format] Introduced **Ecological Interactions** after Ecological Role and **Additional Notes** as a concluding section.
+			- [Added][Format] Integrated **Unique Adaptations** as a branch under Nature and Behavior.
+			- [Revised][Guide] Consolidated instructions for all optional and branching sections under `<li.g>` to include Life Cycle, Unique Adaptations, Cultural Significance, Ecological Interactions, and Additional Notes.
+			- [Updated][Ordering] Reflected the new order of core sections in `<li.e>` and clarified the sequence and conditional usage of optional branches.
+			- [Maintained][Standards] Ensured alphabetical ordering and consistent formatting throughout.
+
 			#### v1.02 (11/30/2024 ;Artie):
 			- [Added] Two new `Detail:Definition_list` elements under `<Keywords>`: **Life Cycle** (`<Detail5>`) and **Cultural Significance** (`<Detail6>`), expanding the taxonomy of terms.
 			- [Updated] Reindexed all list items in the `<Keywords>` section to include two digits after the decimal point for clarity, avoiding confusion between items like `<li1.1>` and `<li1.10>`.
@@ -392,20 +397,15 @@
 			- [Fixed] Resolved the open `<Structure>` element issue that was causing obfuscation in previous versions.
 			- [Improved] Overall formatting and consistency, ensuring that all elements are correctly nested and properly closed.
 			
-			#### v1.03 (12/06/2024 ;Artie):
-			- [Added][Format] Introduced **Ecological Interactions** after Ecological Role and **Additional Notes** as a concluding section.
-			- [Added][Format] Integrated **Unique Adaptations** as a branch under Nature and Behavior.
-			- [Revised][Guide] Consolidated instructions for all optional and branching sections under `<li.g>` to include Life Cycle, Unique Adaptations, Cultural Significance, Ecological Interactions, and Additional Notes.
-			- [Updated][Ordering] Reflected the new order of core sections in `<li.e>` and clarified the sequence and conditional usage of optional branches.
-			- [Maintained][Standards] Ensured alphabetical ordering and consistent formatting throughout.
+			#### v1.01 (11/23/2024 ;Artie):
+			- [Added] A new guide point `<li.f>` under the `<Guide>` section in the **"Fauna Entry Template"** to explain the usage of the three Description Types: Brief, Basic, and Verbose.
+			- [Changed] The numbering of subsequent guide points in the `<Guide>` section to maintain sequential order after the insertion of `<li.f>`.
+			- [Updated][Documentation] The `<Format>` section in the **"Fauna Entry Template"** to include the three Description Types within the **Description** section, with clear instructions for each type and guidance on when to use them.
+			- [Revised][Content] The example under `{Species_Name} ({Alias1}, {Alias2}, etc.)` to reflect "Bold-Faced Owl (Day Owl, Surprise Owl)" as a specific example.
 			
-			#### v1.20 (03/09/2025 ;Alder):  
-			- **[Added][REQ]** Introduced **Required Fields (`REQ`)** to improve classification and indexing:  
-			- **[Added][Symbols]** Implemented **Fauna Symbols** for rapid identification in **Headers and Directory Listings**:  
-			- **[Updated][Format]** Applied **"OPTION" methodology** to dynamically expand relevant sections based on Fauna attributes.
-			- **[Expanded][Guide]** Fully revised `<Guide>` section to address REQs and OPTIONs.  
-			  - Added **sorting logic for Directories** based on **Symbol Assignments**.  
-			  - Ensured **cross-referencing** remains clear for Biome, Flora, and Human Interaction ties.  
+			#### v1.00 (08/24/2024 ;Nio, C6):
+			- Formalization of the *Fauna Entries Reference* based on prior iterations. 
+			- Definitions and structured templates codified for consistent use across The Valley’s ecosystem documentation.
 		</Changelog>
 	</Footer>
 </Reference>

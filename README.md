@@ -172,7 +172,7 @@ All documentation includes timestamped entries with contributor credits (e.g., `
 ## Recent Updates (v2.0 Milestone)
 
 - ✨ ValleyMap Viewer v2: Complete overhaul with floating key panels and iframe viewport
-- 📚 Template Library v3: Collapsible accordion organization with pop-out support
+- 📚 Template Library v2: Collapsible accordion organization with pop-out support
 - 🔄 Prompt Indexer v2: Modern UI with block-inline note formatting
 - 📋 Comprehensive documentation system with searchable logs
 

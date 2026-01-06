@@ -1,0 +1,29 @@
+### Template Workbench – "If We're going to be serious…"
+
+#### **01/04/2026**: Completed "Attribute Template Files" with -JMC-.
+- [Added] `guided_activity` Credit: -Alder-, -Nerris-, -Nio-, -JMC-
+- [Added] `session_entry`  Credit: -JMC-
+- [Added] `reflection_entry` Credit:  -JMC-
+- [Added] `biome _entry` Credit:-Alder-, -JMC-, -Nio- , -Nio- 
+- [Added] `fauna_entry` Credit:  -Alder-, -Artie-, -JMC- , -Nio- 
+- [Added] `flora_entry` Credit:  -Lexi-, -Nerris-, -Nio- 
+- [Added] `mineral_entry` Credit:  -Lexi-, -Nio- 
+- [Added] `character_entry` Credit: -Lexi-, -Nerris-, -JMC- 
+- *Notes:* Added all the Template Files I had easily accessible. We set placeholders in the html. I'll add them as I find them or stitch them together. 
+
+#### **01/04/2026**: Completed "Template Workbench v1.2→v2" with -Gemini- and -JMC-.
+- [Added] [UI/UX] Implemented a collapsible sidebar accordion to manage an expanding library of template categories.
+- [Added] [Structural] Reorganized the registry into logic-based categories: CORE, CONTINUITY, ECOLOGICAL, SOCIETAL, and MVD.
+- [Added] [Content] Introduced 7 new template stubs including `MVD: Primer`, `MVD: Arcana`, `MVD: Inventory`, `Reflection`, and `Session`.
+- [Renamed] [Structural] Migrated `MVD_entry.txt` to `mvd_locale.txt` for naming consistency within the MVD suite.
+- [Formatting] [Refactoring] Added code expansion comments to facilitate rapid manual extension of the registry.
+- *File(s):* `Template_Viewer v2.html`
+- *Notes:* UI now optimized for high-density template sets, reducing sidebar clutter through collapsible headers.
+
+#### **01/04/2026**: Completed "Template Workbench v1.1→v1.2" with -Gemini-.
+- [Added] [Functionality] Integrated "Pop-out" capability allowing templates to be opened in independent windows via `Template_Popout.html`.
+- [Added] [Content] Expanded Library Registry with 7 new entries: `Biome`, `Fauna`, `Flora`, `Mineral`, `Locale`, `Character`, and `MVD`.
+- [Changed] [Formatting] Disabled text-wrapping in workbenches to preserve positional reading and tag indentation.
+- [Fixed] [UI/UX] Implemented `wrap="off"` and `white-space: pre` to trigger horizontal scrollbars for large-format templates.
+- *File(s):* `Template_Viewer v1_2.html`, `Template_Popout.html`
+- *Notes:* Workbench logic is now optimized for simultaneous multi-template reference during complex entity interactions.### **System Documentation & Log Updates**

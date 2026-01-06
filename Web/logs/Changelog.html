@@ -61,8 +61,12 @@
     </div>
 
 <script>
+    /* --- CONFIGURATION: REGISTRY & CATEGORIES --- 
+       Add new items here. Categories will render in order.
+    */
     const logRegistry = [
         { id: 'core', title: 'CORE TOOLS', url: 'core.txt' },
+        { id: 'library', title: 'LIBRARY', url: 'library.txt' },
         { id: 'tokens', title: 'TOKEN LAB', url: 'tokens.txt' },
         { id: 'viewVM', title: 'VALLEY MAP', url: 'viewVM.txt' },
         { id: 'viewSW', title: 'SILVERWALL', url: 'viewSW.txt' }
@@ -73,9 +77,11 @@
         const nav = document.getElementById('internal-nav');
         
         for (const log of logRegistry) {
+
             // 1. Add to Sticky Nav
             const navLink = document.createElement('a');
             navLink.href = `#${log.id}`;
+            
             // Extract a clean label (e.g., "CORE", "TOKEN", "VALLEY")
             navLink.textContent = log.title.split(' ')[0]; 
             nav.appendChild(navLink);
