@@ -1,0 +1,70 @@
+# MVD: INVENTORY *v0.7*
+-------
+
+## Featured Block: Inventory
+The Inventory system provides a flexible, narrative-focused way to represent what a Feature offers—whether goods, services, or livestock. Rather than exhaustive lists, it uses **broad categories** with **imprecise descriptors** to capture stock levels, availability, and attitude. This keeps entries scannable while leaving room for improvisation and story-driven variation.
+Each Inventory type is capped at **9 entries** to maintain focus and prevent bloat. 
+
+---
+
+#### 📦– Item Block 
+*`{DistrictID}{FeatureLetter}`📦_index*
+
+Items represent **physical goods** available for purchase, trade, or use. Categories group related products (e.g., *Small Leather Goods* instead of listing belts, pouches, and straps individually). Fields describe **how much is in stock**, **how easy it is to acquire**, and **what it costs** in relative terms.
+
+```
+📦(1-9); **{ItemCategory}** · {Availability}
+	- {Amount} · {CostIndicator}
+	- {Description[Brief]}
+```
+
+---
+
+#### 🛎️– Service Block 
+*`{DistrictID}{FeatureLetter}`🛎️_index*
+
+Services represent **labor or expertise** offered by the Feature's proprietor or staff. This includes repairs, custom work, consultations, and specialized tasks. The **Enthusiasm** field captures the provider's **willingness and capacity** to perform the service—independent of cost. A smith might charge fairly for blade repairs but loathe taking custom orders due to the complexity involved.
+
+```
+🛎️(1-9); **{ServiceCategory}** · {Availability}
+	- {Enthusiasm} · {CostIndicator}
+	- {Description[Brief]}
+```
+
+---
+
+#### 🐓– Fauna Block
+*`{DistrictID}{FeatureLetter}`🐓_index*
+
+Fauna represent **living animals** kept, traded, or raised at the Feature. This includes livestock, working animals, companions, and creatures held for sale. The **Purpose** field clarifies the animal's role (e.g., *Eggs and meat*, *Fieldwork*, *Guard duty*), while **Quantity** gives a rough sense of scale.
+
+```
+🐓(1-9); **{AnimalType}** · {Availability}
+	- {Quantity} · {Purpose}
+	- {Description[Brief]}
+```
+
+---
+
+#### **Block Explanation**
+
+| **Field** | **Purpose** | **Example/Notes** |
+|-----------|-------------|-------------------|
+| **Index** | 📦🛎️🐓(1-9) | Local token for quick reference (max 9 per type). |
+| **Category / Type** | Broad grouping or animal classification | *Small Leather Goods*, *Custom Fitting*, *Chickens* |
+| **Availability** | How easy it is to acquire (main line) | *Always on hand*, *By request*, *Seasonal*, *Rare*, *Made to order*, *Occasional* |
+| **Amount** (📦 Items only) | Imprecise stock level | *Few*, *Modest*, *Well-stocked*, *Overflowing*, *Seasonal*, *Never enough* |
+| **Enthusiasm** (🛎️ Services only) | Provider's willingness/capacity to perform | *Eager*, *Reluctant*, *Exhausting*, *With coaxing*, *Only for trusted clients*, *Grudgingly* |
+| **Quantity** (🐓 Fauna only) | Rough number or scale | *A pair*, *Small herd (5-6)*, *Dozen or so*, *One*, *Seasonal flock* |
+| **Purpose** (🐓 Fauna only) | Why the animal is kept | *Eggs and meat*, *Fieldwork and hauling*, *Companionship*, *Guard duty*, *Sale/Trade* |
+| **CostIndicator** (📦 Items & 🛎️ Services) | Relative pricing | *Affordable*, *Premium*, *Negotiable*, *Steep*, *Fair*, *By the job*, *Barter accepted* |
+| **Description** | Brief flavor text (1-2 sentences max) | Explains the category, adds texture, hints at quality or reputation |
+
+---
+
+### **Guide**
+
+- **Availability is king.** It sits on the main line because "Can I get this *right now*?" is the first question in any narrative interaction.
+- **Enthusiasm matters.** A blacksmith might *do* armor repairs, but if they're reluctant or exhausted by the work, that creates friction—and story.
+- **Cost is relative.** *Affordable*, *Premium*, and *Negotiable* are intentionally vague. Exact prices aren't the point; the *feel* of the transaction is.
+- **Descriptions stay short.** 1-2 sentences. Just enough to ground the category and hint at character or quality.

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fauna Entry Form</title>
+  <style>
+    body{font-family:Segoe UI,Arial;margin:18px;color:#111}
+    label{display:block;margin-top:10px;font-weight:600}
+    input[type=text], textarea, select{width:100%;padding:6px;margin-top:4px;border:1px solid #bbb;border-radius:4px}
+    textarea{min-height:80px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .controls{margin-top:12px}
+    button{padding:8px 12px;margin-right:8px}
+    #preview{white-space:pre-wrap;background:#f7f7f7;padding:12px;border-radius:6px;border:1px solid #e0e0e0;margin-top:12px}
+    .note{font-size:0.9em;color:#555}
+  </style>
+</head>
+<body>
+  <h2>Fauna Entry — Creator</h2>
+  <p class="note">Fill the fields below and click <strong>Generate</strong> to build a Fauna entry using the template.</p>
+
+  <label>Species Name</label>
+  <input id="species" type="text" placeholder="Common Name (e.g. Meadow Mouse)" />
+
+  <label>Aliases (comma separated)</label>
+  <input id="aliases" type="text" placeholder="Alias1, Alias2" />
+
+  <div class="row">
+    <div class="col">
+      <label>Type (REQ)</label>
+      <select id="type">
+        <option>Bird</option>
+        <option>Mammal</option>
+        <option>Reptile</option>
+        <option>Amphibian</option>
+        <option>Invertebrate</option>
+        <option>Fish</option>
+      </select>
+    </div>
+    <div class="col">
+      <label>Domesticated (REQ)</label>
+      <select id="domesticated">
+        <option>None</option>
+        <option>Livestock</option>
+        <option>Working</option>
+        <option>Companion</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div style="flex:0 0 160px">
+      <label><input id="endemic" type="checkbox" /> Endemic?</label>
+      <label><input id="migratory" type="checkbox" /> Migratory?</label>
+      <label><input id="ally" type="checkbox" /> Wild Ally?</label>
+    </div>
+    <div style="flex:1">
+      <label>Symbols (auto-applies)</label>
+      <div id="symbols" class="note">—</div>
+    </div>
+  </div>
+
+  <hr />
+
+  <label>Brief Description</label>
+  <textarea id="brief" placeholder="A few sentences highlighting distinctive features..."></textarea>
+
+  <label>Basic Description</label>
+  <textarea id="basic" placeholder="A paragraph describing an average member of the species..."></textarea>
+
+  <label>Verbose Description (optional)</label>
+  <textarea id="verbose" placeholder="More detailed physical description..."></textarea>
+
+  <label>Habitat</label>
+  <textarea id="habitat"></textarea>
+
+  <label>Endemic Biome (only if Endemic)</label>
+  <input id="endemic_biome" type="text" placeholder="e.g. Northern Wetlands" />
+
+  <label>Nature & Behavior (diet, activity, social)</label>
+  <textarea id="nature"></textarea>
+
+  <label>Life Cycle</label>
+  <textarea id="lifecycle"></textarea>
+
+  <label>Unique Adaptations</label>
+  <textarea id="adaptations"></textarea>
+
+  <label>Migratory Behavior (if Migratory)</label>
+  <textarea id="migratory_behavior"></textarea>
+
+  <label>Ecological Role</label>
+  <textarea id="ecorole"></textarea>
+
+  <label>Ecological Interactions</label>
+  <textarea id="eco_interactions"></textarea>
+
+  <label>Relationship with Humans</label>
+  <textarea id="human_relationship"></textarea>
+
+  <label>Domestication (if applicable)</label>
+  <textarea id="domestication"></textarea>
+
+  <label>Wild Ally (if applicable)</label>
+  <textarea id="wild_ally"></textarea>
+
+  <label>Cultural Significance</label>
+  <textarea id="culture"></textarea>
+
+  <label>Additional Notes</label>
+  <textarea id="notes"></textarea>
+
+  <div class="controls">
+    <button id="generate">Generate</button>
+    <button id="sample">Fill Sample</button>
+    <button id="copy">Copy to Clipboard</button>
+    <button id="download">Download .txt</button>
+  </div>
+
+  <h3>Generated Entry Preview</h3>
+  <div id="preview">(empty)</div>
+
+  <script>
+    function computeSymbols(endemic,migratory,ally,domesticated){
+      const syms=[];
+      if(ally) syms.push('◎');
+      if(endemic) syms.push('❦');
+      if(migratory) syms.push('↺');
+      if(domesticated==='Livestock') syms.push('✿');
+      if(domesticated==='Working') syms.push('◬');
+      if(domesticated==='Companion') syms.push('☆');
+      return syms.join(' ');
+    }
+
+    function buildEntry(){
+      const species=document.getElementById('species').value.trim()||'Unnamed Species';
+      const aliases=document.getElementById('aliases').value.split(',').map(s=>s.trim()).filter(Boolean);
+      const type=document.getElementById('type').value;
+      const domesticated=document.getElementById('domesticated').value;
+      const endemic=document.getElementById('endemic').checked;
+      const migratory=document.getElementById('migratory').checked;
+      const ally=document.getElementById('ally').checked;
+
+      const symbols=computeSymbols(endemic,migratory,ally,domesticated);
+      document.getElementById('symbols').textContent = symbols || '(none)';
+
+      function t(id){return document.getElementById(id).value.trim();}
+
+      const lines=[];
+      lines.push('#### '+(symbols?symbols+'; ':'')+species+(aliases.length?(' ('+aliases.join(', ')+')'):'') );
+      lines.push('');
+      lines.push('REQ IsFauna_Type? = ['+type+']');
+      lines.push('REQ IsFauna_Domesticated? = ['+domesticated+']');
+      lines.push('REQ IsFauna_Endemic? = '+(endemic? 'True':'False'));
+      lines.push('REQ IsFauna_Migratory? = '+(migratory? 'True':'False'));
+      lines.push('REQ IsFauna_Ally? = '+(ally? 'True':'False'));
+      lines.push('');
+
+      lines.push('**Description:**');
+      if(t('brief')) lines.push('{Fauna:Brief_Description} = '+t('brief'));
+      if(t('basic')) lines.push('{Fauna:Basic_Description} = '+t('basic'));
+      if(t('verbose')) lines.push('{Fauna:Verbose_Description} = '+t('verbose'));
+      lines.push('');
+
+      lines.push('**Habitat:**');
+      if(t('habitat')) lines.push(t('habitat'));
+      if(endemic && t('endemic_biome')) lines.push('\n{Fauna:Endemic_Biome} = '+t('endemic_biome'));
+      lines.push('');
+
+      lines.push('**Nature and Behavior:**');
+      if(t('nature')) lines.push(t('nature'));
+      if(t('lifecycle')) lines.push('\n{Fauna:Life_Cycle} = '+t('lifecycle'));
+      if(t('adaptations')) lines.push('\n{Fauna:Unique_Adaptations} = '+t('adaptations'));
+      if(migratory && t('migratory_behavior')) lines.push('\n{Fauna:Migratory_Behavior} = '+t('migratory_behavior'));
+      lines.push('');
+
+      lines.push('**Ecological Role:**');
+      if(t('ecorole')) lines.push(t('ecorole'));
+      lines.push('');
+
+      lines.push('**Ecological Interactions:**');
+      if(t('eco_interactions')) lines.push(t('eco_interactions'));
+      lines.push('');
+
+      lines.push('**Relationship with Humans:**');
+      if(t('human_relationship')) lines.push(t('human_relationship'));
+      if(domesticated!=='None' && t('domestication')) lines.push('\n{Fauna:Domestication} = '+t('domestication'));
+      if(ally && t('wild_ally')) lines.push('\n{Fauna:Wild_Ally} = '+t('wild_ally'));
+      if(t('culture')) lines.push('\n{Fauna:Cultural_Significance} = '+t('culture'));
+      lines.push('');
+
+      if(t('notes')) lines.push('**Additional Notes:**\n'+t('notes'));
+
+      return lines.join('\n');
+    }
+
+    document.getElementById('generate').addEventListener('click',()=>{
+      const entry=buildEntry();
+      document.getElementById('preview').textContent=entry;
+      // mark remaining todos
+      window._generatedText = entry;
+      const elSymbols = document.getElementById('symbols');
+      elSymbols.style.fontWeight='600';
+    });
+
+    document.getElementById('copy').addEventListener('click',async()=>{
+      try{
+        const txt = window._generatedText || buildEntry();
+        await navigator.clipboard.writeText(txt);
+        alert('Copied to clipboard');
+      }catch(e){alert('Copy failed: '+e.message)}
+    });
+
+    document.getElementById('download').addEventListener('click',()=>{
+      const txt = window._generatedText || buildEntry();
+      const blob = new Blob([txt],{type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (document.getElementById('species').value.trim() || 'fauna_entry') + '.txt';
+      a.click();
+    });
+
+    document.getElementById('sample').addEventListener('click',()=>{
+      document.getElementById('species').value='Meadow Mouse';
+      document.getElementById('aliases').value='Field Mite, Tiny Runner';
+      document.getElementById('type').value='Mammal';
+      document.getElementById('domesticated').value='None';
+      document.getElementById('endemic').checked=false;
+      document.getElementById('migratory').checked=false;
+      document.getElementById('ally').checked=false;
+      document.getElementById('brief').value='A small, quick rodent common in meadow edges.';
+      document.getElementById('basic').value='Small (8-12 cm), brownish fur, long tail; primarily granivorous and crepuscular.';
+      document.getElementById('verbose').value='Adults weigh 20-40 g. Fur changes slightly with seasons; males slightly larger than females.';
+      document.getElementById('habitat').value='Prefers tallgrass meadows and edges of cultivated fields.';
+      document.getElementById('endemic_biome').value='';
+      document.getElementById('nature').value='Diet: Granivore/Omnivore. Activity: Crepuscular. Lives in small family groups.';
+      document.getElementById('lifecycle').value='Breeds multiple times per year; gestation ~20 days; litters of 4-8.';
+      document.getElementById('adaptations').value='Efficient burrowers; cheek pouches for seed transport.';
+      document.getElementById('migratory_behavior').value='';
+      document.getElementById('ecorole').value='Primary consumer; important prey for small raptors and foxes.';
+      document.getElementById('eco_interactions').value='Feeds on seeds of meadow grasses; disperses small seeds via caching.';
+      document.getElementById('human_relationship').value='Occasionally considered a crop pest; also common in folk tales.';
+      document.getElementById('domestication').value='';
+      document.getElementById('wild_ally').value='';
+      document.getElementById('culture').value='Symbolizes resourcefulness in local proverbs.';
+      document.getElementById('notes').value='Often first species to recolonize restored meadows.';
+      document.getElementById('symbols').textContent='(none)';
+    });
+  </script>
+</body>
+</html>
