@@ -5,7 +5,7 @@
 This section defines the individuals and sentient creatures that inhabit or interact with the Features of a Complex Narrative Environemt.
 
 #### 👤– Persona Block
-	*`{DistrictID}{FeatureLetter}`👤 _index*
+*`{DistrictID}{FeatureLetter}`👤 _index*
 
 The Persona Block defines the essential identity, role, and narrative function of a Human, Elven, or other similarly Complex Characters with free will within a specific Feature.
 
@@ -14,7 +14,6 @@ The Persona Block defines the essential identity, role, and narrative function o
 			- {Gender} {Species} *{Role}*
 			- {AgeCategory} · {FeatureRelationship}
 			- {Trait1}, {Trait2}, {Trait3} · {CharHook}
-			- {Drive} (Only need current motivating factors. We don't need to see all the hopes and dreams at this level. This is a point keen for complex situational variation.)
 			- {Remark}
 ```
 
@@ -32,7 +31,7 @@ The Persona Block defines the essential identity, role, and narrative function o
 ---
 
 #### 🐾– Companion Block
-	*`{DistrictID}{FeatureLetter}`🐾_index*
+*🐾_index*
 
 Featured Fauna – the Companion Block defines the pet, sentient, or working animal associated with a Persona, detailing its species, function, and relationship to its owner.
 
@@ -57,7 +56,7 @@ Featured Fauna – the Companion Block defines the pet, sentient, or working ani
 
 ---
 
-### **Guide**
+### **Notes**
 
 - **AgeCategory** uses four tiers: *Youth* (immature), *Younger* (adult), *Older* (middle-aged+), *Elder* (venerable). This keeps age relative and flexible.
 - **FeatureRelationship** is crucial—it ties the character to the Feature and defines their stake. *Proprietor*, *Daughter*, *Unrelated Apprentice*, *Hired Hand*, *Tenant*, etc.
@@ -68,3 +67,4 @@ Featured Fauna – the Companion Block defines the pet, sentient, or working ani
 
 -------
 ##### **Credit**: Team Silverwall
+

@@ -1,7 +1,7 @@
 # MVD: ARCANA *v0.7*
 -------
 
-### Arcana Extension 
+### Arcane Extensions 
 In Settings including a 'magic system' (like *"Silverwall"*) Arcana Blocks can be included at the Feature Layer.
 
 #### 🔮– Arcana Block
@@ -9,11 +9,11 @@ In Settings including a 'magic system' (like *"Silverwall"*) Arcana Blocks can b
 The Arcana Block defines permanent, built-in, or sustained magical effects integrated into a Feature's physical structure or function.
 
 ```
-🔮(1-9); **{ArcaneName}** · {Classification}
-	{Effect} *{Target} ({OPT_🔩#{OPT_Area}})*
-	- {MagicCue} · {MagicPower} · {MagicSource}
-	- {Limitation} · {Flaw} · {NarrativeHook}
-	- {Remark}
+		🔮(1-9); **{ArcaneName}** · {Classification}
+			{Effect} *{Target} ({OPT_🔩#{OPT_Area}})*
+			- {MagicCue} · {MagicPower} · {MagicSource}
+			- {Limitation} · {Flaw} · {NarrativeHook}
+			- {Remark}
 ```
 
 #### **Block Explanation**
@@ -35,8 +35,8 @@ The Arcana Block defines permanent, built-in, or sustained magical effects integ
 
 -----
 
-### **Guide**:
-(guide points related to 🔮)
+### **Notes**:
+(Note points related to 🔮)
 
 -------
 ##### **Credit**: Team Silverwall

@@ -1,10 +1,16 @@
+#### **01/06/2026**: Completed "MVD Suite Modularization" with -Gemini- and -JMC-.
+- [Split] Deconstructed the master `District_Entries v0.7` into four specialized template files: `locale`, `arcana`, `character`, and `inventory`.
+- [Standardized] Replaced descriptive parentheticals with definitive field markers to ensure "Ready-to-Use" state for AI Onboarding.
+- [Updated] Synced the `Template_Viewer v2.html` registry to point to these new specific files.
+- *File(s):* `mvd_locale.txt`, `mvd_arcana.txt`, `mvd_character.txt`, `mvd_inventory.txt`
+
 ### Template Workbench – "If We're going to be serious…"
 
 #### **01/04/2026**: Completed "Attribute Template Files" with -JMC-.
 - [Added] `guided_activity` Credit: -Alder-, -Nerris-, -Nio-, -JMC-
 - [Added] `session_entry`  Credit: -JMC-
 - [Added] `reflection_entry` Credit:  -JMC-
-- [Added] `biome _entry` Credit:-Alder-, -JMC-, -Nio- , -Nio- 
+- [Added] `biome _entry` Credit:-Alder-, -JMC-, -Nio- 
 - [Added] `fauna_entry` Credit:  -Alder-, -Artie-, -JMC- , -Nio- 
 - [Added] `flora_entry` Credit:  -Lexi-, -Nerris-, -Nio- 
 - [Added] `mineral_entry` Credit:  -Lexi-, -Nio- 

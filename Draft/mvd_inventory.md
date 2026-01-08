@@ -5,6 +5,7 @@
 The Inventory system provides a flexible, narrative-focused way to represent what a Feature offers—whether goods, services, or livestock. Rather than exhaustive lists, it uses **broad categories** with **imprecise descriptors** to capture stock levels, availability, and attitude. This keeps entries scannable while leaving room for improvisation and story-driven variation.
 Each Inventory type is capped at **9 entries** to maintain focus and prevent bloat. 
 
+
 ---
 
 #### 📦– Item Block 
@@ -62,7 +63,7 @@ Fauna represent **living animals** kept, traded, or raised at the Feature. This 
 
 ---
 
-### **Guide**
+### **Notes**
 
 - **Availability is king.** It sits on the main line because "Can I get this *right now*?" is the first question in any narrative interaction.
 - **Enthusiasm matters.** A blacksmith might *do* armor repairs, but if they're reluctant or exhausted by the work, that creates friction—and story.
@@ -70,4 +71,4 @@ Fauna represent **living animals** kept, traded, or raised at the Feature. This 
 - **Descriptions stay short.** 1-2 sentences. Just enough to ground the category and hint at character or quality.
 
 -------
-##### **Credit**: Team Silverwall
+#### **Credit**: Team Silverwall

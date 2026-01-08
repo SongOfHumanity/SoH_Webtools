@@ -60,25 +60,23 @@ A **District** is the Societal Root Container for indexing Features, Characters,
 A specific location or landmark within a District.
 
 ```
-	{DistrictID}{FeatureLetter} – **{FeatureName}** · {FunctionTitle}
-		{LocalName} · {BV}BV{OPT: (Tall)|(Spread)} 
-		**Area**: {FeatureArea}
-		**Function**: {Function}
-		**Sign**: {Sign}
-		**Owner**: {Owner}
-		**Sensory**: {SensoryHook}
-		**Limitation**: {Limitation}
-		**Construction**: {ConstructionStyle}
-		{OPT_Indices}:
-		🔩_index: {Feature:Component BlockList, max 9}
-		🔮_index: {Feature:Arcana BlockList, max 9}
-		---
-		👤_index: {Character:Persona BlockList, max 9}
-		🐾_index: {Characer:Companion BlockList, max 9}
-		---
-		📦_index: {Inventory:Item BlockList, max 9}
-		🛎️_index: {Inventory:Service BlockList, max 9}
-		🐓_index: {Inventory:Fauna BlockList, max 9}
+{DistrictID}{FeatureLetter} – **{FeatureName}** · {FunctionTitle}
+	{LocalName} · {BV}BV{OPT: (Tall)|(Spread)} 
+	**Area**: {FeatureArea}
+	**Function**: {Function}
+	**Sign**: {Sign}
+	**Owner**: {Owner}
+	**Sensory**: {SensoryHook}
+	**Limitation**: {Limitation}
+	**Construction**: {ConstructionStyle}
+	{OPT_Indices}:
+	🔩_index: {Feature:Component BlockList, max 9}
+	🔮_index: {Feature:Arcana BlockList, max 9}
+	👤_index: {Character:Persona BlockList, max 9}
+	🐾_index: {Characer:Companion BlockList, max 9}
+	📦_index: {Inventory:Item BlockList, max 9}
+	🛎️_index: {Inventory:Service BlockList, max 9}
+	🐓_index: {Inventory:Fauna BlockList, max 9}
 ```
 
 #### **Field Explanation**
@@ -129,7 +127,7 @@ Components are used to break down **Complex Features** (5+ BV) into manageable s
 			- {Description[Brief]}
 ```
 
-##### **Field Explanation**
+##### **Block Explanation**
 
 | **Field** | **Purpose** | **Example/Notes** |
 |-----------|-------------|-------------------|
@@ -140,8 +138,8 @@ Components are used to break down **Complex Features** (5+ BV) into manageable s
 | **ConstructionStyle** | Material palette (from predefined list) | *Timber & Daub*, *Plank & Pitch*, *Stone foundation* |
 | **Description** | Brief flavor text (1-2 sentences) | *"The main hall smells of stew and wood smoke, with long tables scarred by years of use."* |
 
-
-# **Guide**
+---
+### **Notes**
 - Paths are **bidirectional by default** (if ③ connects to ①, then ① connects to ③).
 - **Special Paths** (bridges, ferries, gates) should be noted in the `{PathType}` field.
 - **Path Names** are optional but helpful for narrative purposes (*"Meet me at the Rivergate Bridge"*).
