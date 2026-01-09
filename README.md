@@ -57,7 +57,7 @@ A collapsible accordion-based workbench featuring:
 
 ```
 SOH_Webtools/
-├── index.html                          # Central dashboard
+├── index.html                         # Central dashboard
 ├── Prompt_Indexer v2.html             # Prompt management tool
 ├── logs/
 │   ├── Changelog.html                 # Interactive changelog viewer

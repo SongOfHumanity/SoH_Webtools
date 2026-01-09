@@ -1,8 +1,18 @@
+### MVD Basics – "Templates and The Symbolic Directory"
+
+#### **01/08/2026**: Completed "MVD Template Update" with -JMC-.
+- [Split] deconstructed `mvd_locale` into `mvd; soc_locale`, and `mvd; locale_feature` templates.
+- [Updated] other mvd template names to mechanism, and improved overall formatting.
+- [Updated] `Template_Viewer v2.html`registry to point to updated files.
+- *File(s):* 'mvd; feature_arcana.txt', `mvd; feature_character.txt`, ``mvd: featurea_inventory.txt`, `mvd; locale_feature.txt`, `mvd; soc_locale.txt`
+- *Notes:* coincides with major update to Silverwall Documentation.
+
 #### **01/06/2026**: Completed "MVD Suite Modularization" with -Gemini- and -JMC-.
 - [Split] Deconstructed the master `District_Entries v0.7` into four specialized template files: `locale`, `arcana`, `character`, and `inventory`.
 - [Standardized] Replaced descriptive parentheticals with definitive field markers to ensure "Ready-to-Use" state for AI Onboarding.
 - [Updated] Synced the `Template_Viewer v2.html` registry to point to these new specific files.
 - *File(s):* `mvd_locale.txt`, `mvd_arcana.txt`, `mvd_character.txt`, `mvd_inventory.txt`
+- *Notes:* All initial (v0.7) MVD Templates Credit 'Team Silverwall'
 
 ### Template Workbench – "If We're going to be serious…"
 

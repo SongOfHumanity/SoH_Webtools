@@ -1,0 +1,50 @@
+# MVD: LOCALE [DISTRICT/PATH] *v0.7*
+##### `soc_locale` *v0.7*
+-------
+
+## **District Block**
+##### `Index Container: [🔗, {FeatureLetter}]`
+
+A **District** is the Societal Root Container for indexing Features, Characters, and Inventories using MVD. The District ID ensures IDs of contained elements remain unique.
+
+```
+{DistrictID} — **{DistrictName}** · {FunctionTitle}
+	**Elevation**: {ElevationTier} (High | Mid | Low)
+	**Terrain**: {TerrainNotes}
+	**Description**: {DistrictDescription}
+	
+	🔗_index: {Path List}
+	
+	{FeatureLetter}_index: {Feature List}
+```
+
+#### **Field Explanation**
+
+| **Field** | **Purpose** | **Example/Notes** |
+|-----------|-------------|-------------------|
+| **Header** | `{DistrictID} — **{DistrictName}** · {FunctionTitle}` | Quick-scan identifier (e.g., `③ — **Town Square** · Shopping District`) |
+| **Elevation** | Terrain tier (High, Mid, Low) | *Mid (8-12m above river)* |
+| **Terrain** | Physical characteristics | *Gently sloping toward the Quay (⑦), cobbled plaza with drainage gutters* |
+| **Description** | 1-2 sentence cultural/functional summary | *The civic and commercial heart of Silverwall, centered on the Root & Ring fountain. Shops line the square, their signs bright and inviting.* |
+| **🔗_index** | Direct Paths to adjacent Districts | List of connected Districts with optional Path type (e.g., *Road*, *Bridge*, *Ferry*) |
+| **{FeatureLetter}_index** | List of Features in the District | *③ⓐ Root & Ring, ③ⓑ Crystal Carafe, ③ⓒ Bee & Basket...* |
+
+---
+### Path Block
+*🔗_index*
+
+**Paths** are used to connect between Areas. Initial Development. 
+
+```
+🔗(1-9); {ConnectedDistrictID} · {PathType} ({PathName}) · {CompassPoint}
+```
+
+##### **Block Explanation**
+
+| **Field** | **Purpose** | **Example/Notes** |
+|-----------|-------------|-------------------|
+| **Index** | `🔗(1-9)` | Local token for the Path (max 9 connections per District) |
+| **ConnectedDistrictID** | District at the other end of the Path | *①*, *②*, *④*, *⑤*, *⑦* |
+| **PathType** | Type of connection | *Road*, *Bridge*, *Ferry*, *Footpath*, *Gate*, *Stairs* |
+| **PathName** | Optional name for the Path | *Main Street*, *Rivergate Bridge*, *Quay Ferry*, *Market Lane* |
+| **CompassPoint** | Direction of the connected District | *N*, *E*, *S*, *NE*, *SW* |

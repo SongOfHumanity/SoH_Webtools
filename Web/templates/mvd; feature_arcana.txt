@@ -1,0 +1,45 @@
+# MVD: ARCANA
+##### `feature_arcana` *v0.7*
+-------
+
+## Arcane Extensions 
+
+In Settings including a 'magic system' (like *"Silverwall"*) Arcana Blocks can be included at the Feature Layer.
+
+### 🔮– Arcana Block
+##### *`{DistrictID}{Feature Letter}`🔮_index*
+
+The Arcana Block defines permanent, built-in, or sustained magical effects integrated into a Feature's physical structure or function.
+
+```
+		🔮(1-9); **{ArcaneName}** · {Classification}
+			{Effect} *{Target} ({OPT_🔩#{OPT_Area}})*
+			- {MagicCue} · {MagicPower} · {MagicSource}
+			- {Limitation} · {Flaw} · {NarrativeHook}
+			- {Remark}
+```
+
+#### **Block Explanation**
+
+| **Field** | **Purpose** | **Example/Notes** |
+| :--- | :--- | :--- |
+| **Index** | `🔮(1-9)` | Local token for the magic inclusion within the Feature. |
+| **Name String** | `**{ArcaneName}**` | The common name locals or proprietors use for the inclusion (e.g., *The Hearth Charm*, *The Ever-Cool Shelf*). |
+| **Classification** | The type of magic involved | *Permanent Enchantment*, *Utility Weave*, *Sustained Charm*, *Guardian Ward*. |
+| **Effect** | What the magic *does*. | *Sustained Coolness*, *Ever-Dry*, *Animated Cleaning*, *Water Generation*. |
+| **Target/Area** | The physical object or location affected (where the effect is focused). | *Decanter (On Counter)*, *Cold Cellar*, *Roof Tiles (South Section)*. |
+| **MagicCue** | **How the magic is sensed**—its immediate, defining sensory detail. | *Swirls with color*, *Glows in moonlight*, *Whiff of ozone*, *Emanates cold*. |
+| **MagicPower** | The **relative strength or category** of the effect. | *Minor*, *Advanced*, *Major*, *Artifact*, *Ancient*, *Commonplace*, *Rare*. |
+| **MagicSource** | Who maintains it, or where the energy comes from. | *Self-sustaining*, *Proprietor*, *Guild-charged*, *Inherent to Stone*. |
+| **Limitation** | The drawback or resource drain—the *cost* of its function. | *Requires weekly mana feed*, *Cannot cool below freezing*, *Fails in heavy fog*, *Noise*. |
+| **Flaw** | A specific weakness, vulnerability, or failure mode. | *Flickers in storms*, *Attracts Gnats*, *Cannot be moved*, *Disrupts other magic*. |
+| **NarrativeHook** | A key story element tied to the inclusion. | *Always hums faintly*, *Must be reset at dawn*. |
+| **Remark** | A concise line capturing its presence or local lore. | *It always makes the bread dough rise just right.* |
+
+-----
+
+#### **Notes**:
+(Note points related to 🔮)
+
+-------
+##### **Credit**: Team Silverwall

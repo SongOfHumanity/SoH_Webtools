@@ -1,0 +1,71 @@
+# MVD: CHARACTER [PERSONA/COMPANION]
+##### `feature_character` *v0.7*
+-------
+
+## Featured Block: **Character**
+This section defines the individuals and sentient creatures that inhabit or interact with the Features of a Complex Narrative Environemt.
+
+### 👤– Persona Block
+##### *`{DistrictID}{FeatureLetter}👤 _index`*
+
+The Persona Block defines the essential identity, role, and narrative function of a Human, Elven, or other similarly Complex Characters with free will within a specific Feature.
+
+```
+		👤(1-9); **{OPT_TitleA}{Firstname}{OPT_Nick}{Lastname}{OPT_TitleB}**
+			- {Gender} {Species} *{Role}*
+			- {AgeCategory} · {FeatureRelationship}
+			- {Trait1}, {Trait2}, {Trait3} · {CharHook}
+			- {Remark}
+```
+
+#### Block Explanation
+
+| **Field** | **Purpose** | **Example/Notes** |
+| :--- | :--- | :--- |
+| **Index** | `👤(1-9)` | The **Local Token** for instant reference within A Local Context. |
+| **Name String** | `**{OPT_TitleA}{Firstname}{OPT_Nick}{Lastname}{OPT_TitleB}**` | The full, highly visible name string, allowing for honorifics (e.g., *Mistress* Mirelle) and common nicknames (e.g., *Marit 'Mitt' Oakes*). |
+| **Core ID** | `{Gender} {Species} *{Role}*` | Defines the fundamental nature and societal function (e.g., *Male Human Stable Master*). |
+| **Context** | `{AgeCategory} · {FeatureRelationship}` | **Crucial for Silverwall.** This anchors the character in time (*Youth* to *Elder*) and, most importantly, defines their narrative stake within the POI/Feature (e.g., *Daughter*, *Unrelated Apprentice*, *Grandmother*). |
+| **Traits** | `{Trait1}, {Trait2}, {Trait3} · {CharHook}` | The **Personality and Backstory Hooks**. Three keywords for personality, followed by a **Character Hook**—a key life event or professional background (e.g., *Retired Guardsman, Widower*). |
+| **Remark** | `{Remark}` | A concise line that captures their **voice or internal motivation**. |
+
+---
+
+### 🐾– Companion Block
+##### *`{DistrictID}{FeatureLetter}🐾_index`*
+
+Featured Fauna – the Companion Block defines the pet, sentient, or working animal associated with a Persona, detailing its species, function, and relationship to its owner.
+
+```
+		🐾(1-9); **{Name}**
+			- {Species} *{Classification}*
+			- {OwnerID} · {PrimaryFunction}
+			- {Trait1}, {Trait2}, {Trait3} · {FeatureHook}
+			- {Remark}
+```
+
+#### Block Explanation
+
+| **Field** | **Purpose** | **Example/Notes** |
+| :--- | :--- | :--- |
+| **Index** | `🐾(1-9)` | Local Token, relative to the **Feature** (e.g., `②ⓐ🐾1`). |
+| **Name String** | `**{Name}**` | The name of the animal/companion. |
+| **Core ID** | `{Species} *{Classification}*` | The species (e.g., *Folken Wolf*, *Fernshadow*) and its role type (e.g., *Companion*, *Familiar*, *Draft Horse*). |
+| **Context** | `{OwnerID} · {PrimaryFunction}` | The **Crucial Link**: Uses the full **Character ID** (e.g., $\text{②}\text{a}\text{👤3}$) to point to the owner, and defines its main job. |
+| **Traits** | `{Trait1}, {Trait2}, {Trait3} · {FeatureHook}` | Defines its nature, personality, and any specific lore/mechanic tie-in (e.g., *Immortal*, *Magic Sight*). |
+| **Remark** | `{Remark}` | A concise line capturing its nature or attitude. |
+
+---
+
+### **Notes**
+
+- **AgeCategory** uses four tiers: *Youth* (immature), *Younger* (adult), *Older* (middle-aged+), *Elder* (venerable). This keeps age relative and flexible.
+- **FeatureRelationship** is crucial—it ties the character to the Feature and defines their stake. *Proprietor*, *Daughter*, *Unrelated Apprentice*, *Hired Hand*, *Tenant*, etc.
+- **Traits** should be punchy and evocative. Three personality keywords + one backstory hook. Keep it tight.
+- **Remark** is the character's voice or motivation in a single line. It should feel like something they'd actually say or think.
+- **Companion OwnerID** must use the full token (e.g., `②ⓐ👤3`) to link the animal to its owner. This keeps cross-referencing clean.
+- **Companions** can be working animals (*Draft Horse*, *Guard Dog*), familiars (*Fernshadow*, *Raven*), or livestock (*Chickens*, *Goats*). The **Purpose** field clarifies their role.
+
+-------
+##### **Credit**: Team Silverwall
+
