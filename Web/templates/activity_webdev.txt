@@ -1,0 +1,97 @@
+<Section Title = "Web-Based Feature Implementation">  
+	<Description>  
+		This Guided Activity Template is designed to plan, implement, and document  
+		web-based features inside the SoH Webtools suite. It ties together a  
+		structured Guide, an actionable Activity, and optional Reflection and  
+		Changelog outputs for complete development records.  
+		
+		Use this template when creating new tools, extending existing views, or  
+		shipping UI/UX improvements.  
+	</Description>  
+	
+	<Guide Type = "Template" Sub-Type = "_list">  
+		<li.d Title = "Purpose & Utilization">  
+			- Defines a **repeatable development loop** for Webtools features.  
+			- Ensures **planning, execution, reflection, and logging** are captured.  
+			- Supports **collaborative AI + human workflows** by clarifying steps.  
+		</li.d>  
+		
+		<li.e Title = "Structure Breakdown">  
+			- **`<Guide Title>`** → Names the feature being implemented.  
+			- **`<Activity>`** → Step-by-step build plan and execution tasks.  
+			- **`<Reflection>`** → Optional recap of outcomes and lessons.  
+			- **`<Changelog>`** → Entry draft for the relevant log file.  
+		</li.e>  
+		
+		<li.f Title = "Best Practices">  
+			- Keep steps **atomic and verifiable** (design → build → test).  
+			- Call out **files, identifiers, and UI targets** explicitly.  
+			- Capture **decisions and lessons** in Reflection when possible.  
+			- Log changes using **Action + Category classifiers**.  
+		</li.f>  
+	</Guide>  
+
+	<Note>  
+		- Favor **homebrewed implementations** when reasonable.  
+		- Build in-context so the toolkit stays **self-contained and stable**.  
+		- Follow Rule #1: **show your work** in each commit so others can trace the path.  
+		- Breakages should be attributable to **internal changes**, not upstream shifts.  
+	</Note>  
+	
+	<Format Title = "Web Feature Implementation" Type = "Template">  
+		<Guide Title = "Guide: {Feature_Name}">  
+			<Introduction>  
+				{Purpose of the feature and expected outcome.}  
+			</Introduction>  
+			
+			<Activity Title = "{Feature_Name}">  
+				- **Scope & Requirements**  
+				- {Define the feature goals, constraints, and acceptance criteria.}  
+				
+				- **Design & Planning**  
+				- {List UI elements, data flow, and affected files.}  
+				
+				- **Implementation Steps**  
+				- {Step-by-step build tasks, including filenames and functions.}  
+				
+				- **Verification**  
+				- {Manual checks or tests to confirm behavior.}  
+			</Activity>  
+			
+			<Reflection Optional = "true">  
+				<Reflection Date = "{mm/dd/yyyy}">  
+					<Activity Title="{Feature_Name}">  
+						**Collaborators**: (List collaborators)  
+						**Project**: (Project name + brief focus)  
+						**Node**: (Name/ID of node where work occurred)  
+						**Keywords**: (Key terms or methods)  
+					</Activity>  
+					<Summary>  
+						(Brief reflection: outcomes, challenges, insights)  
+					</Summary>  
+					<Highlight>  
+						**{Highlight_Title1}**: (Detailed highlight)  
+						**{Highlight_Title2}**: (Detailed highlight)  
+						**{Highlight_Title3}**: (Detailed highlight)  
+						...  
+					</Highlight>  
+					<Guide>  
+						(Lessons learned, recommendations for future work)  
+					</Guide>  
+				</Reflection>  
+			</Reflection>  
+			
+			<Changelog>  
+				#### **{DATE}**: Completed "{Update Sequence Name}" with {Operator}.  
+				- [{Action}] {Concise description of the change}.  
+				- [{Category}] {Optional additional context}.  
+				- *File(s):* `{FileName}`  
+				- *Notes:* {Optional supporting details, links, or cross-references}.  
+			</Changelog>  
+			
+			<Conclusion>  
+				{Summary of what was accomplished and next steps.}  
+			</Conclusion>  
+		</Guide>  
+	</Format>  
+</Section>

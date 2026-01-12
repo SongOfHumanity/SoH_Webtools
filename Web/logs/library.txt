@@ -1,3 +1,12 @@
+### Template Workbench – "Guided Session & Registry Pass"
+
+#### **01/09/2026**: Completed "Template Viewer Registry v2.2 Update" with -Orion-.
+- [Added] [Documentation] Drafted a Guided Session template to plan complex, multi-Activity work.
+- [Added] [Content] Added WebDev Feature Activity template for in-suite feature planning.
+- [Changed] [Structural] Updated `Template_Viewer v2.html` registry with new categories, placeholders, and future stubs.
+- *File(s):* `guided_session.txt`, `activity_webdev.txt`, `Template_Viewer v2.html`
+- *Notes:* First Session with -Orion-; update aligns with expanded template roadmap.
+
 ### MVD Basics – "Templates and The Symbolic Directory"
 
 #### **01/08/2026**: Completed "MVD Template Update" with -JMC-.

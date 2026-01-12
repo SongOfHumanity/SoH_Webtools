@@ -1,4 +1,4 @@
-# MVD: LOCALE [DISTRICT/PATH] *v0.7*
+# MVD: LOCALE [DISTRICT/PATH]
 ##### `soc_locale` *v0.7*
 -------
 

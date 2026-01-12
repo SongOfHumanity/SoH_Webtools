@@ -1,0 +1,110 @@
+### **PRIMER:{Domain}**
+
+*(One page = one mental model)*
+
+---
+
+### 1. **Scope**
+
+**What this page governs.**
+One sentence. No flavor.
+
+> *Defines how civic authority, law enforcement, and external jurisdictions interact within Silverwall.*
+
+---
+
+### 2. **Core Principles**
+
+**Non-negotiable truths.**
+3–6 bullets. These are the rules the setting *cannot* violate without consequence.
+
+Example:
+
+* Civil authority and military authority are separate.
+* No individual faction holds absolute power.
+* Emergency powers are temporary and reviewable.
+* External treaties override local ambition.
+
+If a story breaks one of these, it should *cause friction*.
+
+---
+
+### 3. **Actors & Roles**
+
+**Who exists in this system, not who they are personally.**
+
+Format:
+
+* **Role** → Function → Limits
+
+Example:
+
+* **Mayor** → Civil adjudication, coordination → No military command
+* **Small Council** → Legislation, budget oversight → Cannot command Guard
+* **Town Guard** → Enforcement, defense → No legislative authority
+* **Adventurer’s Guild** → Regulates adventurers → No civilian governance
+* **Elven Envoy** → Treaty oversight → Veto on boundary violations
+
+No names here. Names live elsewhere.
+
+---
+
+### 4. **Authority Flow**
+
+**Who decides → who enforces → who reviews**
+
+This can be bullets or a tiny schematic:
+
+* Policy → Mayor / Council
+* Enforcement → Guard
+* Guild matters → Guild tribunal
+* Treaty matters → Council + Envoy
+* Serious crimes → Regional justice
+
+This section is gold for narrative consistency.
+
+---
+
+### 5. **Escalation Paths**
+
+**“If X happens, it goes here.”**
+
+Examples:
+
+* Minor dispute → Mayor
+* Guild member violation → Guard arrest → Guild sanction
+* Treaty breach → Guard stop → Envoy review → Council diplomacy
+* Emergency → Mayor edict → Guard action → Council review
+
+This prevents hand-wavy outcomes.
+
+---
+
+### 6. **Interfaces**
+
+**Where this system touches others.**
+
+Short list:
+
+* Interfaces with **Adventurer’s Guild** (contracts, discipline)
+* Interfaces with **Elven Treaty** (Mistwood boundary)
+* Interfaces with **Regional Authority** (high crimes)
+
+This is what lets other Primer pages “snap together.”
+
+---
+
+### 7. **Narrative Levers** *(Optional but powerful)*
+
+**What stories this system naturally creates.**
+
+3–5 bullets max:
+
+* Political deadlock vs urgent threat
+* Guard refusal vs Mayor pressure
+* Guild leverage in town policy
+* Treaty tension at the forest edge
+
+This is where We feast later — *but the Primer stays lean*.
+
+---
