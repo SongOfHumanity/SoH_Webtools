@@ -121,6 +121,16 @@ build features in-context rather than rely on external dependencies so that:
 All scripts are AI-generated and **traceable back to inclusion**, ensuring each feature has
 a clear development path for future contributors to follow.
 
+### **Homebrewed, Traceable Development**
+This toolkit prioritizes **project-owned implementations** wherever practical. We choose to
+build features in-context rather than rely on external dependencies so that:
+- The system remains **self-contained and stable**.
+- Changes are **traceable through commits**, aligning with the rule: *show your work*.
+- Breakages are attributable to **known internal changes**, not upstream adjustments.
+
+All scripts are AI-generated and **traceable back to inclusion**, ensuring each feature has
+a clear development path for future contributors to follow.
+
 ---
 
 ## Getting Started

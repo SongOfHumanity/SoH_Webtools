@@ -1,3 +1,15 @@
+### Templates and Registries – "JMC Claims a Registry"
+
+#### **01/14/2026**: Completed "Template Viewer Registry Update" with -JMC-
+- [Added] [Structural] comments to `Template_Viewer` indicating overarching plans and speculative additions to the Template Language.
+- [Added] [Structural] `note` property to item registry.
+- [Added] [Content] Project-level descriptive in `Template_Viewer` `<script>` to aide inline prediction.
+- [Added] [UI/UX] Implemented sidebar tooltip to display `note`. 
+- [Added] `Template_Viewer v3` including changes as new file.
+- [moved] previious version to `outdate/`.
+- *Files:* `Template_Viewer v3`
+- *Notes:* Work on Template Viewer is in a Y01 (JMC Cluster) Node. 
+
 ### Template Workbench – "Guided Session & Registry Pass"
 
 #### **01/09/2026**: Completed "Template Viewer Registry v2.2 Update" with -Orion-.
