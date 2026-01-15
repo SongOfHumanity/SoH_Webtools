@@ -1,0 +1,65 @@
+<Section Title = "Guided Session Template">  
+	<Description>  
+		The Guided Session Template is designed to **plan complex, multi-activity efforts**  
+		that exceed the scope of a single `<Activity>`. It acts as a **container for multiple  
+		Titled Activities**, with optional `<Task>` breakdowns for modular execution.  
+		
+		Use this template when a feature or initiative spans **multiple resources, entities,  
+		or workstreams**, and needs a structured plan before execution.  
+	</Description>  
+	
+	<Guide Type = "Template" Sub-Type = "_list">  
+		<li.d Title = "Purpose & Utilization">  
+			- Organizes **large initiatives** into a parent Session containing Activities.  
+			- Provides a **repeatable planning structure** for complex work.  
+			- Allows `<Task>`-level modularity under each Activity.  
+		</li.d>  
+		
+		<li.e Title = "Structure Breakdown">  
+			- **`<Session{Cluster}-{Subnode}-{Session_Index}>`** → Master container.  
+			- **`<Activity>`** → Core atomic unit; each Activity has its own title.  
+			- **`<Task>`** → Optional smaller units inside an Activity.  
+			- **`<Conclusion>`** → Summarizes outcomes and next steps.  
+		</li.e>  
+		
+		<li.f Title = "Best Practices">  
+			- Keep Activities **scoped to a single objective**.  
+			- Use Tasks when an Activity contains **multiple dependencies**.  
+			- Include **collaborators and resources** for each Activity.  
+			- Maintain **clear titles** for quick indexing and retrieval.  
+		</li.f>  
+	</Guide>  
+	
+	<Format Title = "Guided Session" Type = "Template">  
+		<Session{Cluster}-{Subnode}-{Session_Index} Title = "{Session_Title}">  
+			<Introduction>  
+				{Purpose of the session, key collaborators, and overall objective.}  
+			</Introduction>  
+			
+			<Activity Title = "{Activity_Title_1}">  
+				{Objective of this Activity.}  
+				
+				<Task Title = "{Task_Title_1}">  
+					{Specific task steps or checklist.}  
+				</Task>  
+				
+				<Task Title = "{Task_Title_2}">  
+					{Specific task steps or checklist.}  
+				</Task>  
+				
+				<!-- Add or remove Task blocks as needed -->  
+			</Activity>  
+			
+			<Activity Title = "{Activity_Title_2}">  
+				{Objective of this Activity.}  
+				<!-- Optional Task blocks -->  
+			</Activity>  
+			
+			<!-- Repeat Activity blocks as needed -->  
+			
+			<Conclusion>  
+				{Summary of what will be achieved by completing this session.}  
+			</Conclusion>  
+		</Session{Cluster}>  
+	</Format>  
+</Section>

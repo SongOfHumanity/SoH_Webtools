@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JMC - Template Workbench v2</title>
+    <title>JMC - Template Workbench v2.2</title>
     <style>
         body { 
             font-family: 'Consolas', monospace; 
@@ -88,15 +88,32 @@
         {
             category: "CORE",
             items: [
-                { id: 'core_change', name: 'Changelog Entry', url: 'changelog_entry.txt' },
-                { id: 'core_guide', name: 'Guided Activity', url: 'guided_activity.txt' }
+                { id: 'core_instructions', name: 'Core Instructions', url: 'basic_instructions.txt' },
+                { id: 'core_style', name: 'Tone and Style Guide _{Alias}', url: 'style_alias.txt' },
+                { id: 'core_guide', name: 'Guided Activity', url: 'guided_activity.txt' },
+                { id: 'core_narrative', name: '[REDACTED] Narrative Structure', url: 'REDACTED.txt' },
+                { id: 'core_artefact', name: 'Artefact Entry', url: 'COMING_SOON.txt' },
+                { id: 'core_change', name: 'Changelog Entry', url: 'changelog_entry.txt' }
             ]
         },
         {
             category: "CONTINUITY",
             items: [
                 { id: 'reflection', name: 'Reflection Entry', url: 'reflection_entry.txt' },
-                { id: 'session', name: 'Session Entry (-Dex-)', url: 'session_entry.txt' }
+                { id: 'session_plan', name: 'Guided Session (-Nio-)', url: 'guided_session.txt' },
+                { id: 'session_review', name: 'Session Review (-Dex-)', url: 'session_entry.txt' }
+            ]
+        },
+        {
+            category: "ACTIVITY",
+            items: [
+                { id: 'webdev_new', name: 'WebDev: Feature (-Orion-)', url: 'activity_webdev.txt' }
+        /*
+                { id: 'artef_song', name: 'Song Entry (-Juniper-)', url: 'activity_song.txt' },
+                { id: 'artef_book', name: 'Book Entry (-Dex-)', url: 'activity_book.txt' },
+                { id: 'artef_item', name: 'Item Entry (-Riff-)', url: 'activity_item.txt' },
+                { id: 'artef_map', name: 'Map Entry (-Zoe-)', url: 'activity_map.txt' }
+        */
             ]
         },
         {
@@ -105,23 +122,33 @@
                 { id: 'biome', name: 'Biome Entry', url: 'biome_entry.txt' },
                 { id: 'flora', name: 'Flora Entry (-Sylva-)', url: 'flora_entry.txt' },
                 { id: 'fauna', name: 'Fauna Entry (-Alder-)', url: 'fauna_entry.txt' },
-                { id: 'mineral', name: 'Mineral Entry (-Riff-)', url: 'mineral_entry.txt' }
+                { id: 'mineral', name: 'Mineral Entry (-Riff-)', url: 'mineral_entry.txt' },
+                { id: 'weather', name: 'Weather Entry (-Zeph-)', url: 'COMING_SOON.txt' }
             ]
         },
         {
             category: "SOCIETAL",
             items: [
-                { id: 'locale', name: 'Locale Entry', url: 'locale_entry.txt' },
-                { id: 'char', name: 'Character Entry (-Nerris-)', url: 'character_entry.txt' }
+                { id: 'locale', name: 'Locale Entry (-Zoe-)', url: 'locale_entry.txt' },
+                { id: 'char', name: 'Character Entry (-Nerris-)', url: 'character_entry.txt' },
             ]
         },
         {
             category: "MVD (MIN VIABLE DETAIL)",
             items: [
                 { id: 'mvd_primer', name: 'MVD: Primer', url: 'mvd_primer.txt' },
-                { id: 'mvd_locale', name: 'MVD: Locale', url: 'mvd; soc_locale.txt' },
-                { id: 'mvd_feature', name: 'MVD: Feature', url: 'mvd; locale_feature.txt' },
-                { id: 'mvd_arcana', name: 'MVD: Arcana', url: 'mvd: feature_arcana.txt' },
+
+        /*      { id: 'mvd_biome', name: 'MVD: Ecological Zone', url: 'mvd; eco_zone.txt' },
+                { id: 'mvd_eco', name: 'MVD: Ecological Locale', url: 'mvd; eco_locale.txt' },
+                { id: 'mvd_flora', name: 'MVD: Flora', url: 'mvd; zone_flora.txt' },
+                { id: 'mvd_fauna', name: 'MVD: Fauna', url: 'mvd; zone_fauna.txt' },
+                { id: 'mvd_mineral', name: 'MVD: Mineral', url: 'mvd; zone_mineral.txt' },
+                { id: 'mvd_weather', name: 'MVD: Weather', url: 'mvd; locale_weather.txt' }, 
+        */
+                { id: 'mvd_societal', name: 'MVD: Societal Zone', url: 'COMING_SOON.txt' },
+                { id: 'mvd_locale', name: 'MVD: Societal Locale', url: 'mvd; soc_locale.txt' },
+                { id: 'mvd_feature', name: 'MVD: Societal Feature', url: 'mvd; locale_feature.txt' },
+                { id: 'mvd_arcana', name: 'MVD: Arcana', url: 'mvd; feature_arcana.txt' },
                 { id: 'mvd_character', name: 'MVD: Character', url: 'mvd; feature_character.txt' },
                 { id: 'mvd_inventory', name: 'MVD: Inventory', url: 'mvd; feature_inventory.txt' }
             ]
