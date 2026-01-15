@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMC - Template Workbench</title>
+    <style>
+        body { 
+            font-family: 'Consolas', monospace; 
+            background-color: #1a1a1a; color: #00ff41; 
+            margin: 0; display: flex; height: 100vh; overflow: hidden; 
+        }
+
+        /* Sidebar Navigation */
+        #sidebar { 
+            width: 250px; background: #222; border-right: 2px solid #4ecdc4; 
+            display: flex; flex-direction: column; padding: 20px; 
+        }
+        h2 { color: #4ecdc4; font-size: 1rem; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .nav-item { 
+            padding: 10px; cursor: pointer; color: #ccc; border-radius: 4px; 
+            margin-bottom: 5px; font-size: 0.85em; transition: 0.2s; 
+        }
+        .nav-item:hover { background: #333; color: #f9d423; }
+        .nav-item.active { background: #4ecdc4; color: #000; font-weight: bold; }
+
+        /* Main Workspace */
+        #main { flex-grow: 1; display: flex; flex-direction: column; padding: 25px; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .title-area { color: #f9d423; font-weight: bold; }
+
+        textarea { 
+            flex-grow: 1; background: #080808; color: #00ff41; 
+            border: 1px solid #333; border-radius: 8px; padding: 20px; 
+            font-family: inherit; font-size: 0.95em; line-height: 1.5; 
+            resize: none; outline: none; box-sizing: border-box;
+        }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 10px; }
+        .btn { 
+            padding: 10px 20px; border: none; border-radius: 5px; 
+            cursor: pointer; font-family: inherit; font-weight: bold; 
+        }
+        .btn-copy { background: #f9d423; color: #000; }
+        .btn-reset { background: #ff6b6b; color: #fff; }
+        .btn:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>TEMPLATE LIBRARY</h2>
+    <div id="nav-list">
+        </div>
+</div>
+
+<div id="main">
+    <div class="toolbar">
+        <div class="title-area" id="active-title">Select a template...</div>
+        <div class="btn-group">
+            <button class="btn btn-reset" onclick="resetCurrent()">🔄 Reset</button>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyTemplate()">📋 Copy to Clipboard</button>
+        </div>
+    </div>
+    <textarea id="workbench" placeholder="Select a template to begin editing..."></textarea>
+</div>
+
+<script>
+    const registry = [
+        { id: 'changelog', name: 'Changelog Entry', url: 'changelog_entry.txt' },
+        { id: 'guided_activity', name: 'Guided Activity', url: 'guided_activity.txt' }
+    ];
+
+    let currentTemplateUrl = '';
+
+    function init() {
+        const list = document.getElementById('nav-list');
+        registry.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'nav-item';
+            div.textContent = item.name;
+            div.onclick = () => loadTemplate(item, div);
+            list.appendChild(div);
+        });
+    }
+
+    async function loadTemplate(item, element) {
+        // UI updates
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('active-title').textContent = `ACTIVE: ${item.name}`;
+        
+        currentTemplateUrl = item.url;
+        
+        try {
+            const response = await fetch(item.url);
+            const text = await response.text();
+            document.getElementById('workbench').value = text;
+        } catch (err) {
+            document.getElementById('workbench').value = "Error: Template file not found.";
+        }
+    }
+
+    function resetCurrent() {
+        if (!currentTemplateUrl) return;
+        const activeItem = registry.find(r => r.url === currentTemplateUrl);
+        const activeDiv = Array.from(document.querySelectorAll('.nav-item'))
+                               .find(d => d.textContent === activeItem.name);
+        loadTemplate(activeItem, activeDiv);
+    }
+
+    async function copyTemplate() {
+        const area = document.getElementById('workbench');
+        const btn = document.getElementById('copyBtn');
+        if (!area.value) return;
+
+        try {
+            await navigator.clipboard.writeText(area.value);
+            const original = btn.innerHTML;
+            btn.innerHTML = "✨ Copied! ✨";
+            btn.style.background = "#00ff41";
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.background = "#f9d423";
+            }, 1200);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
